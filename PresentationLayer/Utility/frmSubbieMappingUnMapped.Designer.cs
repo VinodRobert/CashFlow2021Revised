@@ -1,6 +1,6 @@
 ﻿namespace CashFlow
 {
-    partial class frmCreditorMapping
+    partial class frmSubbieMappingUnMapped
     {
         /// <summary>
         /// Required designer variable.
@@ -47,11 +47,11 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Blue;
-            this.label1.Location = new System.Drawing.Point(318, 9);
+            this.label1.Location = new System.Drawing.Point(301, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(427, 33);
+            this.label1.Size = new System.Drawing.Size(520, 33);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Creditor  - Mapping UnMapped";
+            this.label1.Text = "Sub Contractors  Mapping UnMapped";
             // 
             // label2
             // 
@@ -161,7 +161,7 @@
             this.txtConfirm.TabIndex = 13;
             this.txtConfirm.TextChanged += new System.EventHandler(this.txtConfirm_TextChanged);
             // 
-            // frmCreditorMapping
+            // frmSubbieMappingUnMapped
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -176,9 +176,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "frmCreditorMapping";
+            this.Name = "frmSubbieMappingUnMapped";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Creditor | Mapping";
+            this.Text = "Sub Contractors | Mapping";
             this.Load += new System.EventHandler(this.frmLedgerMapping_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cmbCashFlowMarkers)).EndInit();
             this.ResumeLayout(false);

@@ -435,11 +435,11 @@
     <Compile Include="PresentationLayer\Utility\frmCreditorReMapping.Designer.cs">
       <DependentUpon>frmCreditorReMapping.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationLayer\Utility\frmCreditorrMappingUnMapped - Copy.cs">
+    <Compile Include="PresentationLayer\Utility\frmSubbieMappingUnMapped.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PresentationLayer\Utility\frmCreditorrMappingUnMapped - Copy.Designer.cs">
-      <DependentUpon>frmCreditorrMappingUnMapped - Copy.cs</DependentUpon>
+    <Compile Include="PresentationLayer\Utility\frmSubbieMappingUnMapped.Designer.cs">
+      <DependentUpon>frmSubbieMappingUnMapped.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationLayer\Utility\frmSubbieReMapping.cs">
       <SubType>Form</SubType>
@@ -465,11 +465,11 @@
     <Compile Include="PresentationLayer\Utility\frmCreditorCurrentMapping.Designer.cs">
       <DependentUpon>frmCreditorCurrentMapping.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationLayer\Utility\frmLedgerCodeCurrentMapping.cs">
+    <Compile Include="PresentationLayer\Utility\frmLedgerCurrentMapping.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PresentationLayer\Utility\frmLedgerCodeCurrentMapping.Designer.cs">
-      <DependentUpon>frmLedgerCodeCurrentMapping.cs</DependentUpon>
+    <Compile Include="PresentationLayer\Utility\frmLedgerCurrentMapping.Designer.cs">
+      <DependentUpon>frmLedgerCurrentMapping.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationLayer\Utility\frmLedgerReMapping.cs">
       <SubType>Form</SubType>
@@ -497,8 +497,8 @@
     <EmbeddedResource Include="PresentationLayer\Utility\frmCreditorReMapping.resx">
       <DependentUpon>frmCreditorReMapping.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationLayer\Utility\frmCreditorrMappingUnMapped - Copy.resx">
-      <DependentUpon>frmCreditorrMappingUnMapped - Copy.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationLayer\Utility\frmSubbieMappingUnMapped.resx">
+      <DependentUpon>frmSubbieMappingUnMapped.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationLayer\Utility\frmSubbieReMapping.resx">
       <DependentUpon>frmSubbieReMapping.cs</DependentUpon>
@@ -512,8 +512,8 @@
     <EmbeddedResource Include="PresentationLayer\Utility\frmCreditorCurrentMapping.resx">
       <DependentUpon>frmCreditorCurrentMapping.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationLayer\Utility\frmLedgerCodeCurrentMapping.resx">
-      <DependentUpon>frmLedgerCodeCurrentMapping.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationLayer\Utility\frmLedgerCurrentMapping.resx">
+      <DependentUpon>frmLedgerCurrentMapping.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationLayer\Utility\frmLedgerReMapping.resx">
       <DependentUpon>frmLedgerReMapping.cs</DependentUpon>

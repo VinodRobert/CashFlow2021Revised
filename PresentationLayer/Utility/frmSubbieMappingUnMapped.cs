@@ -14,7 +14,7 @@ using Syncfusion.WinForms.DataGrid.Enums;
 
 namespace CashFlow
 {
-    public partial class frmCreditorMapping : Form
+    public partial class frmSubbieMappingUnMapped : Form
     {
         CashFlowBL CF = new CashFlowBL();
         List<SelectedRowInformation> SelectedRowsCollection = new List<SelectedRowInformation>();
@@ -22,14 +22,14 @@ namespace CashFlow
         string cashFlowMarkerForUpdate = string.Empty;
         string ledgerCodeForUpdate = string.Empty;
 
-        public frmCreditorMapping()
+        public frmSubbieMappingUnMapped()
         {
             InitializeComponent();
         }
 
         private void LoadPartyCodes()
         {
-            dsPartyCode = CF.FetchMissingCreditorCodes();
+            dsPartyCode = CF.FetchMissingSubbieCodes();
             this.chkListLedgerCode.DataSource = dsPartyCode.Tables[0];
             this.chkListLedgerCode.DisplayMember = "PARTYNAME";
             this.chkListLedgerCode.ValueMember = "PARTYCODE";
@@ -43,7 +43,7 @@ namespace CashFlow
 
         private void LoadCashFlowMarkers()
         {
-            DataSet dsCashFlowMarkers = CF.FetchCashFlowMappingForPartyCreditor();
+            DataSet dsCashFlowMarkers = CF.FetchCashFlowMappingForPartySubbie();
             DataTable dtCashFlowMarkers = dsCashFlowMarkers.Tables[0];
             this.cmbCashFlowMarkers.MultiColumn = true;
             this.cmbCashFlowMarkers.ShowColumnHeader = true;
@@ -134,7 +134,7 @@ namespace CashFlow
                             chkItemIndex = Convert.ToInt16(chkListLedgerCode.View.DisplayItems.IndexOf(allItems));
                             ledgerRow = dtPartyCode.Rows[chkItemIndex];
                             ledgerCodeForUpdate = ledgerRow[0].ToString();
-                            CF.UpdatePartyCodeWithCashFlowMarker(ledgerCodeForUpdate, cashFlowMarkerForUpdate,1);
+                            CF.UpdatePartyCodeWithCashFlowMarker(ledgerCodeForUpdate, cashFlowMarkerForUpdate,2);
                         }
                     }
                 }

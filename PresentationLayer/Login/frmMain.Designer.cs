@@ -193,6 +193,7 @@
             this.reMappingToolStripMenuItem2.Name = "reMappingToolStripMenuItem2";
             this.reMappingToolStripMenuItem2.Size = new System.Drawing.Size(235, 26);
             this.reMappingToolStripMenuItem2.Text = "Re-Mapping";
+            this.reMappingToolStripMenuItem2.Click += new System.EventHandler(this.reMappingToolStripMenuItem2_Click);
             // 
             // statusStrip
             // 

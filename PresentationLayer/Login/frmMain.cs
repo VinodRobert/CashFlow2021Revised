@@ -112,5 +112,11 @@ namespace CashFlow.PresentationLayer.Login
             frmCreditorReMapping creditorReMap = new frmCreditorReMapping();
             creditorReMap.Show();
         }
+
+        private void reMappingToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            frmSubbieReMapping subbieReMap = new frmSubbieReMapping();
+            subbieReMap.Show();
+        }
     }
 }

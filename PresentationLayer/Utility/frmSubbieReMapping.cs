@@ -29,7 +29,7 @@ namespace CashFlow
 
         private void LoadPartyCodes()
         {
-            dsPartyCode = CF.FetchMissingSubbieCodes();
+            dsPartyCode = CF.FetchMappedSubbieCodes();
             this.chkListLedgerCode.DataSource = dsPartyCode.Tables[0];
             this.chkListLedgerCode.DisplayMember = "PARTYNAME";
             this.chkListLedgerCode.ValueMember = "PARTYCODE";
@@ -134,6 +134,7 @@ namespace CashFlow
                             chkItemIndex = Convert.ToInt16(chkListLedgerCode.View.DisplayItems.IndexOf(allItems));
                             ledgerRow = dtPartyCode.Rows[chkItemIndex];
                             ledgerCodeForUpdate = ledgerRow[0].ToString();
+                            CF.DeletePartyCodeWithCashFlowMarker(ledgerCodeForUpdate, cashFlowMarkerForUpdate);
                             CF.UpdatePartyCodeWithCashFlowMarker(ledgerCodeForUpdate, cashFlowMarkerForUpdate,2);
                         }
                     }
