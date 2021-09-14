@@ -14,7 +14,7 @@ using Syncfusion.WinForms.DataGrid.Enums;
 
 namespace CashFlow
 {
-    public partial class frmSubbieMappingUnMapped : Form
+    public partial class frmSubbieReMapping : Form
     {
         CashFlowBL CF = new CashFlowBL();
         List<SelectedRowInformation> SelectedRowsCollection = new List<SelectedRowInformation>();
@@ -22,7 +22,7 @@ namespace CashFlow
         string cashFlowMarkerForUpdate = string.Empty;
         string ledgerCodeForUpdate = string.Empty;
 
-        public frmSubbieMappingUnMapped()
+        public frmSubbieReMapping()
         {
             InitializeComponent();
         }
