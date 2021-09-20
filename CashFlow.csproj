@@ -417,6 +417,12 @@
     <Compile Include="PresentationLayer\CashFlow2021\frmCashFlow2021.Designer.cs">
       <DependentUpon>frmCashFlow2021.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationLayer\FTR\frmFTRSubbie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationLayer\FTR\frmFTRSubbie.Designer.cs">
+      <DependentUpon>frmFTRSubbie.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationLayer\Login\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -487,6 +493,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="PresentationLayer\CashFlow2021\frmCashFlow2021.resx">
       <DependentUpon>frmCashFlow2021.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationLayer\FTR\frmFTRSubbie.resx">
+      <DependentUpon>frmFTRSubbie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationLayer\Login\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
@@ -564,5 +573,6 @@
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -118,5 +118,11 @@ namespace CashFlow.PresentationLayer.Login
             frmSubbieReMapping subbieReMap = new frmSubbieReMapping();
             subbieReMap.Show();
         }
+
+        private void subContractorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmFTRSubbie ftrSubbie = new frmFTRSubbie();
+            ftrSubbie.Show();
+        }
     }
 }

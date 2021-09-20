@@ -598,6 +598,18 @@ namespace CashFlow.BusinessLayer
 
         #endregion
 
+        public DataSet FetchFTRSubbie(int borgID, int finyear)
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+
+            SqlParameter[] arParms = new SqlParameter[2];
+            arParms[0] = new SqlParameter("@BORGID", SqlDbType.Int);
+            arParms[0].Value = borgID;
+            arParms[1] = new SqlParameter("@CURRENTFINYEAR", SqlDbType.Int);
+            arParms[1].Value = finyear;
+            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.StoredProcedure, "[BS].[spFTR_For_Subbies]", arParms);
+            return ds;
+        }
 
     }
 

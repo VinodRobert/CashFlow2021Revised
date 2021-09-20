@@ -50,6 +50,8 @@
             this.stripLoginName = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripProjectName = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.fundTransferRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.subContractorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -60,11 +62,12 @@
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuCashFlow,
-            this.utilityToolStripMenuItem});
+            this.utilityToolStripMenuItem,
+            this.fundTransferRequestToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip.Size = new System.Drawing.Size(1342, 28);
+            this.menuStrip.Size = new System.Drawing.Size(1434, 28);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -108,7 +111,7 @@
             this.missingToolStripMenuItem,
             this.remappingToolStripMenuItem});
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.logoutToolStripMenuItem.Text = "Ledger Code";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
@@ -140,7 +143,7 @@
             this.missingToolStripMenuItem1,
             this.reMappingToolStripMenuItem1});
             this.mapLedgerCodeToolStripMenuItem.Name = "mapLedgerCodeToolStripMenuItem";
-            this.mapLedgerCodeToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.mapLedgerCodeToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.mapLedgerCodeToolStripMenuItem.Text = "Supplier";
             // 
             // curentMappingToolStripMenuItem
@@ -171,7 +174,7 @@
             this.missedMappingToolStripMenuItem,
             this.reMappingToolStripMenuItem2});
             this.subContractorToolStripMenuItem.Name = "subContractorToolStripMenuItem";
-            this.subContractorToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.subContractorToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.subContractorToolStripMenuItem.Text = "Sub Contractor";
             // 
             // currentMappingToolStripMenuItem1
@@ -204,7 +207,7 @@
             this.statusStrip.Location = new System.Drawing.Point(0, 668);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip.Size = new System.Drawing.Size(1342, 25);
+            this.statusStrip.Size = new System.Drawing.Size(1434, 25);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
@@ -220,12 +223,27 @@
             this.stripProjectName.Size = new System.Drawing.Size(95, 20);
             this.stripProjectName.Text = "ProjectName";
             // 
+            // fundTransferRequestToolStripMenuItem
+            // 
+            this.fundTransferRequestToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.subContractorsToolStripMenuItem});
+            this.fundTransferRequestToolStripMenuItem.Name = "fundTransferRequestToolStripMenuItem";
+            this.fundTransferRequestToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.fundTransferRequestToolStripMenuItem.Text = "FTR";
+            // 
+            // subContractorsToolStripMenuItem
+            // 
+            this.subContractorsToolStripMenuItem.Name = "subContractorsToolStripMenuItem";
+            this.subContractorsToolStripMenuItem.Size = new System.Drawing.Size(223, 26);
+            this.subContractorsToolStripMenuItem.Text = "Sub Contractors";
+            this.subContractorsToolStripMenuItem.Click += new System.EventHandler(this.subContractorsToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(1342, 693);
+            this.ClientSize = new System.Drawing.Size(1434, 693);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip);
             this.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -268,6 +286,8 @@
         private System.Windows.Forms.ToolStripMenuItem currentMappingToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem missedMappingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reMappingToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem fundTransferRequestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem subContractorsToolStripMenuItem;
     }
 }
 
