@@ -24,9 +24,12 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>https://bsdb.capaciteworld.com/CASHFLOWDEPLOY/</InstallUrl>
+    <ProductName>CASHFLOW</ProductName>
+    <PublisherName>BERACHAH SOFTWARE SOLUTIONS</PublisherName>
+    <SuiteName>CASH FLOW</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -62,6 +65,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>CashFlow.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
@@ -417,6 +423,12 @@
     <Compile Include="PresentationLayer\CashFlow2021\frmCashFlow2021.Designer.cs">
       <DependentUpon>frmCashFlow2021.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationLayer\FTR\frmFTRCreditors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationLayer\FTR\frmFTRCreditors.Designer.cs">
+      <DependentUpon>frmFTRCreditors.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationLayer\FTR\frmFTRSubbie.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -493,6 +505,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="PresentationLayer\CashFlow2021\frmCashFlow2021.resx">
       <DependentUpon>frmCashFlow2021.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationLayer\FTR\frmFTRCreditors.resx">
+      <DependentUpon>frmFTRCreditors.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationLayer\FTR\frmFTRSubbie.resx">
       <DependentUpon>frmFTRSubbie.cs</DependentUpon>
@@ -573,6 +588,14 @@
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\LOGO.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CashFlow.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CashFlow.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

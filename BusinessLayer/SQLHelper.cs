@@ -96,8 +96,8 @@ namespace CashFlowSqlHelper
 			string _connectionString = "";
             if (CashFlowGlobalVariables.GlobalVariables.connectedBy == 0)
             {
-              //  _connectionString = "Server = 192.168.0.32; Database = BSBS_CAPACITE; User ID = BI; Password = BICAPACITE";
-                 _connectionString = "Server = BERACHAH; Database = BSBS_CAPACITE; User ID = BI3; Password = 123";
+                _connectionString = "Server = 192.168.0.32; Database = BSBS_CAPACITE; User ID = BI; Password = BICAPACITE";
+              //   _connectionString = "Server = BERACHAH; Database = BSBS_CAPACITE; User ID = BI3; Password = 123";
             }
             else if (CashFlowGlobalVariables.GlobalVariables.connectedBy == 1)
                 _connectionString = "Server =  bsdb.capaciteworld.com,15389; Database = BSBS_CAPACITE; User ID = BI; Password = BICAPACITE";

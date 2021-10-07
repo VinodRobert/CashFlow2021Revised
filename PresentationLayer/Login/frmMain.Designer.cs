@@ -46,12 +46,13 @@
             this.currentMappingToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.missedMappingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reMappingToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.fundTransferRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.subContractorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.stripLoginName = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripProjectName = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.fundTransferRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.subContractorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.creditorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -198,6 +199,22 @@
             this.reMappingToolStripMenuItem2.Text = "Re-Mapping";
             this.reMappingToolStripMenuItem2.Click += new System.EventHandler(this.reMappingToolStripMenuItem2_Click);
             // 
+            // fundTransferRequestToolStripMenuItem
+            // 
+            this.fundTransferRequestToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.subContractorsToolStripMenuItem,
+            this.creditorsToolStripMenuItem});
+            this.fundTransferRequestToolStripMenuItem.Name = "fundTransferRequestToolStripMenuItem";
+            this.fundTransferRequestToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.fundTransferRequestToolStripMenuItem.Text = "FTR";
+            // 
+            // subContractorsToolStripMenuItem
+            // 
+            this.subContractorsToolStripMenuItem.Name = "subContractorsToolStripMenuItem";
+            this.subContractorsToolStripMenuItem.Size = new System.Drawing.Size(223, 26);
+            this.subContractorsToolStripMenuItem.Text = "Sub Contractors";
+            this.subContractorsToolStripMenuItem.Click += new System.EventHandler(this.subContractorsToolStripMenuItem_Click);
+            // 
             // statusStrip
             // 
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -223,20 +240,12 @@
             this.stripProjectName.Size = new System.Drawing.Size(95, 20);
             this.stripProjectName.Text = "ProjectName";
             // 
-            // fundTransferRequestToolStripMenuItem
+            // creditorsToolStripMenuItem
             // 
-            this.fundTransferRequestToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.subContractorsToolStripMenuItem});
-            this.fundTransferRequestToolStripMenuItem.Name = "fundTransferRequestToolStripMenuItem";
-            this.fundTransferRequestToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
-            this.fundTransferRequestToolStripMenuItem.Text = "FTR";
-            // 
-            // subContractorsToolStripMenuItem
-            // 
-            this.subContractorsToolStripMenuItem.Name = "subContractorsToolStripMenuItem";
-            this.subContractorsToolStripMenuItem.Size = new System.Drawing.Size(223, 26);
-            this.subContractorsToolStripMenuItem.Text = "Sub Contractors";
-            this.subContractorsToolStripMenuItem.Click += new System.EventHandler(this.subContractorsToolStripMenuItem_Click);
+            this.creditorsToolStripMenuItem.Name = "creditorsToolStripMenuItem";
+            this.creditorsToolStripMenuItem.Size = new System.Drawing.Size(223, 26);
+            this.creditorsToolStripMenuItem.Text = "Creditors";
+            this.creditorsToolStripMenuItem.Click += new System.EventHandler(this.creditorsToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -288,6 +297,7 @@
         private System.Windows.Forms.ToolStripMenuItem reMappingToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem fundTransferRequestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem subContractorsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem creditorsToolStripMenuItem;
     }
 }
 

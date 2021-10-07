@@ -124,5 +124,11 @@ namespace CashFlow.PresentationLayer.Login
             frmFTRSubbie ftrSubbie = new frmFTRSubbie();
             ftrSubbie.Show();
         }
+
+        private void creditorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmFTRCreditors ftrCreditors = new frmFTRCreditors();
+            ftrCreditors.Show();
+        }
     }
 }

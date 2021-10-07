@@ -168,12 +168,12 @@
             // 
             this.lblVersion.AutoSize = true;
             this.lblVersion.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVersion.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblVersion.ForeColor = System.Drawing.Color.Fuchsia;
             this.lblVersion.Location = new System.Drawing.Point(205, 411);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(391, 17);
+            this.lblVersion.Size = new System.Drawing.Size(369, 17);
             this.lblVersion.TabIndex = 17;
-            this.lblVersion.Text = "Version 1.0.0  Release Date:  14 September 2021";
+            this.lblVersion.Text = "Version 1.0.2  Release Date:  07 October 2021";
             // 
             // frmUserLogin
             // 
