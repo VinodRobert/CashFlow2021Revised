@@ -107,20 +107,18 @@ namespace CashFlow.PresentationLayer.Cash_Flow
             }
             else
             {
-                PresentFTRSubbie(dsResult);
+                PresentFTRCreditors(dsResult);
             }
         }
 
-        private void PresentFTRSubbie(DataSet ds)
+        private void PresentFTRCreditors(DataSet ds)
         {
-            gridResult.DataSource = ds.Tables[1];
+            gridResult.DataSource = ds.Tables[0];
             gridResult.Refresh();
-            gridDetails.DataSource = ds.Tables[0];
-            gridDetails.Refresh();
-            gridDetails.Visible = true;
+            
             gridResult.Visible = true;
             tabControlResult.Visible = true;
-            tabDetails.Visible = true;
+            
             btnExcel.Visible = true;
             btnReset.Enabled = true;
         }
@@ -189,14 +187,14 @@ namespace CashFlow.PresentationLayer.Cash_Flow
             options.StartColumnIndex = 1;
             options.Exporting += options_Exporting;
 
-            int numberRowsinResult = Convert.ToInt32(dsResult.Tables[1].Rows.Count);
-            numberRowsinResult = numberRowsinResult +3 ;
+            int numberRowsinResult = Convert.ToInt32(dsResult.Tables[0].Rows.Count);
+            numberRowsinResult = numberRowsinResult + 3;
             gridResult.ExportToExcel(gridResult.View, options, workBook.Worksheets[0]);
-            gridDetails.ExportToExcel(gridDetails.View, options, workBook.Worksheets[1]);
+          
 
 
             workBook.Worksheets[0].Name = "FTR-Creditors (Live) ";
-            workBook.Worksheets[1].Name = "Transaction Dump";
+          
             
 
             // Work Sheet [0]  Cash Flow Details 
@@ -238,31 +236,8 @@ namespace CashFlow.PresentationLayer.Cash_Flow
             //Formatting table with a built-in style
             table.BuiltInTableStyle = TableBuiltInStyles.TableStyleMedium8;
 
-            //   Work Sheet - 1    Transaction Dump // 
-
-            workBook.Worksheets[1].Range["A1:P1"].Merge();
-            rangeProjectName = workBook.Worksheets[1].Range["A1"];
-            rangeProjectName.Text = projectName;
-            rangeProjectName.CellStyle.HorizontalAlignment = ExcelHAlign.HAlignCenter;
-            richTextProjectName = rangeProjectName.RichText;
-            richTextProjectName.SetFont(0, headerLength, redFont);
-
-
-            workBook.Worksheets[1].Range["A2:P2"].Merge();
-            rangeDetails = workBook.Worksheets[1].Range["A2"];
-            string transactionText = "Transaction Dump  ";
-            rangeDetails.Text = transactionText;
-            rangeDetails.CellStyle.HorizontalAlignment = ExcelHAlign.HAlignCenter;
-            richTextDetails = rangeDetails.RichText;
-            headerLength2 = transactionText.Length;
-            richTextDetails.SetFont(0, headerLength2, blueFont);
-
-            numberRowsinResult = Convert.ToInt32(dsResult.Tables[0].Rows.Count);
-            numberRowsinResult = numberRowsinResult + 3;
-            tableRange = "A3:P" + Convert.ToString(numberRowsinResult);
-            table = workBook.Worksheets[1].ListObjects.Create("Table2", workBook.Worksheets[1][tableRange]);
-            table.BuiltInTableStyle = TableBuiltInStyles.TableStyleMedium23;
-
+         
+           
 
 
 

@@ -30,6 +30,7 @@
         {
             Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn1 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
             Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn2 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn3 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
             Syncfusion.WinForms.DataGrid.GridNumericColumn gridNumericColumn1 = new Syncfusion.WinForms.DataGrid.GridNumericColumn();
             Syncfusion.WinForms.DataGrid.GridNumericColumn gridNumericColumn2 = new Syncfusion.WinForms.DataGrid.GridNumericColumn();
             Syncfusion.WinForms.DataGrid.GridNumericColumn gridNumericColumn3 = new Syncfusion.WinForms.DataGrid.GridNumericColumn();
@@ -41,6 +42,8 @@
             Syncfusion.WinForms.DataGrid.GridNumericColumn gridNumericColumn9 = new Syncfusion.WinForms.DataGrid.GridNumericColumn();
             Syncfusion.WinForms.DataGrid.GridNumericColumn gridNumericColumn10 = new Syncfusion.WinForms.DataGrid.GridNumericColumn();
             Syncfusion.WinForms.DataGrid.GridNumericColumn gridNumericColumn11 = new Syncfusion.WinForms.DataGrid.GridNumericColumn();
+            Syncfusion.WinForms.DataGrid.GridNumericColumn gridNumericColumn12 = new Syncfusion.WinForms.DataGrid.GridNumericColumn();
+            Syncfusion.WinForms.DataGrid.GridNumericColumn gridNumericColumn13 = new Syncfusion.WinForms.DataGrid.GridNumericColumn();
             this.lblProjectName = new Syncfusion.Windows.Forms.Tools.AutoLabel();
             this.cmbProject = new Syncfusion.WinForms.ListView.SfComboBox();
             this.btnReset = new Syncfusion.WinForms.Controls.SfButton();
@@ -52,8 +55,6 @@
             this.tabControlResult = new Syncfusion.Windows.Forms.Tools.TabControlAdv();
             this.tabTopSheet = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
             this.gridResult = new Syncfusion.WinForms.DataGrid.SfDataGrid();
-            this.tabDetails = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
-            this.gridDetails = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.cmbProject)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFinYear)).BeginInit();
@@ -61,8 +62,6 @@
             this.tabControlResult.SuspendLayout();
             this.tabTopSheet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridResult)).BeginInit();
-            this.tabDetails.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridDetails)).BeginInit();
             this.SuspendLayout();
             // 
             // lblProjectName
@@ -177,7 +176,6 @@
             this.tabControlResult.ActiveTabFont = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Bold);
             this.tabControlResult.BeforeTouchSize = new System.Drawing.Size(1405, 493);
             this.tabControlResult.Controls.Add(this.tabTopSheet);
-            this.tabControlResult.Controls.Add(this.tabDetails);
             this.tabControlResult.Location = new System.Drawing.Point(13, 84);
             this.tabControlResult.Name = "tabControlResult";
             this.tabControlResult.Size = new System.Drawing.Size(1405, 493);
@@ -208,14 +206,19 @@
             this.gridResult.AllowGrouping = false;
             gridTextColumn1.AllowFiltering = true;
             gridTextColumn1.AllowGrouping = false;
-            gridTextColumn1.HeaderText = "Party";
-            gridTextColumn1.MappingName = "PARTYCODE";
+            gridTextColumn1.HeaderText = "Category";
+            gridTextColumn1.MappingName = "CATEGORY";
             gridTextColumn1.Width = 100D;
             gridTextColumn2.AllowFiltering = true;
             gridTextColumn2.AllowGrouping = false;
             gridTextColumn2.HeaderText = "Party Name";
             gridTextColumn2.MappingName = "PARTYNAME";
             gridTextColumn2.Width = 175D;
+            gridTextColumn3.AllowFiltering = true;
+            gridTextColumn3.AllowGrouping = false;
+            gridTextColumn3.HeaderText = "Party";
+            gridTextColumn3.MappingName = "PARTYCODE";
+            gridTextColumn3.Width = 100D;
             gridNumericColumn1.AllowFiltering = true;
             gridNumericColumn1.AllowGrouping = false;
             gridNumericColumn1.HeaderText = "Work Done";
@@ -229,7 +232,7 @@
             gridNumericColumn3.AllowFiltering = true;
             gridNumericColumn3.AllowGrouping = false;
             gridNumericColumn3.HeaderText = "Contras";
-            gridNumericColumn3.MappingName = "CONTRAS";
+            gridNumericColumn3.MappingName = "DEBITS";
             gridNumericColumn3.Width = 90D;
             gridNumericColumn4.AllowFiltering = true;
             gridNumericColumn4.AllowGrouping = false;
@@ -238,41 +241,50 @@
             gridNumericColumn4.Width = 100D;
             gridNumericColumn5.AllowFiltering = true;
             gridNumericColumn5.AllowGrouping = false;
-            gridNumericColumn5.HeaderText = "Others";
-            gridNumericColumn5.MappingName = "OTHERS";
-            gridNumericColumn5.Width = 90D;
+            gridNumericColumn5.HeaderText = "WithHeld";
+            gridNumericColumn5.MappingName = "WITHHELD";
             gridNumericColumn6.AllowFiltering = true;
             gridNumericColumn6.AllowGrouping = false;
-            gridNumericColumn6.HeaderText = "Advance";
-            gridNumericColumn6.MappingName = "ADVANCE";
-            gridNumericColumn6.Width = 100D;
+            gridNumericColumn6.HeaderText = "Discount";
+            gridNumericColumn6.MappingName = "DISCOUNT";
             gridNumericColumn7.AllowFiltering = true;
             gridNumericColumn7.AllowGrouping = false;
-            gridNumericColumn7.HeaderText = "TDS";
-            gridNumericColumn7.MappingName = "TDS";
+            gridNumericColumn7.HeaderText = "Others";
+            gridNumericColumn7.MappingName = "OTHERS";
             gridNumericColumn7.Width = 90D;
             gridNumericColumn8.AllowFiltering = true;
             gridNumericColumn8.AllowGrouping = false;
-            gridNumericColumn8.HeaderText = "Net Payable";
-            gridNumericColumn8.MappingName = "NETPAYABLE";
-            gridNumericColumn8.Width = 110D;
+            gridNumericColumn8.HeaderText = "TDS";
+            gridNumericColumn8.MappingName = "TDS";
+            gridNumericColumn8.Width = 90D;
             gridNumericColumn9.AllowFiltering = true;
             gridNumericColumn9.AllowGrouping = false;
-            gridNumericColumn9.HeaderText = "Paid";
-            gridNumericColumn9.MappingName = "PAID";
+            gridNumericColumn9.HeaderText = "Net Payable";
+            gridNumericColumn9.MappingName = "NETPAYABLE";
             gridNumericColumn9.Width = 110D;
             gridNumericColumn10.AllowFiltering = true;
             gridNumericColumn10.AllowGrouping = false;
-            gridNumericColumn10.HeaderText = "Project Liablity";
-            gridNumericColumn10.MappingName = "PROJECTLIABILITY";
+            gridNumericColumn10.HeaderText = "Paid";
+            gridNumericColumn10.MappingName = "PAID";
             gridNumericColumn10.Width = 110D;
             gridNumericColumn11.AllowFiltering = true;
             gridNumericColumn11.AllowGrouping = false;
-            gridNumericColumn11.HeaderText = "Zonal Outstanding";
-            gridNumericColumn11.MappingName = "ZONALOUTSTANDING";
+            gridNumericColumn11.HeaderText = "Project Liablity";
+            gridNumericColumn11.MappingName = "PROJECTLIABILITY";
             gridNumericColumn11.Width = 110D;
+            gridNumericColumn12.AllowFiltering = true;
+            gridNumericColumn12.AllowGrouping = false;
+            gridNumericColumn12.HeaderText = "Zonal Outstanding";
+            gridNumericColumn12.MappingName = "ZONALLIABILITY";
+            gridNumericColumn12.Width = 110D;
+            gridNumericColumn13.AllowFiltering = true;
+            gridNumericColumn13.AllowGrouping = false;
+            gridNumericColumn13.HeaderText = "Advance";
+            gridNumericColumn13.MappingName = "ADVANCE";
+            gridNumericColumn13.Width = 100D;
             this.gridResult.Columns.Add(gridTextColumn1);
             this.gridResult.Columns.Add(gridTextColumn2);
+            this.gridResult.Columns.Add(gridTextColumn3);
             this.gridResult.Columns.Add(gridNumericColumn1);
             this.gridResult.Columns.Add(gridNumericColumn2);
             this.gridResult.Columns.Add(gridNumericColumn3);
@@ -284,6 +296,8 @@
             this.gridResult.Columns.Add(gridNumericColumn9);
             this.gridResult.Columns.Add(gridNumericColumn10);
             this.gridResult.Columns.Add(gridNumericColumn11);
+            this.gridResult.Columns.Add(gridNumericColumn12);
+            this.gridResult.Columns.Add(gridNumericColumn13);
             this.gridResult.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridResult.Location = new System.Drawing.Point(3, 3);
             this.gridResult.Name = "gridResult";
@@ -301,37 +315,6 @@
             this.gridResult.TabIndex = 1;
             this.gridResult.Text = "sfDataGrid1";
             this.gridResult.QueryRowStyle += new Syncfusion.WinForms.DataGrid.Events.QueryRowStyleEventHandler(this.gridResult_QueryRowStyle);
-            // 
-            // tabDetails
-            // 
-            this.tabDetails.Controls.Add(this.gridDetails);
-            this.tabDetails.Image = null;
-            this.tabDetails.ImageSize = new System.Drawing.Size(20, 20);
-            this.tabDetails.Location = new System.Drawing.Point(1, 39);
-            this.tabDetails.Name = "tabDetails";
-            this.tabDetails.ShowCloseButton = true;
-            this.tabDetails.Size = new System.Drawing.Size(1402, 451);
-            this.tabDetails.TabBackColor = System.Drawing.Color.WhiteSmoke;
-            this.tabDetails.TabForeColor = System.Drawing.Color.Red;
-            this.tabDetails.TabIndex = 2;
-            this.tabDetails.Text = "Details Break Up";
-            this.tabDetails.ThemesEnabled = false;
-            // 
-            // gridDetails
-            // 
-            this.gridDetails.AccessibleName = "Table";
-            this.gridDetails.AllowFiltering = true;
-            this.gridDetails.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridDetails.Location = new System.Drawing.Point(3, 14);
-            this.gridDetails.Name = "gridDetails";
-            this.gridDetails.PreviewRowHeight = 35;
-            this.gridDetails.Size = new System.Drawing.Size(1376, 437);
-            this.gridDetails.Style.HeaderStyle.FilterIconColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
-            this.gridDetails.Style.HeaderStyle.Font.Bold = true;
-            this.gridDetails.Style.HeaderStyle.Font.Facename = "Arial";
-            this.gridDetails.TabIndex = 0;
-            this.gridDetails.Text = "sfDataGrid1";
-            this.gridDetails.QueryRowStyle += new Syncfusion.WinForms.DataGrid.Events.QueryRowStyleEventHandler(this.gridDetails_QueryRowStyle);
             // 
             // label1
             // 
@@ -371,8 +354,6 @@
             this.tabControlResult.ResumeLayout(false);
             this.tabTopSheet.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridResult)).EndInit();
-            this.tabDetails.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridDetails)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -390,8 +371,6 @@
         private Syncfusion.WinForms.Controls.SfButton btnExcel;
         private Syncfusion.Windows.Forms.Tools.TabControlAdv tabControlResult;
         private Syncfusion.Windows.Forms.Tools.TabPageAdv tabTopSheet;
-        private Syncfusion.Windows.Forms.Tools.TabPageAdv tabDetails;
-        private Syncfusion.WinForms.DataGrid.SfDataGrid gridDetails;
         private Syncfusion.WinForms.DataGrid.SfDataGrid gridResult;
         private System.Windows.Forms.Label label1;
     }

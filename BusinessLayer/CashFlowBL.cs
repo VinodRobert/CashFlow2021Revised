@@ -607,7 +607,7 @@ namespace CashFlow.BusinessLayer
             arParms[0].Value = borgID;
             arParms[1] = new SqlParameter("@CURRENTFINYEAR", SqlDbType.Int);
             arParms[1].Value = finyear;
-            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.StoredProcedure, "[BS].[spFTR_For_Creditor]", arParms);
+            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.StoredProcedure, "[CF].[spFTR_For_Creditor]", arParms);
             return ds;
         }
 
@@ -621,7 +621,7 @@ namespace CashFlow.BusinessLayer
             arParms[0].Value = borgID;
             arParms[1] = new SqlParameter("@CURRENTFINYEAR", SqlDbType.Int);
             arParms[1].Value = finyear;
-            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.StoredProcedure, "[BS].[spFTR_For_Subbies]", arParms);
+            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.StoredProcedure, "[CF].[spFTR_For_Subbie]", arParms);
             return ds;
         }
 
