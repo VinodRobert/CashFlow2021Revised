@@ -41,24 +41,24 @@ namespace CashFlow
             chkListLedgerCode.Refresh();
         }
 
-        private void LoadCashFlowMarkers()
+        private void LoadFTRSections()
         {
-            DataSet dsCashFlowMarkers = CF.FetchCashFlowMappingForPartyCreditor();
-            DataTable dtCashFlowMarkers = dsCashFlowMarkers.Tables[0];
-            this.cmbCashFlowMarkers.MultiColumn = true;
-            this.cmbCashFlowMarkers.ShowColumnHeader = true;
-            this.cmbCashFlowMarkers.AlphaBlendSelectionColor = Color.LightBlue;
+            //DataSet dsFTRSections = CF.FetchCashFlowMappingForPartyCreditor();
+            //DataTable dtCashFlowMarkers = dsCashFlowMarkers.Tables[0];
+            //this.cmbFTRSection.MultiColumn = true;
+            //this.cmbFTRSection.ShowColumnHeader = true;
+            //this.cmbFTRSection.AlphaBlendSelectionColor = Color.LightBlue;
 
-            this.cmbCashFlowMarkers.DropDownWidth = 600;
-            this.cmbCashFlowMarkers.AllowFiltering = true;
+            //this.cmbFTRSection.DropDownWidth = 600;
+            //this.cmbFTRSection.AllowFiltering = true;
           
-            DataView view = new DataView(dtCashFlowMarkers);
-            this.cmbCashFlowMarkers.DataSource = view;
-            this.cmbCashFlowMarkers.DisplayMember = "LEVEL2";
-            this.cmbCashFlowMarkers.ValueMember = "STRUCTUREKEY";
+            //DataView view = new DataView(dtCashFlowMarkers);
+            //this.cmbFTRSection.DataSource = view;
+            //this.cmbFTRSection.DisplayMember = "LEVEL2";
+            //this.cmbFTRSection.ValueMember = "STRUCTUREKEY";
 
-            this.cmbCashFlowMarkers.Style = Syncfusion.Windows.Forms.VisualStyle.Office2007;
-            this.cmbCashFlowMarkers.Office2007ColorTheme = Syncfusion.Windows.Forms.Office2007Theme.Black;
+            //this.cmbFTRSection.Style = Syncfusion.Windows.Forms.VisualStyle.Office2007;
+            //this.cmbFTRSection.Office2007ColorTheme = Syncfusion.Windows.Forms.Office2007Theme.Black;
             
         }
         
@@ -69,7 +69,7 @@ namespace CashFlow
             lblConfirmYesNo.Visible = false;
             txtConfirm.Visible = false;
             LoadLedgerCodes();
-            LoadCashFlowMarkers();
+             
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -97,9 +97,9 @@ namespace CashFlow
         private void cmbCashFlowMarkers_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Here we are adding selected row information for all rows in MultiColumnComboBox
-            if (this.cmbCashFlowMarkers.SelectedItem != null && this.cmbCashFlowMarkers.SelectedItem is DataRowView)
+            if (this.cmbFTRSection.SelectedItem != null && this.cmbFTRSection.SelectedItem is DataRowView)
             {
-                DataRowView selectedRow = this.cmbCashFlowMarkers.SelectedItem as DataRowView;
+                DataRowView selectedRow = this.cmbFTRSection.SelectedItem as DataRowView;
                 this.SelectedRowsCollection.Add(new SelectedRowInformation(selectedRow.Row["STRUCTUREKEY"].ToString(), selectedRow.Row["FLOWCATEGORY"].ToString(), selectedRow.Row["LEVEL1"].ToString(), selectedRow.Row["LEVEL2"].ToString()));
             }
         }
@@ -148,5 +148,7 @@ namespace CashFlow
         {
             this.Close();
         }
+
+        
     }
 }

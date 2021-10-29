@@ -10,11 +10,14 @@ using System.Windows.Forms;
 using CashFlow.BusinessLayer;
 using CashFlow.PresentationLayer;
 using CashFlowGlobalVariables;
+ 
+
 namespace CashFlow.PresentationLayer.Login
 {
     public partial class frmUserLogin : Form
     {
-        CashFlowBL CF = new CashFlowBL();
+        ClassFTR FTR = new ClassFTR();
+
         private void LoginProcess()
         {
             btnLogin.Enabled = false;
@@ -25,7 +28,7 @@ namespace CashFlow.PresentationLayer.Login
             if (rdRemote.Checked == true)
                 GlobalVariables.connectedBy = 1;
 
-            DataSet ds = CF.Login(userID, pwd);
+            DataSet ds = FTR.Login(userID, pwd);
 
             int existing = Convert.ToInt16(ds.Tables[0].Rows.Count);
             if (existing == 0)
@@ -36,12 +39,12 @@ namespace CashFlow.PresentationLayer.Login
             }
             else
             {
-                GlobalVariables.UserName = Convert.ToString(ds.Tables[0].Rows[0]["USERNAME"]);
+                GlobalVariables.UserName = Convert.ToString(ds.Tables[0].Rows[0]["BSLOGINNAME"]);
                 GlobalVariables.UserID = userID;
+                GlobalVariables.RoleID = Convert.ToInt16(ds.Tables[0].Rows[0]["ROLEID"]);
                 this.Visible = false;
                 frmMain _main = new frmMain();
                 _main.Show();
-
             }
 
         }

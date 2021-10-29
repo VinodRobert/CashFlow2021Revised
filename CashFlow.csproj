@@ -29,7 +29,7 @@
     <SuiteName>CASH FLOW</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>8</ApplicationRevision>
+    <ApplicationRevision>9</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -413,6 +413,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLayer\CashFlowBL.cs" />
+    <Compile Include="BusinessLayer\FTR.cs" />
     <Compile Include="BusinessLayer\GenericClassess.cs" />
     <Compile Include="BusinessLayer\SQLHelper.cs" />
     <Compile Include="DataLayer\SQLHelper.cs" />
@@ -422,6 +423,18 @@
     </Compile>
     <Compile Include="PresentationLayer\CashFlow2021\frmCashFlow2021.Designer.cs">
       <DependentUpon>frmCashFlow2021.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationLayer\FTR\frmFTRList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationLayer\FTR\frmFTRList.Designer.cs">
+      <DependentUpon>frmFTRList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationLayer\FTR\frmFTRWorkSheet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationLayer\FTR\frmFTRWorkSheet.Designer.cs">
+      <DependentUpon>frmFTRWorkSheet.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationLayer\FTR\frmFTRCreditors.cs">
       <SubType>Form</SubType>
@@ -505,6 +518,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="PresentationLayer\CashFlow2021\frmCashFlow2021.resx">
       <DependentUpon>frmCashFlow2021.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationLayer\FTR\frmFTRList.resx">
+      <DependentUpon>frmFTRList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationLayer\FTR\frmFTRWorkSheet.resx">
+      <DependentUpon>frmFTRWorkSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationLayer\FTR\frmFTRCreditors.resx">
       <DependentUpon>frmFTRCreditors.cs</DependentUpon>

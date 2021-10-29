@@ -19,6 +19,7 @@ namespace CashFlowGlobalVariables
             public static string projectLists;
             public static string UserName;
             public static Int16 UploadingRights;
+            public static Int16 RoleID;
             
     }
 }

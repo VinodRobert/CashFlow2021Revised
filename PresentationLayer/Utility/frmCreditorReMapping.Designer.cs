@@ -28,18 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Syncfusion.Windows.Forms.MetroColorTable metroColorTable1 = new Syncfusion.Windows.Forms.MetroColorTable();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.btnSave = new Syncfusion.WinForms.Controls.SfButton();
             this.btnClose = new Syncfusion.WinForms.Controls.SfButton();
             this.chkListLedgerCode = new Syncfusion.WinForms.ListView.SfListView();
-            this.cmbCashFlowMarkers = new Syncfusion.Windows.Forms.Tools.MultiColumnComboBox();
             this.lblConfirm = new System.Windows.Forms.Label();
             this.lblConfirmYesNo = new System.Windows.Forms.Label();
             this.txtConfirm = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCashFlowMarkers)).BeginInit();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbFTRSection = new Syncfusion.WinForms.ListView.SfComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbFTRSection)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -57,21 +56,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(7, 186);
+            this.label2.Location = new System.Drawing.Point(7, 306);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(154, 22);
             this.label2.TabIndex = 1;
             this.label2.Text = "Select Party Code(s) ";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(7, 490);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(177, 22);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Select CashFlow Marker";
             // 
             // btnSave
             // 
@@ -103,33 +92,11 @@
             // 
             this.chkListLedgerCode.AccessibleName = "ScrollControl";
             this.chkListLedgerCode.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkListLedgerCode.Location = new System.Drawing.Point(190, 61);
+            this.chkListLedgerCode.Location = new System.Drawing.Point(190, 127);
             this.chkListLedgerCode.Name = "chkListLedgerCode";
-            this.chkListLedgerCode.Size = new System.Drawing.Size(742, 411);
+            this.chkListLedgerCode.Size = new System.Drawing.Size(742, 436);
             this.chkListLedgerCode.TabIndex = 9;
             this.chkListLedgerCode.Text = "sfListView1";
-            // 
-            // cmbCashFlowMarkers
-            // 
-            this.cmbCashFlowMarkers.AllowFiltering = false;
-            this.cmbCashFlowMarkers.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
-            this.cmbCashFlowMarkers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
-            this.cmbCashFlowMarkers.BeforeTouchSize = new System.Drawing.Size(742, 25);
-            this.cmbCashFlowMarkers.DropDownWidth = 1300;
-            this.cmbCashFlowMarkers.Filter = null;
-            this.cmbCashFlowMarkers.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbCashFlowMarkers.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cmbCashFlowMarkers.Location = new System.Drawing.Point(190, 490);
-            this.cmbCashFlowMarkers.MaxDropDownItems = 15;
-            this.cmbCashFlowMarkers.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
-            this.cmbCashFlowMarkers.Name = "cmbCashFlowMarkers";
-            this.cmbCashFlowMarkers.ScrollMetroColorTable = metroColorTable1;
-            this.cmbCashFlowMarkers.Size = new System.Drawing.Size(742, 25);
-            this.cmbCashFlowMarkers.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
-            this.cmbCashFlowMarkers.TabIndex = 10;
-            this.cmbCashFlowMarkers.Text = "multiColumnComboBox1";
-            this.cmbCashFlowMarkers.ThemeName = "Office2010";
-            this.cmbCashFlowMarkers.SelectedIndexChanged += new System.EventHandler(this.cmbCashFlowMarkers_SelectedIndexChanged);
             // 
             // lblConfirm
             // 
@@ -161,26 +128,45 @@
             this.txtConfirm.TabIndex = 13;
             this.txtConfirm.TextChanged += new System.EventHandler(this.txtConfirm_TextChanged);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(7, 74);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(140, 22);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Select FTR Section";
+           
+            // cmbFTRSection
+            // 
+            this.cmbFTRSection.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
+            this.cmbFTRSection.Location = new System.Drawing.Point(190, 74);
+            this.cmbFTRSection.Name = "cmbFTRSection";
+            this.cmbFTRSection.Size = new System.Drawing.Size(541, 32);
+            this.cmbFTRSection.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cmbFTRSection.TabIndex = 15;
+            // 
             // frmCreditorReMapping
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1099, 715);
+            this.Controls.Add(this.cmbFTRSection);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.txtConfirm);
             this.Controls.Add(this.lblConfirmYesNo);
             this.Controls.Add(this.lblConfirm);
-            this.Controls.Add(this.cmbCashFlowMarkers);
             this.Controls.Add(this.chkListLedgerCode);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "frmCreditorReMapping";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Creditor | Re Mapping";
             this.Load += new System.EventHandler(this.frmLedgerMapping_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCashFlowMarkers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbFTRSection)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,13 +176,13 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private Syncfusion.WinForms.Controls.SfButton btnSave;
         private Syncfusion.WinForms.Controls.SfButton btnClose;
         private Syncfusion.WinForms.ListView.SfListView chkListLedgerCode;
-        private Syncfusion.Windows.Forms.Tools.MultiColumnComboBox cmbCashFlowMarkers;
         private System.Windows.Forms.Label lblConfirm;
         private System.Windows.Forms.Label lblConfirmYesNo;
         private System.Windows.Forms.TextBox txtConfirm;
+        private System.Windows.Forms.Label label3;
+        private Syncfusion.WinForms.ListView.SfComboBox cmbFTRSection;
     }
 }

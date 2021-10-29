@@ -30,9 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.menuCashFlow = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewCashFlowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logOutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.fundTransferRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wORKSHEETToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.utilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.currentMappingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,13 +45,9 @@
             this.currentMappingToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.missedMappingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reMappingToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.fundTransferRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.subContractorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.stripLoginName = new System.Windows.Forms.ToolStripStatusLabel();
-            this.stripProjectName = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.creditorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -62,9 +57,8 @@
             this.menuStrip.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuCashFlow,
-            this.utilityToolStripMenuItem,
-            this.fundTransferRequestToolStripMenuItem});
+            this.fundTransferRequestToolStripMenuItem,
+            this.utilityToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
@@ -72,28 +66,20 @@
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
-            // menuCashFlow
+            // fundTransferRequestToolStripMenuItem
             // 
-            this.menuCashFlow.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.viewCashFlowToolStripMenuItem,
-            this.logOutToolStripMenuItem1});
-            this.menuCashFlow.Name = "menuCashFlow";
-            this.menuCashFlow.Size = new System.Drawing.Size(108, 24);
-            this.menuCashFlow.Text = "Cash Flow";
+            this.fundTransferRequestToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.wORKSHEETToolStripMenuItem});
+            this.fundTransferRequestToolStripMenuItem.Name = "fundTransferRequestToolStripMenuItem";
+            this.fundTransferRequestToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.fundTransferRequestToolStripMenuItem.Text = "FTR";
             // 
-            // viewCashFlowToolStripMenuItem
+            // wORKSHEETToolStripMenuItem
             // 
-            this.viewCashFlowToolStripMenuItem.Name = "viewCashFlowToolStripMenuItem";
-            this.viewCashFlowToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
-            this.viewCashFlowToolStripMenuItem.Text = "View Cash Flow";
-            this.viewCashFlowToolStripMenuItem.Click += new System.EventHandler(this.viewCashFlowToolStripMenuItem_Click);
-            // 
-            // logOutToolStripMenuItem1
-            // 
-            this.logOutToolStripMenuItem1.Name = "logOutToolStripMenuItem1";
-            this.logOutToolStripMenuItem1.Size = new System.Drawing.Size(218, 26);
-            this.logOutToolStripMenuItem1.Text = "Log Out";
-            this.logOutToolStripMenuItem1.Click += new System.EventHandler(this.logOutToolStripMenuItem1_Click);
+            this.wORKSHEETToolStripMenuItem.Name = "wORKSHEETToolStripMenuItem";
+            this.wORKSHEETToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.wORKSHEETToolStripMenuItem.Text = "Work Sheet";
+            this.wORKSHEETToolStripMenuItem.Click += new System.EventHandler(this.wORKSHEETToolStripMenuItem_Click);
             // 
             // utilityToolStripMenuItem
             // 
@@ -199,53 +185,25 @@
             this.reMappingToolStripMenuItem2.Text = "Re-Mapping";
             this.reMappingToolStripMenuItem2.Click += new System.EventHandler(this.reMappingToolStripMenuItem2_Click);
             // 
-            // fundTransferRequestToolStripMenuItem
-            // 
-            this.fundTransferRequestToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.subContractorsToolStripMenuItem,
-            this.creditorsToolStripMenuItem});
-            this.fundTransferRequestToolStripMenuItem.Name = "fundTransferRequestToolStripMenuItem";
-            this.fundTransferRequestToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
-            this.fundTransferRequestToolStripMenuItem.Text = "FTR";
-            // 
-            // subContractorsToolStripMenuItem
-            // 
-            this.subContractorsToolStripMenuItem.Name = "subContractorsToolStripMenuItem";
-            this.subContractorsToolStripMenuItem.Size = new System.Drawing.Size(223, 26);
-            this.subContractorsToolStripMenuItem.Text = "Sub Contractors";
-            this.subContractorsToolStripMenuItem.Click += new System.EventHandler(this.subContractorsToolStripMenuItem_Click);
-            // 
             // statusStrip
             // 
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.stripLoginName,
-            this.stripProjectName});
-            this.statusStrip.Location = new System.Drawing.Point(0, 668);
+            this.stripLoginName});
+            this.statusStrip.Location = new System.Drawing.Point(0, 665);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip.Size = new System.Drawing.Size(1434, 25);
+            this.statusStrip.Size = new System.Drawing.Size(1434, 28);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
             // stripLoginName
             // 
+            this.stripLoginName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stripLoginName.ForeColor = System.Drawing.Color.Red;
             this.stripLoginName.Name = "stripLoginName";
-            this.stripLoginName.Size = new System.Drawing.Size(78, 20);
+            this.stripLoginName.Size = new System.Drawing.Size(102, 23);
             this.stripLoginName.Text = "UserName";
-            // 
-            // stripProjectName
-            // 
-            this.stripProjectName.Name = "stripProjectName";
-            this.stripProjectName.Size = new System.Drawing.Size(95, 20);
-            this.stripProjectName.Text = "ProjectName";
-            // 
-            // creditorsToolStripMenuItem
-            // 
-            this.creditorsToolStripMenuItem.Name = "creditorsToolStripMenuItem";
-            this.creditorsToolStripMenuItem.Size = new System.Drawing.Size(223, 26);
-            this.creditorsToolStripMenuItem.Text = "Creditors";
-            this.creditorsToolStripMenuItem.Click += new System.EventHandler(this.creditorsToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -261,7 +219,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cash Flow | Menu";
+            this.Text = "FTR  | Menu";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
@@ -277,13 +235,9 @@
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolTip toolTip;
-        private System.Windows.Forms.ToolStripMenuItem menuCashFlow;
-        private System.Windows.Forms.ToolStripMenuItem viewCashFlowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem utilityToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel stripLoginName;
-        private System.Windows.Forms.ToolStripStatusLabel stripProjectName;
-        private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mapLedgerCodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem missingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem remappingToolStripMenuItem;
@@ -296,8 +250,7 @@
         private System.Windows.Forms.ToolStripMenuItem missedMappingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reMappingToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem fundTransferRequestToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem subContractorsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem creditorsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem wORKSHEETToolStripMenuItem;
     }
 }
 

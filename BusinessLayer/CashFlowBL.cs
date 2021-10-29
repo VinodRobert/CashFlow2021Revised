@@ -419,20 +419,29 @@ namespace CashFlow.BusinessLayer
         }
 
 
-        public DataSet Login(string loginID,string password)
-        {
-            string _connectionString = SqlHelper.GetConnectionString();
-            string sql = "SELECT LOGINID,USERNAME FROM USERS WHERE LOGINID='" + Convert.ToString(loginID).Trim() + "' AND PASSWORD = '";
-            sql = sql + Convert.ToString(password).Trim() + "'";
-            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.Text, sql);
-            return ds;
-        }
+     
         public DataSet GetProjects()
         {
             string _connectionString = SqlHelper.GetConnectionString();
 
             string sql = "SELECT BSBORGID BORGID,BSBORGNAME BORGNAME FROM CFR.PROJECTS WHERE STATUSID=1 ORDER BY BSBORGNAME";
             DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.Text,sql);
+            return ds;
+        }
+
+        public DataSet GetFinYears()
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            string sql = "SELECT DISTINCT YEAR FINYEAR FROM PERIODSETUP WHERE ORGID=2 AND YEAR>=2022";
+            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.Text, sql);
+            return ds;
+        }
+
+        public DataSet GetCurrents()
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            string sql = "SELECT CURRENTYEAR CURRENTFINYEAR,PERIOD CURRENTPERIOD FROM  BORGS WHERE BORGID=2";
+            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.Text, sql);
             return ds;
         }
 
@@ -597,6 +606,27 @@ namespace CashFlow.BusinessLayer
         }
 
         #endregion
+
+        public DataSet FetchFTRWorkSheet(int borgID, int finyear,int period,int reCreate)
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+
+            SqlParameter[] arParms = new SqlParameter[4];
+            arParms[0] = new SqlParameter("@BORGID", SqlDbType.Int);
+            arParms[0].Value = borgID;
+            arParms[1] = new SqlParameter("@CURRENTFINYEAR", SqlDbType.Int);
+            arParms[1].Value = finyear;
+            arParms[2] = new SqlParameter("@FORMONTH", SqlDbType.Int);
+            arParms[2].Value = period;
+            arParms[3] = new SqlParameter("@RECREATE", SqlDbType.Int);
+            arParms[3].Value = reCreate;
+
+
+            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.StoredProcedure, "FTR.spFTRWorkSheet", arParms);
+            return ds;
+        }
+
+
 
         public DataSet FetchFTRCreditors(int borgID, int finyear)
         {

@@ -43,7 +43,7 @@ namespace CashFlow.PresentationLayer.Login
         private void frmMain_Load(object sender, EventArgs e)
         {
             stripLoginName.Text   = "Login ID :  " + CashFlowGlobalVariables.GlobalVariables.UserName;
-            stripProjectName.Text = "                                               Project Name : " + CashFlowGlobalVariables.GlobalVariables.projectName;
+           
         }
 
         
@@ -129,6 +129,12 @@ namespace CashFlow.PresentationLayer.Login
         {
             frmFTRCreditors ftrCreditors = new frmFTRCreditors();
             ftrCreditors.Show();
+        }
+
+        private void wORKSHEETToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmFTRWorkSheet ftrworksheet = new frmFTRWorkSheet();
+            ftrworksheet.Show();
         }
     }
 }
