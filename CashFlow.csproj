@@ -414,8 +414,10 @@
   <ItemGroup>
     <Compile Include="BusinessLayer\CashFlowBL.cs" />
     <Compile Include="BusinessLayer\FTR.cs" />
+    <Compile Include="BusinessLayer\FTRHeader.cs" />
     <Compile Include="BusinessLayer\GenericClassess.cs" />
     <Compile Include="BusinessLayer\SQLHelper.cs" />
+    <Compile Include="BusinessLayer\Utility.cs" />
     <Compile Include="DataLayer\SQLHelper.cs" />
     <Compile Include="BusinessLayer\GlobalVariables.cs" />
     <Compile Include="PresentationLayer\CashFlow2021\frmCashFlow2021.cs">

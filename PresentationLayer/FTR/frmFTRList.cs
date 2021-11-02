@@ -31,6 +31,11 @@ namespace CashFlow.PresentationLayer.Cash_Flow
         ClassFTR FTR = new ClassFTR();
         int loginUserRoleID = CashFlowGlobalVariables.GlobalVariables.RoleID;
         string loginUser = CashFlowGlobalVariables.GlobalVariables.UserID;
+        Color oddRow = Color.Transparent;
+        Color evenRow = Color.AliceBlue;
+        int buttonsAdded = 0;
+        List<FTRHeaderList> ftrList = new List<FTRHeaderList>();
+       
 
         public frmFTRList()
         {
@@ -50,6 +55,10 @@ namespace CashFlow.PresentationLayer.Cash_Flow
             else
                 btnNew.Visible = false;
 
+            this.gridFTRHistory.ThemeName = "Office2016DarkGray";
+
+            lblConfirm.Visible = false;
+            txtConfirm.Visible = false;
         }
 
         private void LoadProjects()
@@ -68,6 +77,7 @@ namespace CashFlow.PresentationLayer.Cash_Flow
         {
             ResetAll();
             LoadProjects();
+            LoadGrid();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -77,12 +87,129 @@ namespace CashFlow.PresentationLayer.Cash_Flow
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-
+            btnSubmit.Enabled = false;
+            lblConfirm.Visible = true;
+            txtConfirm.Visible = true;
+            txtConfirm.Text = "NO";
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             panelNewFTR.Visible = false;
         }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            panelNewFTR.Visible = true;
+            lblProjectName.Visible = true;
+            cmbProjectName.Visible = true;
+            btnSubmit.Visible = true;
+            btnCancel.Visible = true;
+            cmbProjectName.Text = "Select Project";
+        }
+
+        private void LoadGrid()
+        {
+            DataSet dsFTRHistory = FTR.GetFTRHistory(loginUser);
+            ftrList =Utility.CreateListFromTable<FTRHeaderList>(dsFTRHistory.Tables[0]);
+            gridFTRHistory.DataSource = ftrList;
+            this.gridFTRHistory.ThemeName = "Office2016DarkGray";
+            this.gridFTRHistory.SelectionMode = GridSelectionMode.Single;
+            gridFTRHistory.Refresh();
+
+            if (buttonsAdded == 0)
+            {
+                buttonsAdded = 1;
+                this.gridFTRHistory.Columns.Add(new GridButtonColumn()
+                {
+                    MappingName = "Quantity",
+                    HeaderText = "Open",
+                    AllowDefaultButtonText = true,
+                    DefaultButtonText = "Open",
+                 //   Image = Properties.Resources.PrintEI,
+                 //   ImageSize = new Size(16, 16),
+                 //   TextImageRelation = TextImageRelation.ImageBeforeText,
+                });
+
+                this.gridFTRHistory.Columns.Add(new GridButtonColumn()
+                {
+                    MappingName = "Quantity",
+                    HeaderText = "Export",
+                    AllowDefaultButtonText = true,
+                    DefaultButtonText = "Export",
+                    //DefaultButtonText = "ClearTax Print",
+                    //Image = Properties.Resources.PrintCT,
+                    //ImageSize = new Size(16, 16),
+                    //TextImageRelation = TextImageRelation.ImageBeforeText,
+                });
+
+
+            }
+
+        }
+
+
+        private void txtConfirm_TextChanged(object sender, EventArgs e)
+        {
+            if (txtConfirm.Text.ToUpper()=="YES")
+            { 
+                if (cmbProjectName.Text == "Select Project")
+                {
+                    MessageBox.Show("Select Project !!");
+                    return;
+                }
+                int projectID = Convert.ToInt16(cmbProjectName.SelectedValue);
+                int i = FTR.GenerateFTRHeader(projectID);
+                panelNewFTR.Visible = false;
+                LoadProjects();
+                LoadGrid();
+            }
+
+        }
+
+        private void panelNewFTR_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void gridFTRHistory_QueryRowStyle(object sender, QueryRowStyleEventArgs e)
+        {
+            if (e.RowType == Syncfusion.WinForms.DataGrid.Enums.RowType.DefaultRow && e.RowIndex % 2 == 0)
+                e.Style.BackColor = evenRow;
+            else
+                e.Style.BackColor = oddRow;
+
+        }
+
+        private void gridFTRHistory_CellButtonClick(object sender, CellButtonClickEventArgs e)
+        {
+            this.gridFTRHistory.Style.SelectionStyle.BackColor = Color.LightSeaGreen;
+            this.gridFTRHistory.Style.SelectionStyle.TextColor = Color.DarkBlue;
+
+            int rowindex = gridFTRHistory.TableControl.ResolveToRecordIndex(gridFTRHistory.CurrentCell.RowIndex);
+            var record = this.gridFTRHistory.View.Records.GetItemAt(rowindex);
+            string ftrIDString = record.GetType().GetProperty("FTRID").GetValue(record).ToString();
+            string buttonHeaderText = Convert.ToString(e.Column.HeaderText);
+            int ftrID  = Convert.ToInt16(ftrIDString);
+
+           
+
+        
+            if (buttonHeaderText == "Open")
+            {
+                MessageBox.Show(" Please  Relax ... Loading The Work Sheet   !!!!!");
+                frmFTRWorkSheet ftrWS = new frmFTRWorkSheet(ftrID);
+                ftrWS.ShowDialog();
+            }
+
+            if (buttonHeaderText == " Export")
+            {
+                MessageBox.Show("Export");
+                return;
+            }
+
+        }
+
+       
     }
 }

@@ -133,8 +133,8 @@ namespace CashFlow.PresentationLayer.Login
 
         private void wORKSHEETToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmFTRWorkSheet ftrworksheet = new frmFTRWorkSheet();
-            ftrworksheet.Show();
+            frmFTRList ftrList = new frmFTRList();
+            ftrList.Show();
         }
     }
 }

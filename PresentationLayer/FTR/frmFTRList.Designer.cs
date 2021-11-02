@@ -28,23 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn5 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
             Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn6 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridDateTimeColumn gridDateTimeColumn2 = new Syncfusion.WinForms.DataGrid.GridDateTimeColumn();
             Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn7 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridButtonColumn gridButtonColumn2 = new Syncfusion.WinForms.DataGrid.GridButtonColumn();
+            Syncfusion.WinForms.DataGrid.GridDateTimeColumn gridDateTimeColumn3 = new Syncfusion.WinForms.DataGrid.GridDateTimeColumn();
             Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn8 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridDateTimeColumn gridDateTimeColumn4 = new Syncfusion.WinForms.DataGrid.GridDateTimeColumn();
             this.btnClose = new Syncfusion.WinForms.Controls.SfButton();
             this.label1 = new System.Windows.Forms.Label();
             this.gridFTRHistory = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.btnNew = new Syncfusion.WinForms.Controls.SfButton();
             this.panelNewFTR = new System.Windows.Forms.Panel();
+            this.txtConfirm = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            this.lblConfirm = new Syncfusion.Windows.Forms.Tools.AutoLabel();
             this.btnCancel = new Syncfusion.WinForms.Controls.SfButton();
             this.btnSubmit = new Syncfusion.WinForms.Controls.SfButton();
             this.cmbProjectName = new Syncfusion.WinForms.ListView.SfComboBox();
             this.lblProjectName = new Syncfusion.Windows.Forms.Tools.AutoLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridFTRHistory)).BeginInit();
             this.panelNewFTR.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtConfirm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbProjectName)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,49 +85,54 @@
             this.gridFTRHistory.AllowFiltering = true;
             gridTextColumn5.AllowEditing = false;
             gridTextColumn5.AllowFiltering = true;
-            gridTextColumn5.HeaderText = "Project Name";
-            gridTextColumn5.MappingName = "PROJECTNAME";
-            gridTextColumn5.Width = 500D;
+            gridTextColumn5.HeaderText = "FTRID";
+            gridTextColumn5.MappingName = "FTRID";
+            gridTextColumn5.Visible = false;
+            gridTextColumn5.Width = 0D;
             gridTextColumn6.AllowEditing = false;
             gridTextColumn6.AllowFiltering = true;
-            gridTextColumn6.HeaderText = "FTR Number";
-            gridTextColumn6.MappingName = "FTRNUMBER";
-            gridTextColumn6.Width = 200D;
-            gridDateTimeColumn2.AllowEditing = false;
-            gridDateTimeColumn2.AllowFiltering = true;
-            gridDateTimeColumn2.HeaderText = "Created On";
-            gridDateTimeColumn2.MappingName = "CREATEDON";
-            gridDateTimeColumn2.MaxDateTime = new System.DateTime(9999, 12, 31, 23, 59, 59, 999);
-            gridDateTimeColumn2.Width = 200D;
+            gridTextColumn6.HeaderText = "Project Name";
+            gridTextColumn6.MappingName = "BORGNAME";
+            gridTextColumn6.Width = 400D;
             gridTextColumn7.AllowEditing = false;
             gridTextColumn7.AllowFiltering = true;
-            gridTextColumn7.HeaderText = "Status";
-            gridTextColumn7.MappingName = "STATUS";
-            gridTextColumn7.Width = 200D;
-            gridButtonColumn2.AllowDefaultButtonText = false;
-            gridButtonColumn2.AllowEditing = false;
-            gridButtonColumn2.AllowFiltering = true;
-            gridButtonColumn2.ButtonSize = new System.Drawing.Size(0, 0);
-            gridButtonColumn2.DefaultButtonText = "";
-            gridButtonColumn2.HeaderText = "Open";
-            gridButtonColumn2.ImageSize = new System.Drawing.Size(0, 0);
-            gridButtonColumn2.MappingName = "OPEN";
+            gridTextColumn7.HeaderText = "FTR Number";
+            gridTextColumn7.MappingName = "FTRNUMBER";
+            gridTextColumn7.Width = 180D;
+            gridDateTimeColumn3.AllowEditing = false;
+            gridDateTimeColumn3.AllowFiltering = true;
+            gridDateTimeColumn3.HeaderText = "Created On";
+            gridDateTimeColumn3.MappingName = "CREATEDATE";
+            gridDateTimeColumn3.MaxDateTime = new System.DateTime(9999, 12, 31, 23, 59, 59, 999);
+            gridDateTimeColumn3.Pattern = Syncfusion.WinForms.Input.Enums.DateTimePattern.FullDateTime;
+            gridDateTimeColumn3.Width = 180D;
             gridTextColumn8.AllowEditing = false;
             gridTextColumn8.AllowFiltering = true;
-            gridTextColumn8.HeaderText = "Export";
-            gridTextColumn8.MappingName = "EXPORT";
+            gridTextColumn8.HeaderText = "Status";
+            gridTextColumn8.MappingName = "FTRSTATUS";
+            gridTextColumn8.Width = 100D;
+            gridDateTimeColumn4.AllowEditing = false;
+            gridDateTimeColumn4.AllowFiltering = true;
+            gridDateTimeColumn4.HeaderText = "Last Updated At";
+            gridDateTimeColumn4.MappingName = "LASTUPDATE";
+            gridDateTimeColumn4.MaxDateTime = new System.DateTime(9999, 12, 31, 23, 59, 59, 999);
+            gridDateTimeColumn4.Pattern = Syncfusion.WinForms.Input.Enums.DateTimePattern.FullDateTime;
+            gridDateTimeColumn4.Width = 220D;
             this.gridFTRHistory.Columns.Add(gridTextColumn5);
             this.gridFTRHistory.Columns.Add(gridTextColumn6);
-            this.gridFTRHistory.Columns.Add(gridDateTimeColumn2);
             this.gridFTRHistory.Columns.Add(gridTextColumn7);
-            this.gridFTRHistory.Columns.Add(gridButtonColumn2);
+            this.gridFTRHistory.Columns.Add(gridDateTimeColumn3);
             this.gridFTRHistory.Columns.Add(gridTextColumn8);
+            this.gridFTRHistory.Columns.Add(gridDateTimeColumn4);
             this.gridFTRHistory.Location = new System.Drawing.Point(13, 61);
             this.gridFTRHistory.Name = "gridFTRHistory";
             this.gridFTRHistory.PreviewRowHeight = 35;
             this.gridFTRHistory.Size = new System.Drawing.Size(1402, 526);
             this.gridFTRHistory.TabIndex = 24;
             this.gridFTRHistory.Text = "sfDataGrid1";
+            this.gridFTRHistory.ThemeName = "Office2019Colorful";
+            this.gridFTRHistory.QueryRowStyle += new Syncfusion.WinForms.DataGrid.Events.QueryRowStyleEventHandler(this.gridFTRHistory_QueryRowStyle);
+            this.gridFTRHistory.CellButtonClick += new Syncfusion.WinForms.DataGrid.Events.CellButtonClickEventHandler(this.gridFTRHistory_CellButtonClick);
             // 
             // btnNew
             // 
@@ -136,9 +146,12 @@
             this.btnNew.Style.ForeColor = System.Drawing.Color.Blue;
             this.btnNew.TabIndex = 25;
             this.btnNew.Text = "New";
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // panelNewFTR
             // 
+            this.panelNewFTR.Controls.Add(this.txtConfirm);
+            this.panelNewFTR.Controls.Add(this.lblConfirm);
             this.panelNewFTR.Controls.Add(this.btnCancel);
             this.panelNewFTR.Controls.Add(this.btnSubmit);
             this.panelNewFTR.Controls.Add(this.cmbProjectName);
@@ -147,13 +160,36 @@
             this.panelNewFTR.Name = "panelNewFTR";
             this.panelNewFTR.Size = new System.Drawing.Size(752, 205);
             this.panelNewFTR.TabIndex = 26;
+            this.panelNewFTR.Paint += new System.Windows.Forms.PaintEventHandler(this.panelNewFTR_Paint);
+            // 
+            // txtConfirm
+            // 
+            this.txtConfirm.BeforeTouchSize = new System.Drawing.Size(100, 28);
+            this.txtConfirm.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.txtConfirm.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtConfirm.Location = new System.Drawing.Point(280, 167);
+            this.txtConfirm.Name = "txtConfirm";
+            this.txtConfirm.Size = new System.Drawing.Size(100, 28);
+            this.txtConfirm.TabIndex = 5;
+            this.txtConfirm.Text = "NO";
+            this.txtConfirm.TextChanged += new System.EventHandler(this.txtConfirm_TextChanged);
+            // 
+            // lblConfirm
+            // 
+            this.lblConfirm.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConfirm.ForeColor = System.Drawing.Color.Fuchsia;
+            this.lblConfirm.Location = new System.Drawing.Point(18, 167);
+            this.lblConfirm.Name = "lblConfirm";
+            this.lblConfirm.Size = new System.Drawing.Size(244, 22);
+            this.lblConfirm.TabIndex = 4;
+            this.lblConfirm.Text = "Are You Sure ? (Type YES )";
             // 
             // btnCancel
             // 
             this.btnCancel.AccessibleName = "Button";
-            this.btnCancel.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.Purple;
-            this.btnCancel.Location = new System.Drawing.Point(553, 128);
+            this.btnCancel.Location = new System.Drawing.Point(553, 100);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(170, 46);
             this.btnCancel.Style.ForeColor = System.Drawing.Color.Purple;
@@ -164,18 +200,19 @@
             // btnSubmit
             // 
             this.btnSubmit.AccessibleName = "Button";
-            this.btnSubmit.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubmit.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.btnSubmit.Location = new System.Drawing.Point(185, 128);
+            this.btnSubmit.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubmit.ForeColor = System.Drawing.Color.Blue;
+            this.btnSubmit.Location = new System.Drawing.Point(185, 100);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(166, 46);
-            this.btnSubmit.Style.ForeColor = System.Drawing.Color.DarkOliveGreen;
+            this.btnSubmit.Style.ForeColor = System.Drawing.Color.Blue;
             this.btnSubmit.TabIndex = 2;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // cmbProjectName
             // 
+            this.cmbProjectName.DisplayMember = "ORGNAME";
             this.cmbProjectName.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
             this.cmbProjectName.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbProjectName.Location = new System.Drawing.Point(185, 43);
@@ -186,6 +223,7 @@
             this.cmbProjectName.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.cmbProjectName.Style.TokenStyle.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbProjectName.TabIndex = 1;
+            this.cmbProjectName.ValueMember = "ORGID";
             // 
             // lblProjectName
             // 
@@ -215,6 +253,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridFTRHistory)).EndInit();
             this.panelNewFTR.ResumeLayout(false);
             this.panelNewFTR.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtConfirm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbProjectName)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -231,5 +270,8 @@
         private Syncfusion.WinForms.Controls.SfButton btnSubmit;
         private Syncfusion.WinForms.ListView.SfComboBox cmbProjectName;
         private Syncfusion.Windows.Forms.Tools.AutoLabel lblProjectName;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtConfirm;
+        private Syncfusion.Windows.Forms.Tools.AutoLabel lblConfirm;
+        private System.Windows.Forms.Timer timer1;
     }
 }

@@ -28,100 +28,25 @@ namespace CashFlow.PresentationLayer.Cash_Flow
 {
     public partial class frmFTRWorkSheet : Office2010Form
     {
-        CashFlowBL CF = new CashFlowBL();
-        string projectName;
-        int currentFinYear, currentPeriod;
+        ClassFTR FTR = new ClassFTR();
+        string projectName, ftrNumber;
+        DateTime lastUpdate;
         DataSet dsResult;
-
-        public frmFTRWorkSheet()
+        int ftrIDToExtract;
+        public frmFTRWorkSheet(int ftrID)
         {
             InitializeComponent();
+            ftrIDToExtract = ftrID;
         }
-       
-        private void ResetAll()
-        {
-             
-            cmbProject.Text = "Select Project";
-            chkReCreate.Checked = false;
-            gridResult.Visible = false;
-           
-        }
-
-        private void LoadProjects()
-        {
-            DataSet ds = CF.GetProjects();
-            cmbProject.DataSource = ds.Tables[0];
-            cmbProject.Refresh();
-        }
-
-        private void LoadFinYears()
-        {
-            DataSet dsFinYear = CF.GetFinYears();
-            cmbFinYear.DataSource = dsFinYear.Tables[0];
-            cmbFinYear.Refresh();
-            cmbFinYear.SelectedValue = currentFinYear;
-             
-        }
-
-        private void LoadPeriods()
-        {
-            DataSet dsPeriod = CF.GetPeriods();
-            cmbPeriod.DataSource = dsPeriod.Tables[0];
-            cmbPeriod.Refresh();
-            cmbPeriod.SelectedValue = currentPeriod-1;
-
-        }
-
-        private void LoadCurrentFinYearAndPeriod()
-        {
-            DataSet dsCurrents = CF.GetCurrents();
-            currentFinYear = Convert.ToInt16(dsCurrents.Tables[0].Rows[0]["CurrentFinYear"]);
-            currentPeriod = Convert.ToInt16(dsCurrents.Tables[0].Rows[0]["CurrentPeriod"]);
-
-            
-        }
-        private void frmFTRSubbie_Load(object sender, EventArgs e)
-        {
-            ResetAll();
-            LoadCurrentFinYearAndPeriod();
-            LoadProjects();
-            LoadFinYears();
-            LoadPeriods();
-        }
-
+   
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void btnnView_Click(object sender, EventArgs e)
+        private void DisplayGrid()
         {
-            projectName = Convert.ToString(cmbProject.Text);
-            if (projectName == "Select Project")
-                return;
-            
-            int finYear;
-            finYear = Convert.ToInt16(cmbFinYear.Text);
-
-            int period;
-            period = Convert.ToInt16(cmbPeriod.SelectedValue);
-
-            int reCreate;
-            if (chkReCreate.Checked == true)
-                reCreate = 1;
-            else
-                reCreate = 0;
-
-            cmbProject.Enabled = false;
-            cmbPeriod.Enabled = false;
-            cmbFinYear.Enabled = false;
-            btnnView.Enabled = false;
-
-
-            int projectID = Convert.ToInt16(cmbProject.SelectedValue);
-       
            
-            dsResult =CF.FetchFTRWorkSheet(projectID,finYear,period,reCreate);
             gridResult.DataSource = dsResult.Tables[0];
 
             this.gridResult.AllowGrouping = true;
@@ -144,7 +69,8 @@ namespace CashFlow.PresentationLayer.Cash_Flow
             //Adding stacked column to stacked columns collection available in stacked header row object.
             stackedHeaderRow1.StackedColumns.Add(new StackedColumn() { ChildColumns = "MAJORCATEGORY,MINORCATEGORY,CATEGORY", HeaderText = "FTR Display Levels" });
             stackedHeaderRow1.StackedColumns.Add(new StackedColumn() { ChildColumns = "VENDORTYPE,PARTYCODE,PARTYNAME,", HeaderText = "Vendor Deatils" });
-            stackedHeaderRow1.StackedColumns.Add(new StackedColumn() { ChildColumns = "NETPAYABLE,PAID,PROJECTLIABILITY,ZONALLIABILITY", HeaderText = "Outstanding Amount Details" });
+            stackedHeaderRow1.StackedColumns.Add(new StackedColumn() { ChildColumns = "NETPAYABLE,PAID,PROJECTLIABILITY", HeaderText = "Project Level Details" });
+            stackedHeaderRow1.StackedColumns.Add(new StackedColumn() { ChildColumns = "MOBADVANCE,GSTCREDIT,COMPANYLIABILITY,PAYABLEAFTERGST,FINALPAYABLE", HeaderText = "Company Level Details" });
             stackedHeaderRow1.StackedColumns.Add(new StackedColumn() { ChildColumns = "PROJECTSITE,ACCOUNTANT,ACCOUNTSHEAD,CONTROLCELL", HeaderText = "Payment Recommendations" });
 
             //Adding stacked header row object to stacked header row collection available in SfDataGrid.
@@ -153,25 +79,24 @@ namespace CashFlow.PresentationLayer.Cash_Flow
             this.gridResult.Style.StackedHeaderStyle.TextColor = Color.White;
 
             this.gridResult.ThemeName = "Office2019Colorful";
-            this.gridResult.FrozenColumnCount = 11;
+            this.gridResult.FrozenColumnCount = 8;
 
-           
+            this.gridResult.Style.VerticalScrollBar.ArrowButtonForeColor = Color.Black;
+            this.gridResult.Style.VerticalScrollBar.ArrowButtonHoverForeColor = Color.Black;
+            this.gridResult.Style.VerticalScrollBar.ArrowButtonPressedForeColor = Color.Gray;
+            this.gridResult.Style.VerticalScrollBar.ArrowButtonBorderColor = Color.Black;
 
-            
+
 
             gridResult.Refresh();
             gridResult.Visible = true;
-          }
 
-      
+            lblProjectName.Text = Convert.ToString(dsResult.Tables[1].Rows[0]["BORGNAME"]);
+            lblFTRNumber.Text = Convert.ToString(dsResult.Tables[1].Rows[0]["FTRNUMBER"]);
 
-       
-
-        private void PresentFTRCreditors(DataSet ds)
-        {
-            
         }
 
+     
         private void gridResult_QueryRowStyle(object sender, QueryRowStyleEventArgs e)
         {
             if (e.RowType == Syncfusion.WinForms.DataGrid.Enums.RowType.DefaultRow)
@@ -183,18 +108,11 @@ namespace CashFlow.PresentationLayer.Cash_Flow
             }
         }
 
-
-        private void gridDetails_QueryRowStyle(object sender, QueryRowStyleEventArgs e)
+        private void frmFTRWorkSheet_Load(object sender, EventArgs e)
         {
-            if (e.RowType == Syncfusion.WinForms.DataGrid.Enums.RowType.DefaultRow)
-            {
-                if (e.RowIndex % 2 == 0)
-                    e.Style.BackColor = Color.LightCyan;
-                else
-                    e.Style.BackColor = Color.Khaki;
-            }
+            dsResult = FTR.GetFTRWorkSheet(ftrIDToExtract);
+            DisplayGrid();
         }
-
 
         private static string GetCellValue(Syncfusion.WinForms.DataGrid.SfDataGrid dGrid, int rowIndex, int columnIndex)
         {
@@ -222,46 +140,7 @@ namespace CashFlow.PresentationLayer.Cash_Flow
             return cellValue;
         } 
 
-        private void Open(string fileName)
-        {
-            System.Diagnostics.Process.Start(fileName);
-        }
-
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void gridResult_CurrentCellBeginEdit(object sender, CurrentCellBeginEditEventArgs e)
-        {
-            var cellValue = 
-            MessageBox.Show("The editing is completed for the cell (" + e.DataRow.RowIndex + "," + e.DataColumn.ColumnIndex + ")");
-            if (e.DataColumn.GridColumn.MappingName == "ProductName")
-                e.Cancel = true;
-        }
-
-        void options_Exporting(object sender, Syncfusion.WinForms.DataGridConverter.Events.DataGridExcelExportingEventArgs e)
-        {
-            if (e.CellType == ExportCellType.HeaderCell)
-            {
-                e.CellStyle.BackGroundColor = Color.LightPink;
-                e.CellStyle.ForeGroundColor = Color.White;
-                e.CellStyle.FontInfo.Bold = true;
-                e.Handled = true;
-            }
-            else if (e.CellType == ExportCellType.RecordCell)
-            {
-                e.CellStyle.BackGroundColor = Color.LightSkyBlue;
-                e.Handled = true;
-            }
-            else if (e.CellType == ExportCellType.GroupCaptionCell)
-            {
-                e.CellStyle.BackGroundColor = Color.Wheat;
-                e.Handled = true;
-            }
-        }
-    
-
+       
        
 
        
