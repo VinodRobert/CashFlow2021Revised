@@ -126,6 +126,7 @@ namespace CashFlow.PresentationLayer.Cash_Flow
                     HeaderText = "Open",
                     AllowDefaultButtonText = true,
                     DefaultButtonText = "Open",
+
                  //   Image = Properties.Resources.PrintEI,
                  //   ImageSize = new Size(16, 16),
                  //   TextImageRelation = TextImageRelation.ImageBeforeText,
@@ -136,12 +137,12 @@ namespace CashFlow.PresentationLayer.Cash_Flow
                     MappingName = "Quantity",
                     HeaderText = "Export",
                     AllowDefaultButtonText = true,
-                    DefaultButtonText = "Export",
-                    //DefaultButtonText = "ClearTax Print",
-                    //Image = Properties.Resources.PrintCT,
-                    //ImageSize = new Size(16, 16),
-                    //TextImageRelation = TextImageRelation.ImageBeforeText,
-                });
+                    DefaultButtonText = "Export",  
+                //DefaultButtonText = "ClearTax Print",
+                //Image = Properties.Resources.PrintCT,
+                //ImageSize = new Size(16, 16),
+                //TextImageRelation = TextImageRelation.ImageBeforeText,
+            });
 
 
             }
@@ -200,6 +201,8 @@ namespace CashFlow.PresentationLayer.Cash_Flow
                 MessageBox.Show(" Please  Relax ... Loading The Work Sheet   !!!!!");
                 frmFTRWorkSheet ftrWS = new frmFTRWorkSheet(ftrID);
                 ftrWS.ShowDialog();
+                gridFTRHistory.DataSource = null;
+                LoadGrid();
             }
 
             if (buttonHeaderText == " Export")
@@ -210,6 +213,13 @@ namespace CashFlow.PresentationLayer.Cash_Flow
 
         }
 
-       
+        private void gridFTRHistory_AutoGeneratingColumn(object sender, AutoGeneratingColumnArgs e)
+        {
+            if (e.Column.MappingName == "Open")
+            {
+                e.Column.HeaderStyle.BackColor = Color.LightSkyBlue;
+                e.Column.CellStyle.BackColor = Color.MediumBlue;
+            }
+        }
     }
 }

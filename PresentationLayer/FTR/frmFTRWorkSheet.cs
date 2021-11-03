@@ -29,10 +29,12 @@ namespace CashFlow.PresentationLayer.Cash_Flow
     public partial class frmFTRWorkSheet : Office2010Form
     {
         ClassFTR FTR = new ClassFTR();
-        string projectName, ftrNumber;
-        DateTime lastUpdate;
         DataSet dsResult;
+        DataTable dsResultTable;
         int ftrIDToExtract;
+        List<SingleFTR> singleFTRList = new List<SingleFTR>();
+        int loginUserRoleID = CashFlowGlobalVariables.GlobalVariables.RoleID;
+
         public frmFTRWorkSheet(int ftrID)
         {
             InitializeComponent();
@@ -71,7 +73,8 @@ namespace CashFlow.PresentationLayer.Cash_Flow
             stackedHeaderRow1.StackedColumns.Add(new StackedColumn() { ChildColumns = "VENDORTYPE,PARTYCODE,PARTYNAME,", HeaderText = "Vendor Deatils" });
             stackedHeaderRow1.StackedColumns.Add(new StackedColumn() { ChildColumns = "NETPAYABLE,PAID,PROJECTLIABILITY", HeaderText = "Project Level Details" });
             stackedHeaderRow1.StackedColumns.Add(new StackedColumn() { ChildColumns = "MOBADVANCE,GSTCREDIT,COMPANYLIABILITY,PAYABLEAFTERGST,FINALPAYABLE", HeaderText = "Company Level Details" });
-            stackedHeaderRow1.StackedColumns.Add(new StackedColumn() { ChildColumns = "PROJECTSITE,ACCOUNTANT,ACCOUNTSHEAD,CONTROLCELL", HeaderText = "Payment Recommendations" });
+            stackedHeaderRow1.StackedColumns.Add(new StackedColumn() { ChildColumns = "PROJECTSITE,ACCOUNTANT", HeaderText = "Payment Recommendations" });
+            stackedHeaderRow1.StackedColumns.Add(new StackedColumn() { ChildColumns = "ACCOUNTSHEAD,CONTROLCELL", HeaderText = "Payment Approval" });
 
             //Adding stacked header row object to stacked header row collection available in SfDataGrid.
             gridResult.StackedHeaderRows.Add(stackedHeaderRow1);
@@ -86,17 +89,35 @@ namespace CashFlow.PresentationLayer.Cash_Flow
             this.gridResult.Style.VerticalScrollBar.ArrowButtonPressedForeColor = Color.Gray;
             this.gridResult.Style.VerticalScrollBar.ArrowButtonBorderColor = Color.Black;
 
-
-
             gridResult.Refresh();
             gridResult.Visible = true;
 
             lblProjectName.Text = Convert.ToString(dsResult.Tables[1].Rows[0]["BORGNAME"]);
             lblFTRNumber.Text = Convert.ToString(dsResult.Tables[1].Rows[0]["FTRNUMBER"]);
 
+            this.gridResult.ToolTipOption.ToolTipMode = ToolTipMode.TrimmedCells;
+            this.gridResult.Columns["PARTYNAME"].ShowToolTip = true;
+
+            gridResult.Columns["PROJECTSITE"].AllowEditing = false;
+            gridResult.Columns["ACCOUNTANT"].AllowEditing = false;
+            gridResult.Columns["ACCOUNTSHEAD"].AllowEditing = false;
+            gridResult.Columns["CONTROLCELL"].AllowEditing = false;
+
+
+            gridResult.Columns["ACCOUNTANT"].Visible = false;
+            gridResult.Columns["ACCOUNTSHEAD"].Visible = false;
+            gridResult.Columns["CONTROLCELL"].Visible = false;
+
+
+            if (loginUserRoleID == 1)
+            {
+                gridResult.Columns["ACCOUNTANT"].AllowEditing = true;
+                gridResult.Columns["ACCOUNTANT"].Visible = true;
+            }
+
         }
 
-     
+
         private void gridResult_QueryRowStyle(object sender, QueryRowStyleEventArgs e)
         {
             if (e.RowType == Syncfusion.WinForms.DataGrid.Enums.RowType.DefaultRow)
@@ -111,42 +132,42 @@ namespace CashFlow.PresentationLayer.Cash_Flow
         private void frmFTRWorkSheet_Load(object sender, EventArgs e)
         {
             dsResult = FTR.GetFTRWorkSheet(ftrIDToExtract);
+            dsResultTable = dsResult.Tables[0];
+            singleFTRList = Utility.CreateListFromTable<SingleFTR>(dsResultTable);
             DisplayGrid();
         }
 
-        private static string GetCellValue(Syncfusion.WinForms.DataGrid.SfDataGrid dGrid, int rowIndex, int columnIndex)
+        private void gridResult_CurrentCellEndEdit(object sender, CurrentCellEndEditEventArgs e)
         {
-            string cellValue;
-            if (columnIndex < 0)
-                return string.Empty;
-            var mappingName = dGrid.Columns[columnIndex].MappingName;
-            var recordIndex = dGrid.TableControl.ResolveToRecordIndex(rowIndex);
-            if (recordIndex < 0)
-                return string.Empty;
-            if (dGrid.View.TopLevelGroup != null)
+            if (gridResult.CurrentCell.CellRenderer != null)
             {
-                var record = dGrid.View.TopLevelGroup.DisplayElements[recordIndex];
-                if (!record.IsRecords)
-                    return string.Empty;
-                var data = (record as RecordEntry).Data;
-                cellValue = (data.GetType().GetProperty(mappingName).GetValue(data, null).ToString());
+                var currentCellValue = gridResult.CurrentCell.CellRenderer.GetControlValue();
+                int columnIndex = gridResult.CurrentCell.ColumnIndex;
+                var mappingName = gridResult.Columns[columnIndex].MappingName;
+                var selectedItem = this.gridResult.CurrentItem as DataRowView;
+                var dataRow = (selectedItem as DataRowView).Row;
+                var cellValue = dataRow["RESULTID"].ToString();
+                int resultID = Convert.ToInt16(cellValue);
+                string searchExpression = "RESULTID=" + Convert.ToString(resultID);
+                System.Data.DataRow[] rows = dsResultTable.Select(searchExpression);
+                rows[0][mappingName] = currentCellValue;
+                dsResultTable.AcceptChanges();
             }
-            else
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            string filterExpression = " ( (PROJECTSITE>0) OR (ACCOUNTANT>0) OR (ACCOUNTSHEAD>0) OR (CONTROLCELL>0) ) ";
+            System.Data.DataRow[] filtered = dsResultTable.Select(filterExpression);
+
+            if (filtered.Length > 0)
             {
-                var record1 = dGrid.View.Records.GetItemAt(recordIndex);
-                cellValue = (record1.GetType().GetProperty(mappingName).GetValue(record1, null).ToString());
+                DataTable dtFiltered = filtered.CopyToDataTable();
+                System.Data.DataColumn ftrColumn = new System.Data.DataColumn("FTRID", typeof(System.Int16));
+                ftrColumn.DefaultValue = ftrIDToExtract;
+                dtFiltered.Columns.Add(ftrColumn);
+                dtFiltered.AcceptChanges();
             }
-
-            return cellValue;
-        } 
-
-       
-       
-
-       
-         
-
-       
-
+        }
     }
 }
