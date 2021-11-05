@@ -36,6 +36,8 @@
             Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn4 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
             Syncfusion.WinForms.DataGrid.GridDateTimeColumn gridDateTimeColumn2 = new Syncfusion.WinForms.DataGrid.GridDateTimeColumn();
             Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn5 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridButtonColumn gridButtonColumn1 = new Syncfusion.WinForms.DataGrid.GridButtonColumn();
+            Syncfusion.WinForms.DataGrid.GridButtonColumn gridButtonColumn2 = new Syncfusion.WinForms.DataGrid.GridButtonColumn();
             this.btnClose = new Syncfusion.WinForms.Controls.SfButton();
             this.label1 = new System.Windows.Forms.Label();
             this.gridFTRHistory = new Syncfusion.WinForms.DataGrid.SfDataGrid();
@@ -124,6 +126,30 @@
             gridTextColumn5.HeaderText = "Current Owner";
             gridTextColumn5.MappingName = "CUSTODIAN";
             gridTextColumn5.Width = 120D;
+            gridButtonColumn1.AllowDefaultButtonText = false;
+            gridButtonColumn1.AllowEditing = false;
+            gridButtonColumn1.AllowFiltering = true;
+            gridButtonColumn1.ButtonSize = new System.Drawing.Size(0, 0);
+            gridButtonColumn1.CellStyle.Font.Bold = true;
+            gridButtonColumn1.CellStyle.TextColor = System.Drawing.Color.Blue;
+            gridButtonColumn1.DefaultButtonText = "";
+            gridButtonColumn1.HeaderStyle.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            gridButtonColumn1.HeaderStyle.FilterIconColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
+            gridButtonColumn1.HeaderText = "Open";
+            gridButtonColumn1.ImageSize = new System.Drawing.Size(0, 0);
+            gridButtonColumn1.MappingName = "FOREDIT";
+            gridButtonColumn2.AllowDefaultButtonText = false;
+            gridButtonColumn2.AllowEditing = false;
+            gridButtonColumn2.AllowFiltering = true;
+            gridButtonColumn2.ButtonSize = new System.Drawing.Size(0, 0);
+            gridButtonColumn2.CellStyle.Font.Bold = true;
+            gridButtonColumn2.CellStyle.TextColor = System.Drawing.Color.Red;
+            gridButtonColumn2.DefaultButtonText = "";
+            gridButtonColumn2.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            gridButtonColumn2.HeaderStyle.FilterIconColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
+            gridButtonColumn2.HeaderText = "Export";
+            gridButtonColumn2.ImageSize = new System.Drawing.Size(0, 0);
+            gridButtonColumn2.MappingName = "FOREXPORT";
             this.gridFTRHistory.Columns.Add(gridTextColumn1);
             this.gridFTRHistory.Columns.Add(gridTextColumn2);
             this.gridFTRHistory.Columns.Add(gridTextColumn3);
@@ -131,6 +157,8 @@
             this.gridFTRHistory.Columns.Add(gridTextColumn4);
             this.gridFTRHistory.Columns.Add(gridDateTimeColumn2);
             this.gridFTRHistory.Columns.Add(gridTextColumn5);
+            this.gridFTRHistory.Columns.Add(gridButtonColumn1);
+            this.gridFTRHistory.Columns.Add(gridButtonColumn2);
             this.gridFTRHistory.Location = new System.Drawing.Point(13, 61);
             this.gridFTRHistory.Name = "gridFTRHistory";
             this.gridFTRHistory.PreviewRowHeight = 35;
@@ -140,6 +168,7 @@
             this.gridFTRHistory.ThemeName = "Office2019Colorful";
             this.gridFTRHistory.AutoGeneratingColumn += new Syncfusion.WinForms.DataGrid.Events.AutoGeneratingColumnEventHandler(this.gridFTRHistory_AutoGeneratingColumn);
             this.gridFTRHistory.QueryRowStyle += new Syncfusion.WinForms.DataGrid.Events.QueryRowStyleEventHandler(this.gridFTRHistory_QueryRowStyle);
+            this.gridFTRHistory.QueryButtonCellStyle += new Syncfusion.WinForms.DataGrid.Events.QueryButtonCellStyleEventHandler(this.gridFTRHistory_QueryButtonCellStyle);
             this.gridFTRHistory.CellButtonClick += new Syncfusion.WinForms.DataGrid.Events.CellButtonClickEventHandler(this.gridFTRHistory_CellButtonClick);
             // 
             // btnNew

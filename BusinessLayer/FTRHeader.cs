@@ -15,7 +15,8 @@ namespace CashFlow.BusinessLayer
         DateTime _lastUpdate;
         string _ftrStatus;
         string _custoidan;
-
+        string _forEdit;
+        string _forExport;
         public int FTRID
         {
             get { return _ftrID; }
@@ -57,7 +58,17 @@ namespace CashFlow.BusinessLayer
             get { return _custoidan; }
             set { _custoidan = value; }
         }
+        public string FOREDIT
+        {
+            get { return _forEdit; }
+            set { _forEdit = value; }
+        }
 
+        public string FOREXPORT
+        {
+            get { return _forExport; }
+            set { _forExport = value; }
+        }
     }
 
     class SingleFTR

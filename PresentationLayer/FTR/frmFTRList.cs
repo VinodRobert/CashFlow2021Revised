@@ -33,7 +33,7 @@ namespace CashFlow.PresentationLayer.Cash_Flow
         string loginUser = CashFlowGlobalVariables.GlobalVariables.UserID;
         Color oddRow = Color.Transparent;
         Color evenRow = Color.AliceBlue;
-        int buttonsAdded = 0;
+         
         List<FTRHeaderList> ftrList = new List<FTRHeaderList>();
        
 
@@ -111,41 +111,18 @@ namespace CashFlow.PresentationLayer.Cash_Flow
         private void LoadGrid()
         {
             DataSet dsFTRHistory = FTR.GetFTRHistory(loginUser);
+      
+          
             ftrList =Utility.CreateListFromTable<FTRHeaderList>(dsFTRHistory.Tables[0]);
             gridFTRHistory.DataSource = ftrList;
             this.gridFTRHistory.ThemeName = "Office2016DarkGray";
             this.gridFTRHistory.SelectionMode = GridSelectionMode.Single;
             gridFTRHistory.Refresh();
 
-            if (buttonsAdded == 0)
-            {
-                buttonsAdded = 1;
-                this.gridFTRHistory.Columns.Add(new GridButtonColumn()
-                {
-                    MappingName = "Quantity",
-                    HeaderText = "Open",
-                    AllowDefaultButtonText = true,
-                    DefaultButtonText = "Open",
-
-                 //   Image = Properties.Resources.PrintEI,
-                 //   ImageSize = new Size(16, 16),
-                 //   TextImageRelation = TextImageRelation.ImageBeforeText,
-                });
-
-                this.gridFTRHistory.Columns.Add(new GridButtonColumn()
-                {
-                    MappingName = "Quantity",
-                    HeaderText = "Export",
-                    AllowDefaultButtonText = true,
-                    DefaultButtonText = "Export",  
-                //DefaultButtonText = "ClearTax Print",
-                //Image = Properties.Resources.PrintCT,
-                //ImageSize = new Size(16, 16),
-                //TextImageRelation = TextImageRelation.ImageBeforeText,
-            });
 
 
-            }
+                
+             
 
         }
 
@@ -211,6 +188,7 @@ namespace CashFlow.PresentationLayer.Cash_Flow
                 return;
             }
 
+            
         }
 
         private void gridFTRHistory_AutoGeneratingColumn(object sender, AutoGeneratingColumnArgs e)
@@ -220,6 +198,12 @@ namespace CashFlow.PresentationLayer.Cash_Flow
                 e.Column.HeaderStyle.BackColor = Color.LightSkyBlue;
                 e.Column.CellStyle.BackColor = Color.MediumBlue;
             }
+        }
+
+        private void gridFTRHistory_QueryButtonCellStyle(object sender, QueryButtonCellStyleEventArgs e)
+        {
+            if ((e.Record as FTRHeaderList).FOREDIT == "Restricted")
+                e.Button.Style.Enabled = false;
         }
     }
 }

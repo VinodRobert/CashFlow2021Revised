@@ -33,18 +33,12 @@
             this.fundTransferRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wORKSHEETToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.utilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.currentMappingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.missingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.remappingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mapLedgerCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.curentMappingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.missingToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.reMappingToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.subContractorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.currentMappingToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.missedMappingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reMappingToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mappingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewCurrentMappingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mapReMappingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uploadGSTCreditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.stripLoginName = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
@@ -77,113 +71,65 @@
             // wORKSHEETToolStripMenuItem
             // 
             this.wORKSHEETToolStripMenuItem.Name = "wORKSHEETToolStripMenuItem";
-            this.wORKSHEETToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.wORKSHEETToolStripMenuItem.Size = new System.Drawing.Size(183, 26);
             this.wORKSHEETToolStripMenuItem.Text = "Work Sheet";
             this.wORKSHEETToolStripMenuItem.Click += new System.EventHandler(this.wORKSHEETToolStripMenuItem_Click);
             // 
             // utilityToolStripMenuItem
             // 
             this.utilityToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.logoutToolStripMenuItem,
-            this.mapLedgerCodeToolStripMenuItem,
-            this.subContractorToolStripMenuItem});
+            this.mappingToolStripMenuItem,
+            this.uploadGSTCreditToolStripMenuItem});
             this.utilityToolStripMenuItem.Name = "utilityToolStripMenuItem";
             this.utilityToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
             this.utilityToolStripMenuItem.Text = "Utility";
             // 
-            // logoutToolStripMenuItem
+            // mappingToolStripMenuItem
             // 
-            this.logoutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.currentMappingToolStripMenuItem,
-            this.missingToolStripMenuItem,
-            this.remappingToolStripMenuItem});
-            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
-            this.logoutToolStripMenuItem.Text = "Ledger Code";
-            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
+            this.mappingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viewCurrentMappingToolStripMenuItem,
+            this.mapReMappingToolStripMenuItem});
+            this.mappingToolStripMenuItem.Name = "mappingToolStripMenuItem";
+            this.mappingToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.mappingToolStripMenuItem.Text = "Mapping";
             // 
-            // currentMappingToolStripMenuItem
+            // viewCurrentMappingToolStripMenuItem
             // 
-            this.currentMappingToolStripMenuItem.Name = "currentMappingToolStripMenuItem";
-            this.currentMappingToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
-            this.currentMappingToolStripMenuItem.Text = "Current Mapping";
-            this.currentMappingToolStripMenuItem.Click += new System.EventHandler(this.currentMappingToolStripMenuItem_Click);
+            this.viewCurrentMappingToolStripMenuItem.Name = "viewCurrentMappingToolStripMenuItem";
+            this.viewCurrentMappingToolStripMenuItem.Size = new System.Drawing.Size(275, 26);
+            this.viewCurrentMappingToolStripMenuItem.Text = "View Current Mapping";
+            this.viewCurrentMappingToolStripMenuItem.Click += new System.EventHandler(this.viewCurrentMappingToolStripMenuItem_Click);
             // 
-            // missingToolStripMenuItem
+            // mapReMappingToolStripMenuItem
             // 
-            this.missingToolStripMenuItem.Name = "missingToolStripMenuItem";
-            this.missingToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
-            this.missingToolStripMenuItem.Text = "Map Missed Items";
-            this.missingToolStripMenuItem.Click += new System.EventHandler(this.missingToolStripMenuItem_Click);
+            this.mapReMappingToolStripMenuItem.Name = "mapReMappingToolStripMenuItem";
+            this.mapReMappingToolStripMenuItem.Size = new System.Drawing.Size(275, 26);
+            this.mapReMappingToolStripMenuItem.Text = "Map / Re-Mapping";
+            this.mapReMappingToolStripMenuItem.Click += new System.EventHandler(this.mapReMappingToolStripMenuItem_Click);
             // 
-            // remappingToolStripMenuItem
+            // uploadGSTCreditToolStripMenuItem
             // 
-            this.remappingToolStripMenuItem.Name = "remappingToolStripMenuItem";
-            this.remappingToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
-            this.remappingToolStripMenuItem.Text = "Re-Mapping";
-            this.remappingToolStripMenuItem.Click += new System.EventHandler(this.remappingToolStripMenuItem_Click);
+            this.uploadGSTCreditToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viewToolStripMenuItem,
+            this.uploadToolStripMenuItem});
+            this.uploadGSTCreditToolStripMenuItem.Name = "uploadGSTCreditToolStripMenuItem";
+            this.uploadGSTCreditToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.uploadGSTCreditToolStripMenuItem.Text = "GST Credit";
+            this.uploadGSTCreditToolStripMenuItem.Click += new System.EventHandler(this.uploadGSTCreditToolStripMenuItem_Click);
             // 
-            // mapLedgerCodeToolStripMenuItem
+            // viewToolStripMenuItem
             // 
-            this.mapLedgerCodeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.curentMappingToolStripMenuItem,
-            this.missingToolStripMenuItem1,
-            this.reMappingToolStripMenuItem1});
-            this.mapLedgerCodeToolStripMenuItem.Name = "mapLedgerCodeToolStripMenuItem";
-            this.mapLedgerCodeToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
-            this.mapLedgerCodeToolStripMenuItem.Text = "Supplier";
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.viewToolStripMenuItem.Text = "View";
+            this.viewToolStripMenuItem.Click += new System.EventHandler(this.viewToolStripMenuItem_Click);
             // 
-            // curentMappingToolStripMenuItem
+            // uploadToolStripMenuItem
             // 
-            this.curentMappingToolStripMenuItem.Name = "curentMappingToolStripMenuItem";
-            this.curentMappingToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
-            this.curentMappingToolStripMenuItem.Text = "Curent Mapping";
-            this.curentMappingToolStripMenuItem.Click += new System.EventHandler(this.curentMappingToolStripMenuItem_Click);
-            // 
-            // missingToolStripMenuItem1
-            // 
-            this.missingToolStripMenuItem1.Name = "missingToolStripMenuItem1";
-            this.missingToolStripMenuItem1.Size = new System.Drawing.Size(235, 26);
-            this.missingToolStripMenuItem1.Text = "Missed - Mapping";
-            this.missingToolStripMenuItem1.Click += new System.EventHandler(this.missingToolStripMenuItem1_Click);
-            // 
-            // reMappingToolStripMenuItem1
-            // 
-            this.reMappingToolStripMenuItem1.Name = "reMappingToolStripMenuItem1";
-            this.reMappingToolStripMenuItem1.Size = new System.Drawing.Size(235, 26);
-            this.reMappingToolStripMenuItem1.Text = "Re-Mapping";
-            this.reMappingToolStripMenuItem1.Click += new System.EventHandler(this.reMappingToolStripMenuItem1_Click);
-            // 
-            // subContractorToolStripMenuItem
-            // 
-            this.subContractorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.currentMappingToolStripMenuItem1,
-            this.missedMappingToolStripMenuItem,
-            this.reMappingToolStripMenuItem2});
-            this.subContractorToolStripMenuItem.Name = "subContractorToolStripMenuItem";
-            this.subContractorToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
-            this.subContractorToolStripMenuItem.Text = "Sub Contractor";
-            // 
-            // currentMappingToolStripMenuItem1
-            // 
-            this.currentMappingToolStripMenuItem1.Name = "currentMappingToolStripMenuItem1";
-            this.currentMappingToolStripMenuItem1.Size = new System.Drawing.Size(235, 26);
-            this.currentMappingToolStripMenuItem1.Text = "Current Mapping";
-            this.currentMappingToolStripMenuItem1.Click += new System.EventHandler(this.currentMappingToolStripMenuItem1_Click);
-            // 
-            // missedMappingToolStripMenuItem
-            // 
-            this.missedMappingToolStripMenuItem.Name = "missedMappingToolStripMenuItem";
-            this.missedMappingToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
-            this.missedMappingToolStripMenuItem.Text = "Missed - Mapping";
-            this.missedMappingToolStripMenuItem.Click += new System.EventHandler(this.missedMappingToolStripMenuItem_Click);
-            // 
-            // reMappingToolStripMenuItem2
-            // 
-            this.reMappingToolStripMenuItem2.Name = "reMappingToolStripMenuItem2";
-            this.reMappingToolStripMenuItem2.Size = new System.Drawing.Size(235, 26);
-            this.reMappingToolStripMenuItem2.Text = "Re-Mapping";
-            this.reMappingToolStripMenuItem2.Click += new System.EventHandler(this.reMappingToolStripMenuItem2_Click);
+            this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
+            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.uploadToolStripMenuItem.Text = "Upload";
+            this.uploadToolStripMenuItem.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
             // 
             // statusStrip
             // 
@@ -236,21 +182,15 @@
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.ToolStripMenuItem utilityToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel stripLoginName;
-        private System.Windows.Forms.ToolStripMenuItem mapLedgerCodeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem missingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem remappingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem missingToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem reMappingToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem currentMappingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem curentMappingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem subContractorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem currentMappingToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem missedMappingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reMappingToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem fundTransferRequestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem wORKSHEETToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mappingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewCurrentMappingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mapReMappingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uploadGSTCreditToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uploadToolStripMenuItem;
     }
 }
 

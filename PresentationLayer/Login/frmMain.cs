@@ -60,64 +60,27 @@ namespace CashFlow.PresentationLayer.Login
             this.Close();
         }
 
-        private void missingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmLedgerMapping ledgerMapping = new frmLedgerMapping();
-            ledgerMapping.Show();
-        }
+      
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void currentMappingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmLedgerCodeCurrentMapping ledgerCodeCurrentMapping = new frmLedgerCodeCurrentMapping();
-            ledgerCodeCurrentMapping.Show();
-        }
+         
 
-        private void remappingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmLedgerReMapping ledgerReMapping = new frmLedgerReMapping();
-            ledgerReMapping.Show();
-        }
+         
 
-        private void curentMappingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmCreditorCurrentMapping currentMappingCreditor = new frmCreditorCurrentMapping();
-            currentMappingCreditor.Show();
-        }
+        
 
         private void currentMappingToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmSubbieCurrentMapping currentMappingSubbie = new frmSubbieCurrentMapping();
+            frmCurrentMapping currentMappingSubbie = new frmCurrentMapping();
             currentMappingSubbie.Show();
         }
+ 
 
-        private void missingToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            frmCreditorMapping creditorMapping = new frmCreditorMapping();
-            creditorMapping.Show();
-        }
-
-        private void missedMappingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmSubbieMappingUnMapped subbieMapping = new frmSubbieMappingUnMapped();
-            subbieMapping.Show();
-        }
-
-        private void reMappingToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            frmCreditorReMapping creditorReMap = new frmCreditorReMapping();
-            creditorReMap.Show();
-        }
-
-        private void reMappingToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            frmSubbieReMapping subbieReMap = new frmSubbieReMapping();
-            subbieReMap.Show();
-        }
+        
 
         private void subContractorsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -135,6 +98,37 @@ namespace CashFlow.PresentationLayer.Login
         {
             frmFTRList ftrList = new frmFTRList();
             ftrList.Show();
+        }
+
+        
+
+        private void viewCurrentMappingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCurrentMapping currentMapping = new frmCurrentMapping();
+            currentMapping.Show();
+        }
+
+        private void mapReMappingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMissingMapping mapping = new frmMissingMapping();
+            mapping.Show();
+        }
+
+        private void uploadGSTCreditToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void viewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmGSTCredit viewGSTCredit = new frmGSTCredit();
+            viewGSTCredit.Show();
+        }
+
+        private void uploadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmUploadGSTCredit uploadGSTCredit = new frmUploadGSTCredit();
+            uploadGSTCredit.Show();
         }
     }
 }

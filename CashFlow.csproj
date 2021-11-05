@@ -77,6 +77,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>E:\Program Files (x86)\Syncfusion\Essential Studio\Windows\19.2.0.44\Assemblies\4.6\DemoCommon.dll</HintPath>
     </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>..\Capacite Projects 2019\BSMIS\bin\Debug\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
     </Reference>
@@ -462,59 +465,29 @@
     <Compile Include="PresentationLayer\Login\frmUserLogin.Designer.cs">
       <DependentUpon>frmUserLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationLayer\Utility\frmCreditorReMapping.cs">
+    <Compile Include="PresentationLayer\Utility\frmGSTCredit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PresentationLayer\Utility\frmCreditorReMapping.Designer.cs">
-      <DependentUpon>frmCreditorReMapping.cs</DependentUpon>
+    <Compile Include="PresentationLayer\Utility\frmGSTCredit.Designer.cs">
+      <DependentUpon>frmGSTCredit.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationLayer\Utility\frmSubbieMappingUnMapped.cs">
+    <Compile Include="PresentationLayer\Utility\frmMissingMapping.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PresentationLayer\Utility\frmSubbieMappingUnMapped.Designer.cs">
-      <DependentUpon>frmSubbieMappingUnMapped.cs</DependentUpon>
+    <Compile Include="PresentationLayer\Utility\frmMissingMapping.Designer.cs">
+      <DependentUpon>frmMissingMapping.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationLayer\Utility\frmSubbieReMapping.cs">
+    <Compile Include="PresentationLayer\Utility\frmCurrentMapping.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PresentationLayer\Utility\frmSubbieReMapping.Designer.cs">
-      <DependentUpon>frmSubbieReMapping.cs</DependentUpon>
+    <Compile Include="PresentationLayer\Utility\frmCurrentMapping.Designer.cs">
+      <DependentUpon>frmCurrentMapping.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationLayer\Utility\frmCreditorrMappingUnMapped.cs">
+    <Compile Include="PresentationLayer\Utility\frmUploadGSTCredit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PresentationLayer\Utility\frmCreditorrMappingUnMapped.Designer.cs">
-      <DependentUpon>frmCreditorrMappingUnMapped.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationLayer\Utility\frmSubbieCurrentMapping.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationLayer\Utility\frmSubbieCurrentMapping.Designer.cs">
-      <DependentUpon>frmSubbieCurrentMapping.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationLayer\Utility\frmCreditorCurrentMapping.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationLayer\Utility\frmCreditorCurrentMapping.Designer.cs">
-      <DependentUpon>frmCreditorCurrentMapping.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationLayer\Utility\frmLedgerCurrentMapping.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationLayer\Utility\frmLedgerCurrentMapping.Designer.cs">
-      <DependentUpon>frmLedgerCurrentMapping.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationLayer\Utility\frmLedgerReMapping.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationLayer\Utility\frmLedgerReMapping.Designer.cs">
-      <DependentUpon>frmLedgerReMapping.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationLayer\Utility\frmLedgerMappingUnMapped.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationLayer\Utility\frmLedgerMappingUnMapped.Designer.cs">
-      <DependentUpon>frmLedgerMappingUnMapped.cs</DependentUpon>
+    <Compile Include="PresentationLayer\Utility\frmUploadGSTCredit.Designer.cs">
+      <DependentUpon>frmUploadGSTCredit.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -539,32 +512,17 @@
     <EmbeddedResource Include="PresentationLayer\Login\frmUserLogin.resx">
       <DependentUpon>frmUserLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationLayer\Utility\frmCreditorReMapping.resx">
-      <DependentUpon>frmCreditorReMapping.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationLayer\Utility\frmGSTCredit.resx">
+      <DependentUpon>frmGSTCredit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationLayer\Utility\frmSubbieMappingUnMapped.resx">
-      <DependentUpon>frmSubbieMappingUnMapped.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationLayer\Utility\frmMissingMapping.resx">
+      <DependentUpon>frmMissingMapping.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationLayer\Utility\frmSubbieReMapping.resx">
-      <DependentUpon>frmSubbieReMapping.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationLayer\Utility\frmCurrentMapping.resx">
+      <DependentUpon>frmCurrentMapping.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationLayer\Utility\frmCreditorrMappingUnMapped.resx">
-      <DependentUpon>frmCreditorrMappingUnMapped.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationLayer\Utility\frmSubbieCurrentMapping.resx">
-      <DependentUpon>frmSubbieCurrentMapping.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationLayer\Utility\frmCreditorCurrentMapping.resx">
-      <DependentUpon>frmCreditorCurrentMapping.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationLayer\Utility\frmLedgerCurrentMapping.resx">
-      <DependentUpon>frmLedgerCurrentMapping.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationLayer\Utility\frmLedgerReMapping.resx">
-      <DependentUpon>frmLedgerReMapping.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationLayer\Utility\frmLedgerMappingUnMapped.resx">
-      <DependentUpon>frmLedgerMappingUnMapped.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationLayer\Utility\frmUploadGSTCredit.resx">
+      <DependentUpon>frmUploadGSTCredit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

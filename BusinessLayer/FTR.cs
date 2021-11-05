@@ -31,20 +31,17 @@ namespace CashFlow.BusinessLayer
             arParms[0] = new SqlParameter("@LOGINID", SqlDbType.Text);
             arParms[0].Value = loginID;
             DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.StoredProcedure, "[FTR].[spProjectForFTR]", arParms);
-            return ds; 
+            return ds;
         }
 
-        public DataSet GetFTRHistory(string loginID) 
+        public DataSet GetFTRHistory(string loginID)
         {
             string _connectionString = SqlHelper.GetConnectionString();
-            string sql = "SELECT H.FTRID,B.BORGNAME,H.FTRNUMBER,H.CREATEDATE,H.LASTUPDATE,CASE  WHEN H.FTRSTATUS = 0  THEN 'Open'  WHEN H.FTRSTATUS = 1  THEN 'Closed'";
-            sql = sql + " END AS FTRSTATUS, CASE WHEN H.CUSTODIAN=1 THEN 'Project Site'  WHEN H.CUSTODIAN=2 THEN 'Site Accountant'  WHEN H.CUSTODIAN=3  THEN 'Accounts Head' ";
-            sql = sql + " WHEN H.CUSTODIAN=4 THEN 'Control Cell'  WHEN H.CUSTODIAN = 5 THEN 'Final Approver'  END AS CUSTODIAN ,";
-            sql = sql + "'Open' as FOREDIT, 'Excel' as FOREXPORT FROM FTR.FTRHEADER H INNER JOIN BORGS B ON H.BORGID = B.BORGID ";
-            sql = sql + " WHERE H.BORGID IN (SELECT BSBORGID FROM FTR.PROJECTS WHERE PROJECTID IN (SELECT PROJECTID  FROM FTR.USERPROJECTS WHERE USERID IN ";
-            sql = sql + " (SELECT USERID FROM FTR.FTRUSERS WHERE BSLOGINID= '" + Convert.ToString(loginID) + "'))) ORDER BY FTRSTATUS DESC,BORGNAME";
-            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.Text, sql);
-            return ds; 
+            SqlParameter[] arParms = new SqlParameter[1];
+            arParms[0] = new SqlParameter("@LOGINID", SqlDbType.Text);
+            arParms[0].Value = loginID;
+            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.StoredProcedure, "[FTR].[spGetFTRHistory]", arParms);
+            return ds;
         }
 
 
@@ -58,7 +55,7 @@ namespace CashFlow.BusinessLayer
             return i;
         }
 
-        public DataSet GenerateFTR(int borgID,int headerAlso)
+        public DataSet GenerateFTR(int borgID, int headerAlso)
         {
             string _connectionString = SqlHelper.GetConnectionString();
             SqlParameter[] arParms = new SqlParameter[2];
@@ -108,5 +105,147 @@ namespace CashFlow.BusinessLayer
         //    }
         //}
         #endregion
+
+
+
+
+        #region Mapping/UnMapping
+
+        public DataSet getPartiesForMapping(int vendorType, int mappingType)
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            SqlParameter[] arParms = new SqlParameter[2];
+            arParms[0] = new SqlParameter("@VENDORTYPEID", SqlDbType.Int);
+            arParms[0].Value = vendorType;
+            arParms[1] = new SqlParameter("@MAPPINGID", SqlDbType.Int);
+            arParms[1].Value = mappingType;
+            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.StoredProcedure, "FTR.spFetchPartiesForMapping", arParms);
+            return ds;
+        }
+
+        public DataSet getMajorCategory(int vendorTypeID)
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            string sql = "SELECT DISTINCT  MAJORCATEGORY  FROM FTR.MAPPINGMASTER WHERE VENDORTYPEID = " + Convert.ToString(vendorTypeID) + " ORDER BY MAJORCATEGORY";
+            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.Text, sql);
+            return ds;
+        }
+
+        public DataSet getMinorCategory(int vendorTypeID, string majorCategory)
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            string sql;
+            if (vendorTypeID == 1)
+                sql = "SELECT DISTINCT MINORCATEGORY AS MAPPINGID, MINORCATEGORY  FROM FTR.MAPPINGMASTER WHERE MAJORCATEGORY ='" + Convert.ToString(majorCategory) + "' ORDER BY MINORCATEGORY";
+            else
+                sql = "SELECT DISTINCT MAPPINGID,MINORCATEGORY FROM FTR.MAPPINGMASTER WHERE MAJORCATEGORY='" + Convert.ToString(majorCategory) + "' ORDER BY MINORCATEGORY";
+            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.Text, sql);
+            return ds;
+        }
+
+        public DataSet getCategory(string minorCategory)
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            string sql = "SELECT DISTINCT MAPPINGID,CATEGORY  FROM FTR.MAPPINGMASTER WHERE MINORCATEGORY ='" + Convert.ToString(minorCategory) + "' ORDER BY CATEGORY";
+            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.Text, sql);
+            return ds;
+        }
+
+        public int InsertMapping(int vendorTypeID, string partyCodeForUpdate, int mappingID)
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            string sql;
+            if (vendorTypeID == 1)
+                sql = "INSERT INTO FTR.MASTERCREDITOR(VENDORCODE,MAPPINGID) VALUES ('" + Convert.ToString(partyCodeForUpdate) + "'," + Convert.ToString(mappingID) + ")";
+            else
+                sql = "INSERT INTO FTR.MASTERSUBBIE(VENDORCODE,MAPPINGID) VALUES ('" + Convert.ToString(partyCodeForUpdate) + "'," + Convert.ToString(mappingID) + ")";
+            int j = SqlHelper.ExecuteNonQuery(_connectionString, CommandType.Text, sql);
+            sql = "DELETE FROM FTR.UNKNOWNPARTIES WHERE PARTYCODE='" + Convert.ToString(partyCodeForUpdate) + "'";
+            j = SqlHelper.ExecuteNonQuery(_connectionString, CommandType.Text, sql);
+            return j;
+        }
+
+        public int UpdateMapping(int vendorTypeID, string partyCodeForUpdate, int mappingID)
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            string sql;
+            if (vendorTypeID == 1)
+                sql = "UPDATE FTR.MASTERCREDITOR SET MAPPINGID=" + Convert.ToString(mappingID) + " WHERE VENDORCODE='" + Convert.ToString(partyCodeForUpdate) + "'";
+            else
+                sql = "UPDATE FTR.MASTERSUBBIE SET MAPPINGID=" + Convert.ToString(mappingID) + " WHERE VENDORCODE='" + Convert.ToString(partyCodeForUpdate) + "'";
+            int j = SqlHelper.ExecuteNonQuery(_connectionString, CommandType.Text, sql);
+         
+            return j;
+        }
+
+
+        public DataSet FetchPartiesWithMapping(int vendorTypeID)
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            string sql1 = "SELECT MC.VENDORCODE PARTYCODE,UPPER(C.CREDNAME) PARTYNAME,M.MAJORCATEGORY,M.MINORCATEGORY,M.CATEGORY   ";
+            sql1 = sql1 + "FROM FTR.MASTERCREDITOR MC INNER JOIN  CREDITORS C ON MC.VENDORCODE = C.CREDNUMBER   ";
+            sql1 = sql1 + "INNER JOIN  FTR.MAPPINGMASTER M ON MC.MAPPINGID = M.MAPPINGID  ORDER BY PARTYNAME,MAJORCATEGORY,MINORCATEGORY,CATEGORY";
+            string sql2 = "SELECT MC.VENDORCODE PARTYCODE,UPPER(S.SUBNAME) PARTYNAME,M.MAJORCATEGORY,M.MINORCATEGORY,M.CATEGORY    ";
+            sql2 = sql2 + "FROM FTR.MASTERSUBBIE MC INNER JOIN  SUBCONTRACTORS S ON MC.VENDORCODE = S.SUBNUMBER ";
+            sql2 = sql2 + "INNER JOIN  FTR.MAPPINGMASTER M ON MC.MAPPINGID = M.MAPPINGID  WHERE SUBNAME<>'' ORDER BY PARTYNAME,MAJORCATEGORY,MINORCATEGORY,CATEGORY";
+
+            string sql;
+            if (vendorTypeID == 1)
+                sql = sql1;
+            else
+                sql = sql2;
+
+            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.Text, sql);
+            return ds;
+        }
+
+
+
+        #endregion
+        #region GSTCredit
+        public DataSet GSTCredit()
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            string sql = "SELECT 'Creditor' VENDORTYPE, GC.PARTYCODE PARTYCODE, UPPER(C.CREDNAME) PARTYNAME , GC.GSTCREDIT ";
+            sql = sql + "  FROM FTR.GSTCREDIT GC INNER JOIN CREDITORS C ON GC.PARTYCODE = C.CREDNUMBER WHERE GSTCREDIT<>0  ";
+            sql = sql + "  UNION  ";
+            sql = sql + " SELECT 'SubCon'   VENDORTYPE, GC.PARTYCODE PARTYCODE, UPPER(S.SUBNAME) PARTYNAME , GC.GSTCREDIT  ";
+            sql = sql + "  FROM FTR.GSTCREDIT GC INNER JOIN SUBCONTRACTORS S ON GC.PARTYCODE = S.SUBNUMBER WHERE GSTCREDIT<>0 ";
+            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.Text, sql);
+            return ds;
+        }
+
+        public int CheckAlreadyHaveGSTEntry(string partyCode)
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            string sql = "Select * FROM FTR.GSTCREDIT WHERE PARTYCODE='" + Convert.ToString(partyCode) + "'";
+            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.Text, sql);
+            int row = Convert.ToInt16(ds.Tables[0].Rows.Count);
+            if (row > 0)
+                return 1;
+            else
+                return 0;
+        }
+
+        public int AddGSTEntry(string partyCode,decimal  amount, int route)
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            string sql1 = "INSERT INTO FTR.GSTCREDIT(PARTYCODE,GSTCREDIT) VALUES ('" + Convert.ToString(partyCode) + "'," + Convert.ToString(amount) + ")";
+            string sql2 = "UPDATE FTR.GSTCREDIT SET GSTCREDIT=" + Convert.ToString(amount) + "  WHERE PARTYCODE='" + Convert.ToString(partyCode) + "'";
+            string sql;
+            if (route == 0)
+                sql = sql1;
+            else
+                sql = sql2;
+            int i = SqlHelper.ExecuteNonQuery(_connectionString, CommandType.Text, sql);
+            return i;
+        }
+        #endregion
     }
 }
+   
+
+
+
+
+
