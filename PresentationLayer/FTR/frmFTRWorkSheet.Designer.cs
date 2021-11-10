@@ -54,6 +54,7 @@
             this.lblFTRNumber = new Syncfusion.Windows.Forms.Tools.AutoLabel();
             this.gridResult = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.btnUpdate = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnSubmit = new Syncfusion.WinForms.Controls.SfButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridResult)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,10 +73,10 @@
             this.btnClose.AccessibleName = "Button";
             this.btnClose.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.btnClose.ForeColor = System.Drawing.Color.Olive;
-            this.btnClose.Location = new System.Drawing.Point(1280, 29);
+            this.btnClose.Location = new System.Drawing.Point(1310, 29);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(135, 27);
+            this.btnClose.Size = new System.Drawing.Size(105, 27);
             this.btnClose.Style.ForeColor = System.Drawing.Color.Olive;
             this.btnClose.TabIndex = 16;
             this.btnClose.Text = "Exit";
@@ -85,7 +86,7 @@
             // 
             this.lblFTRNumber.Font = new System.Drawing.Font("Verdana", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFTRNumber.ForeColor = System.Drawing.Color.Red;
-            this.lblFTRNumber.Location = new System.Drawing.Point(651, 19);
+            this.lblFTRNumber.Location = new System.Drawing.Point(615, 19);
             this.lblFTRNumber.Name = "lblFTRNumber";
             this.lblFTRNumber.Size = new System.Drawing.Size(171, 29);
             this.lblFTRNumber.TabIndex = 20;
@@ -203,32 +204,39 @@
             gridNumericColumn10.AllowFiltering = true;
             gridNumericColumn10.AllowGrouping = false;
             gridNumericColumn10.AllowResizing = true;
-            gridNumericColumn10.CellStyle.BackColor = System.Drawing.SystemColors.Info;
-            gridNumericColumn10.HeaderText = "Net Payable";
-            gridNumericColumn10.MappingName = "FINALPAYABLE";
-            gridNumericColumn10.Width = 110D;
+            gridNumericColumn10.CellStyle.BackColor = System.Drawing.Color.Fuchsia;
+            gridNumericColumn10.CellStyle.Font.Bold = true;
+            gridNumericColumn10.HeaderText = "Payable";
+            gridNumericColumn10.MappingName = "PAYABLE";
+            gridNumericColumn10.Width = 130D;
             gridNumericColumn11.AllowFiltering = true;
             gridNumericColumn11.AllowGrouping = false;
             gridNumericColumn11.AllowResizing = true;
+            gridNumericColumn11.CellStyle.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             gridNumericColumn11.HeaderText = "Project Site";
             gridNumericColumn11.MappingName = "PROJECTSITE";
-            gridNumericColumn11.Width = 100D;
+            gridNumericColumn11.Width = 130D;
             gridNumericColumn12.AllowFiltering = true;
             gridNumericColumn12.AllowGrouping = false;
             gridNumericColumn12.AllowResizing = true;
+            gridNumericColumn12.CellStyle.BackColor = System.Drawing.SystemColors.Info;
             gridNumericColumn12.HeaderText = "Final Payable";
-            gridNumericColumn12.MappingName = "ACCOUNTANT";
-            gridNumericColumn12.Width = 100D;
+            gridNumericColumn12.MappingName = "PAYABLERECOMMENDED";
+            gridNumericColumn12.Width = 130D;
             gridCheckBoxColumn1.AllowFiltering = true;
             gridCheckBoxColumn1.AllowGrouping = false;
             gridCheckBoxColumn1.AllowResizing = true;
+            gridCheckBoxColumn1.CellStyle.BackColor = System.Drawing.Color.Aquamarine;
             gridCheckBoxColumn1.HeaderText = "Accounts Head";
             gridCheckBoxColumn1.MappingName = "ACCOUNTSHEAD";
+            gridCheckBoxColumn1.Width = 130D;
             gridCheckBoxColumn2.AllowFiltering = true;
             gridCheckBoxColumn2.AllowGrouping = false;
             gridCheckBoxColumn2.AllowResizing = true;
+            gridCheckBoxColumn2.CellStyle.BackColor = System.Drawing.Color.Salmon;
             gridCheckBoxColumn2.HeaderText = "Contrl Cell";
             gridCheckBoxColumn2.MappingName = "CONTROLCELL";
+            gridCheckBoxColumn2.Width = 130D;
             gridTextColumn7.AllowFiltering = true;
             gridTextColumn7.AllowGrouping = false;
             gridTextColumn7.AllowResizing = true;
@@ -257,11 +265,11 @@
             this.gridResult.Columns.Add(gridCheckBoxColumn1);
             this.gridResult.Columns.Add(gridCheckBoxColumn2);
             this.gridResult.Columns.Add(gridTextColumn7);
-            this.gridResult.Location = new System.Drawing.Point(12, 63);
+            this.gridResult.Location = new System.Drawing.Point(12, 79);
             this.gridResult.Name = "gridResult";
             this.gridResult.PreviewRowHeight = 35;
             this.gridResult.ShowGroupDropArea = true;
-            this.gridResult.Size = new System.Drawing.Size(1403, 524);
+            this.gridResult.Size = new System.Drawing.Size(1403, 508);
             this.gridResult.TabIndex = 25;
             this.gridResult.Text = "sfDataGrid1";
             this.gridResult.QueryRowStyle += new Syncfusion.WinForms.DataGrid.Events.QueryRowStyleEventHandler(this.gridResult_QueryRowStyle);
@@ -272,20 +280,35 @@
             this.btnUpdate.AccessibleName = "Button";
             this.btnUpdate.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnUpdate.Location = new System.Drawing.Point(1271, 3);
+            this.btnUpdate.Location = new System.Drawing.Point(1034, 29);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(144, 27);
+            this.btnUpdate.Size = new System.Drawing.Size(114, 27);
             this.btnUpdate.Style.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnUpdate.TabIndex = 26;
-            this.btnUpdate.Text = "Update and Close";
+            this.btnUpdate.Text = "Update ";
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnSubmit
+            // 
+            this.btnSubmit.AccessibleName = "Button";
+            this.btnSubmit.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.btnSubmit.ForeColor = System.Drawing.Color.Blue;
+            this.btnSubmit.Location = new System.Drawing.Point(1165, 29);
+            this.btnSubmit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(114, 27);
+            this.btnSubmit.Style.ForeColor = System.Drawing.Color.Blue;
+            this.btnSubmit.TabIndex = 27;
+            this.btnSubmit.Text = "Submit";
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click_1);
             // 
             // frmFTRWorkSheet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1427, 599);
+            this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.gridResult);
             this.Controls.Add(this.lblFTRNumber);
@@ -310,5 +333,6 @@
         private Syncfusion.Windows.Forms.Tools.AutoLabel lblFTRNumber;
         private Syncfusion.WinForms.DataGrid.SfDataGrid gridResult;
         private Syncfusion.WinForms.Controls.SfButton btnUpdate;
+        private Syncfusion.WinForms.Controls.SfButton btnSubmit;
     }
 }

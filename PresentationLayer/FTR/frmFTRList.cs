@@ -115,14 +115,13 @@ namespace CashFlow.PresentationLayer.Cash_Flow
           
             ftrList =Utility.CreateListFromTable<FTRHeaderList>(dsFTRHistory.Tables[0]);
             gridFTRHistory.DataSource = ftrList;
+            
+            gridFTRHistory.Columns["FOREDIT"].AllowFiltering = false;
+            gridFTRHistory.Columns["FOREXPORT"].AllowFiltering = false;
+            gridFTRHistory.Columns["FORPRINT"].AllowFiltering = false;
             this.gridFTRHistory.ThemeName = "Office2016DarkGray";
             this.gridFTRHistory.SelectionMode = GridSelectionMode.Single;
             gridFTRHistory.Refresh();
-
-
-
-                
-             
 
         }
 
@@ -182,10 +181,11 @@ namespace CashFlow.PresentationLayer.Cash_Flow
                 LoadGrid();
             }
 
-            if (buttonHeaderText == " Export")
+            if (buttonHeaderText == "Export")
             {
-                MessageBox.Show("Export");
-                return;
+                frmFTRExcel ftrExcel = new frmFTRExcel(ftrID);
+                ftrExcel.ShowDialog();
+                
             }
 
             
@@ -198,12 +198,22 @@ namespace CashFlow.PresentationLayer.Cash_Flow
                 e.Column.HeaderStyle.BackColor = Color.LightSkyBlue;
                 e.Column.CellStyle.BackColor = Color.MediumBlue;
             }
+
+            if (e.Column.MappingName == "Print")
+            {
+                //  e.Column.HeaderStyle.BackColor = Color.LightPink;
+                e.Column.CellStyle.BackColor = Color.LightPink;
+                
+            }
+
         }
 
         private void gridFTRHistory_QueryButtonCellStyle(object sender, QueryButtonCellStyleEventArgs e)
         {
             if ((e.Record as FTRHeaderList).FOREDIT == "Restricted")
                 e.Button.Style.Enabled = false;
+            if ((e.Record as FTRHeaderList).FORPRINT == "Print")
+                e.Button.Style.Enabled = true;
         }
     }
 }

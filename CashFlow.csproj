@@ -429,6 +429,12 @@
     <Compile Include="PresentationLayer\CashFlow2021\frmCashFlow2021.Designer.cs">
       <DependentUpon>frmCashFlow2021.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationLayer\FTR\frmFTRExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationLayer\FTR\frmFTRExcel.Designer.cs">
+      <DependentUpon>frmFTRExcel.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationLayer\FTR\frmFTRList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -493,6 +499,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="PresentationLayer\CashFlow2021\frmCashFlow2021.resx">
       <DependentUpon>frmCashFlow2021.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationLayer\FTR\frmFTRExcel.resx">
+      <DependentUpon>frmFTRExcel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationLayer\FTR\frmFTRList.resx">
       <DependentUpon>frmFTRList.cs</DependentUpon>

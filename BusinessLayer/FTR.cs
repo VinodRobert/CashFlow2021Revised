@@ -79,6 +79,14 @@ namespace CashFlow.BusinessLayer
             DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.StoredProcedure, "FTR.spFTRWorkSheet", arParms);
             return ds;
         }
+
+        public DataSet GetFTRExcel(int ftrIDToExtract)
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            string sql = "Select * from FTR.VINOD1 order by lineorder,majorcategory,minorcategory,category,partyname;select * from FTR.VINOD2";
+            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.Text, sql);
+            return ds;
+        }
         #endregion
 
 
@@ -199,7 +207,21 @@ namespace CashFlow.BusinessLayer
             return ds;
         }
 
+        public int DeleteExistingEntries(int ftrID)
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            string sql = "DELETE FROM FTR.FTRAMOUNTAPPROVED WHERE FTRID=" + Convert.ToString(ftrID);
+            int i = SqlHelper.ExecuteNonQuery(_connectionString, CommandType.Text, sql);
+            return i;
+        }
 
+        public int UpdateCustodian(int ftrID)
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            string sql = "Update FTR.FTRHEADER SET CUSTODIAN=CUSTODIAN+1 WHERE FTRID="+ Convert.ToString(ftrID);
+            int i = SqlHelper.ExecuteNonQuery(_connectionString, CommandType.Text, sql);
+            return i;
+        }
 
         #endregion
         #region GSTCredit

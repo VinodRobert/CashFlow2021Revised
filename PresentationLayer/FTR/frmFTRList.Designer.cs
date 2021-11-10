@@ -38,6 +38,7 @@
             Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn5 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
             Syncfusion.WinForms.DataGrid.GridButtonColumn gridButtonColumn1 = new Syncfusion.WinForms.DataGrid.GridButtonColumn();
             Syncfusion.WinForms.DataGrid.GridButtonColumn gridButtonColumn2 = new Syncfusion.WinForms.DataGrid.GridButtonColumn();
+            Syncfusion.WinForms.DataGrid.GridButtonColumn gridButtonColumn3 = new Syncfusion.WinForms.DataGrid.GridButtonColumn();
             this.btnClose = new Syncfusion.WinForms.Controls.SfButton();
             this.label1 = new System.Windows.Forms.Label();
             this.gridFTRHistory = new Syncfusion.WinForms.DataGrid.SfDataGrid();
@@ -96,19 +97,19 @@
             gridTextColumn2.AllowFiltering = true;
             gridTextColumn2.HeaderText = "Project Name";
             gridTextColumn2.MappingName = "BORGNAME";
-            gridTextColumn2.Width = 300D;
+            gridTextColumn2.Width = 250D;
             gridTextColumn3.AllowEditing = false;
             gridTextColumn3.AllowFiltering = true;
             gridTextColumn3.HeaderText = "FTR Number";
             gridTextColumn3.MappingName = "FTRNUMBER";
-            gridTextColumn3.Width = 180D;
+            gridTextColumn3.Width = 170D;
             gridDateTimeColumn1.AllowEditing = false;
             gridDateTimeColumn1.AllowFiltering = true;
             gridDateTimeColumn1.HeaderText = "Created On";
             gridDateTimeColumn1.MappingName = "CREATEDATE";
             gridDateTimeColumn1.MaxDateTime = new System.DateTime(9999, 12, 31, 23, 59, 59, 999);
             gridDateTimeColumn1.Pattern = Syncfusion.WinForms.Input.Enums.DateTimePattern.FullDateTime;
-            gridDateTimeColumn1.Width = 180D;
+            gridDateTimeColumn1.Width = 170D;
             gridTextColumn4.AllowEditing = false;
             gridTextColumn4.AllowFiltering = true;
             gridTextColumn4.HeaderText = "Status";
@@ -120,7 +121,7 @@
             gridDateTimeColumn2.MappingName = "LASTUPDATE";
             gridDateTimeColumn2.MaxDateTime = new System.DateTime(9999, 12, 31, 23, 59, 59, 999);
             gridDateTimeColumn2.Pattern = Syncfusion.WinForms.Input.Enums.DateTimePattern.FullDateTime;
-            gridDateTimeColumn2.Width = 220D;
+            gridDateTimeColumn2.Width = 210D;
             gridTextColumn5.AllowEditing = false;
             gridTextColumn5.AllowFiltering = true;
             gridTextColumn5.HeaderText = "Current Owner";
@@ -150,6 +151,16 @@
             gridButtonColumn2.HeaderText = "Export";
             gridButtonColumn2.ImageSize = new System.Drawing.Size(0, 0);
             gridButtonColumn2.MappingName = "FOREXPORT";
+            gridButtonColumn3.AllowDefaultButtonText = false;
+            gridButtonColumn3.AllowEditing = false;
+            gridButtonColumn3.AllowFiltering = true;
+            gridButtonColumn3.ButtonSize = new System.Drawing.Size(0, 0);
+            gridButtonColumn3.DefaultButtonText = "";
+            gridButtonColumn3.HeaderStyle.BackColor = System.Drawing.Color.Violet;
+            gridButtonColumn3.HeaderStyle.FilterIconColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
+            gridButtonColumn3.HeaderText = "Print";
+            gridButtonColumn3.ImageSize = new System.Drawing.Size(0, 0);
+            gridButtonColumn3.MappingName = "FORPRINT";
             this.gridFTRHistory.Columns.Add(gridTextColumn1);
             this.gridFTRHistory.Columns.Add(gridTextColumn2);
             this.gridFTRHistory.Columns.Add(gridTextColumn3);
@@ -159,6 +170,7 @@
             this.gridFTRHistory.Columns.Add(gridTextColumn5);
             this.gridFTRHistory.Columns.Add(gridButtonColumn1);
             this.gridFTRHistory.Columns.Add(gridButtonColumn2);
+            this.gridFTRHistory.Columns.Add(gridButtonColumn3);
             this.gridFTRHistory.Location = new System.Drawing.Point(13, 61);
             this.gridFTRHistory.Name = "gridFTRHistory";
             this.gridFTRHistory.PreviewRowHeight = 35;
@@ -195,7 +207,7 @@
             this.panelNewFTR.Controls.Add(this.lblProjectName);
             this.panelNewFTR.Location = new System.Drawing.Point(396, 214);
             this.panelNewFTR.Name = "panelNewFTR";
-            this.panelNewFTR.Size = new System.Drawing.Size(752, 205);
+            this.panelNewFTR.Size = new System.Drawing.Size(772, 205);
             this.panelNewFTR.TabIndex = 26;
             this.panelNewFTR.Paint += new System.Windows.Forms.PaintEventHandler(this.panelNewFTR_Paint);
             // 
@@ -275,7 +287,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1427, 599);
+            this.ClientSize = new System.Drawing.Size(1421, 599);
             this.Controls.Add(this.panelNewFTR);
             this.Controls.Add(this.btnNew);
             this.Controls.Add(this.gridFTRHistory);

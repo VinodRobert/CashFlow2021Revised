@@ -23,6 +23,8 @@ using DemoCommon.Grid;
 using Syncfusion.PivotConverter;
 using Syncfusion.WinForms.DataGrid.Interactivity;
 using Syncfusion.Data;
+using System.Data.SqlClient;
+using CashFlowSqlHelper;
 
 namespace CashFlow.PresentationLayer.Cash_Flow 
 {
@@ -34,6 +36,9 @@ namespace CashFlow.PresentationLayer.Cash_Flow
         int ftrIDToExtract;
         List<SingleFTR> singleFTRList = new List<SingleFTR>();
         int loginUserRoleID = CashFlowGlobalVariables.GlobalVariables.RoleID;
+        DataTable dtRecommendations;
+        DataTable dtFiltered;
+     
 
         public frmFTRWorkSheet(int ftrID)
         {
@@ -72,9 +77,9 @@ namespace CashFlow.PresentationLayer.Cash_Flow
             stackedHeaderRow1.StackedColumns.Add(new StackedColumn() { ChildColumns = "MAJORCATEGORY,MINORCATEGORY,CATEGORY", HeaderText = "FTR Display Levels" });
             stackedHeaderRow1.StackedColumns.Add(new StackedColumn() { ChildColumns = "VENDORTYPE,PARTYCODE,PARTYNAME,", HeaderText = "Vendor Deatils" });
             stackedHeaderRow1.StackedColumns.Add(new StackedColumn() { ChildColumns = "NETPAYABLE,PAID,PROJECTLIABILITY", HeaderText = "Project Level Details" });
-            stackedHeaderRow1.StackedColumns.Add(new StackedColumn() { ChildColumns = "MOBADVANCE,GSTCREDIT,COMPANYLIABILITY,PAYABLEAFTERGST,FINALPAYABLE", HeaderText = "Company Level Details" });
-            stackedHeaderRow1.StackedColumns.Add(new StackedColumn() { ChildColumns = "PROJECTSITE,ACCOUNTANT", HeaderText = "Payment Recommendations" });
-            stackedHeaderRow1.StackedColumns.Add(new StackedColumn() { ChildColumns = "ACCOUNTSHEAD,CONTROLCELL", HeaderText = "Payment Approval" });
+            stackedHeaderRow1.StackedColumns.Add(new StackedColumn() { ChildColumns = "MOBADVANCE,GSTCREDIT,COMPANYLIABILITY,PAYABLEAFTERGST,PAYABLE", HeaderText = "Company Level Details" });
+            stackedHeaderRow1.StackedColumns.Add(new StackedColumn() { ChildColumns = "PROJECTSITE,PAYABLERECOMMENDED", HeaderText = "Payment Recommendations" });
+            stackedHeaderRow1.StackedColumns.Add(new StackedColumn() { ChildColumns = "ACCOUNTSHEAD,CONTROLCELL", HeaderText = "Approval" });
 
             //Adding stacked header row object to stacked header row collection available in SfDataGrid.
             gridResult.StackedHeaderRows.Add(stackedHeaderRow1);
@@ -99,24 +104,67 @@ namespace CashFlow.PresentationLayer.Cash_Flow
             this.gridResult.Columns["PARTYNAME"].ShowToolTip = true;
 
             gridResult.Columns["PROJECTSITE"].AllowEditing = false;
-            gridResult.Columns["ACCOUNTANT"].AllowEditing = false;
+            gridResult.Columns["PAYABLERECOMMENDED"].AllowEditing = false;
             gridResult.Columns["ACCOUNTSHEAD"].AllowEditing = false;
             gridResult.Columns["CONTROLCELL"].AllowEditing = false;
 
 
-            gridResult.Columns["ACCOUNTANT"].Visible = false;
+            gridResult.Columns["PAYABLERECOMMENDED"].Visible = false;
             gridResult.Columns["ACCOUNTSHEAD"].Visible = false;
             gridResult.Columns["CONTROLCELL"].Visible = false;
 
 
             if (loginUserRoleID == 1)
             {
-                gridResult.Columns["ACCOUNTANT"].AllowEditing = true;
-                gridResult.Columns["ACCOUNTANT"].Visible = true;
+                gridResult.Columns["PROJECTSITE"].AllowEditing = true;
+                gridResult.Columns["PROJECTSITE"].Visible = true;
+                gridResult.Columns["PAYABLERECOMMENDED"].AllowEditing = false;
+                gridResult.Columns["PAYABLERECOMMENDED"].Visible = false;
+                gridResult.Columns["ACCOUNTSHEAD"].AllowEditing = false;
+                gridResult.Columns["ACCOUNTSHEAD"].Visible = false;
+                gridResult.Columns["CONTROLCELL"].AllowEditing = false;
+                gridResult.Columns["CONTROLCELL"].Visible = false;
+
             }
 
+            if (loginUserRoleID == 2)
+            {
+                gridResult.Columns["PROJECTSITE"].AllowEditing = false;
+                gridResult.Columns["PROJECTSITE"].Visible = true;
+                gridResult.Columns["PAYABLERECOMMENDED"].AllowEditing = true;
+                gridResult.Columns["PAYABLERECOMMENDED"].Visible = true;
+                gridResult.Columns["ACCOUNTSHEAD"].AllowEditing = false;
+                gridResult.Columns["ACCOUNTSHEAD"].Visible = false;
+                gridResult.Columns["CONTROLCELL"].AllowEditing = false;
+                gridResult.Columns["CONTROLCELL"].Visible = false;
+            }
+
+            if (loginUserRoleID==3)
+            {
+                gridResult.Columns["PROJECTSITE"].AllowEditing = false;
+                gridResult.Columns["PROJECTSITE"].Visible = true;
+                gridResult.Columns["PAYABLERECOMMENDED"].AllowEditing = true;
+                gridResult.Columns["PAYABLERECOMMENDED"].Visible = true;
+                gridResult.Columns["ACCOUNTSHEAD"].AllowEditing = true;
+                gridResult.Columns["ACCOUNTSHEAD"].Visible = true;
+                gridResult.Columns["CONTROLCELL"].AllowEditing = false;
+                gridResult.Columns["CONTROLCELL"].Visible = false;
+            }
+
+            if (loginUserRoleID == 4)
+            {
+                gridResult.Columns["PROJECTSITE"].AllowEditing = false;
+                gridResult.Columns["PROJECTSITE"].Visible = true;
+                gridResult.Columns["PAYABLERECOMMENDED"].AllowEditing = true;
+                gridResult.Columns["PAYABLERECOMMENDED"].Visible = true;
+                gridResult.Columns["ACCOUNTSHEAD"].AllowEditing = false;
+                gridResult.Columns["ACCOUNTSHEAD"].Visible = true;
+                gridResult.Columns["CONTROLCELL"].AllowEditing = true;
+                gridResult.Columns["CONTROLCELL"].Visible = true;
+            }
         }
 
+     
 
         private void gridResult_QueryRowStyle(object sender, QueryRowStyleEventArgs e)
         {
@@ -131,6 +179,7 @@ namespace CashFlow.PresentationLayer.Cash_Flow
 
         private void frmFTRWorkSheet_Load(object sender, EventArgs e)
         {
+            btnSubmit.Enabled = false;
             dsResult = FTR.GetFTRWorkSheet(ftrIDToExtract);
             dsResultTable = dsResult.Tables[0];
             singleFTRList = Utility.CreateListFromTable<SingleFTR>(dsResultTable);
@@ -155,18 +204,102 @@ namespace CashFlow.PresentationLayer.Cash_Flow
             }
         }
 
+        public void SaveToTables()
+        {
+            string partyCode;
+            int ftrID=0;
+            decimal projectSite;
+            decimal finalValue;
+            bool head;
+            bool controlCell;
+
+            int row;
+            int maxRowCount = dtFiltered.Rows.Count;
+
+            System.Data.DataRow singlePartyApproval;
+
+            dtRecommendations = new DataTable("Approvals");
+            dtRecommendations.Columns.Add(new DataColumn("APPROVALID", typeof(int)));
+            dtRecommendations.Columns.Add(new DataColumn("FTRID", typeof(int)));
+            dtRecommendations.Columns.Add(new DataColumn("PARTYCODE", typeof(string)));
+            dtRecommendations.Columns.Add(new DataColumn("PROJECTSITE", typeof(decimal)));
+            dtRecommendations.Columns.Add(new DataColumn("FINALVALUE", typeof(decimal)));
+            dtRecommendations.Columns.Add(new DataColumn("HEAD", typeof(bool)));
+            dtRecommendations.Columns.Add(new DataColumn("CONTROLCELL", typeof(bool)));
+
+            for (row = 0; row <= maxRowCount - 1; row++)
+            {
+                singlePartyApproval = dtFiltered.Rows[row];
+
+
+                ftrID = Convert.ToInt16(singlePartyApproval["FTRID"]);
+                partyCode = Convert.ToString(singlePartyApproval["PARTYCODE"]);
+                projectSite = Convert.ToDecimal(singlePartyApproval["PROJECTSITE"]);
+                finalValue = Convert.ToDecimal(singlePartyApproval["PAYABLERECOMMENDED"]);
+                head = Convert.ToBoolean(singlePartyApproval["ACCOUNTSHEAD"]);
+                controlCell = Convert.ToBoolean(singlePartyApproval["CONTROLCELL"]);
+                dtRecommendations.Rows.Add(0,ftrID, partyCode, projectSite, finalValue,head,controlCell);
+
+            }
+
+            int deletes = FTR.DeleteExistingEntries(ftrID);
+
+            try
+            {
+                string _connectionString = SqlHelper.GetConnectionString();
+                using (SqlBulkCopy bulkCopy = new SqlBulkCopy(_connectionString))
+                {
+                    bulkCopy.BulkCopyTimeout = 600; // in seconds
+                    bulkCopy.DestinationTableName = "[FTR].[FTRAMOUNTAPPROVED]";
+                    bulkCopy.WriteToServer(dtRecommendations);
+                 
+                }
+            }
+            catch(Exception ex)
+            {
+                string errorMessage = "Failed To Save FTR Approval Tables " + ex.Message;
+                MessageBox.Show(errorMessage, "Failed To Save ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                return;
+
+            }
+        }
+
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            string filterExpression = " ( (PROJECTSITE>0) OR (ACCOUNTANT>0) OR (ACCOUNTSHEAD>0) OR (CONTROLCELL>0) ) ";
+            string filterExpression = " ( (PROJECTSITE>0) OR (PAYABLERECOMMENDED>0) ) ";
             System.Data.DataRow[] filtered = dsResultTable.Select(filterExpression);
 
             if (filtered.Length > 0)
             {
-                DataTable dtFiltered = filtered.CopyToDataTable();
+                dtFiltered = filtered.CopyToDataTable();
                 System.Data.DataColumn ftrColumn = new System.Data.DataColumn("FTRID", typeof(System.Int16));
                 ftrColumn.DefaultValue = ftrIDToExtract;
                 dtFiltered.Columns.Add(ftrColumn);
                 dtFiltered.AcceptChanges();
+            }
+            SaveToTables();
+            MessageBox.Show("Success !!!");
+            btnSubmit.Enabled = true;
+        }
+
+        
+
+        private void btnSubmit_Click_1(object sender, EventArgs e)
+        {
+            string message = "Are You Sure To Submit. Not Reversable  ??";
+            string title = "Submission Approval";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+            if (result == DialogResult.Yes)
+            {
+                int i = FTR.UpdateCustodian(ftrIDToExtract);
+                MessageBox.Show("Success !!!");
+                this.Close();
+            }
+            else
+            {
+                // Do something  
             }
         }
     }

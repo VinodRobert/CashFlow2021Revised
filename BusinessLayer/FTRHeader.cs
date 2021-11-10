@@ -17,6 +17,7 @@ namespace CashFlow.BusinessLayer
         string _custoidan;
         string _forEdit;
         string _forExport;
+        string _forPrint;
         public int FTRID
         {
             get { return _ftrID; }
@@ -69,6 +70,11 @@ namespace CashFlow.BusinessLayer
             get { return _forExport; }
             set { _forExport = value; }
         }
+        public string FORPRINT
+        {
+            get { return _forPrint; }
+            set { _forPrint = value; }
+        }
     }
 
     class SingleFTR
@@ -90,8 +96,8 @@ namespace CashFlow.BusinessLayer
         decimal _mobAdvance;
         decimal _projectSite;
         decimal _accountant;
-        int     _controlCell;
-        int    _accountsHead;
+        bool     _controlCell;
+        bool    _accountsHead;
         int _lineOrder;
 
         public int RESULTID
@@ -190,14 +196,14 @@ namespace CashFlow.BusinessLayer
         }
 
         
-        public int ACCOUNTSHEAD
+        public bool ACCOUNTSHEAD
         {
             get { return _accountsHead; }
             set { _accountsHead = value; }
         }
 
 
-        public int CONTROLCELL
+        public bool CONTROLCELL
         {
             get { return _controlCell; }
             set { _controlCell = value; }
