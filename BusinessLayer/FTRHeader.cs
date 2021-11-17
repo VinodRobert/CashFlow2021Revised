@@ -18,6 +18,21 @@ namespace CashFlow.BusinessLayer
         string _forEdit;
         string _forExport;
         string _forPrint;
+        string _calYear;
+        string _calMonth;
+
+        public string CALYEAR
+        {
+            get { return _calYear; }
+            set { _calYear = value; }
+        }
+
+        public string CALMONTH
+        {
+            get { return _calMonth; }
+            set { _calMonth = value; }
+        }
+
         public int FTRID
         {
             get { return _ftrID; }

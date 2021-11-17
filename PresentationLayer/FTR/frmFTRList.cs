@@ -35,7 +35,22 @@ namespace CashFlow.PresentationLayer.Cash_Flow
         Color evenRow = Color.AliceBlue;
          
         List<FTRHeaderList> ftrList = new List<FTRHeaderList>();
-       
+
+        public static List<string> MonthsFull = new List<string>
+        {
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        };
 
         public frmFTRList()
         {
@@ -50,7 +65,7 @@ namespace CashFlow.PresentationLayer.Cash_Flow
             btnSubmit.Visible = false;
             btnCancel.Visible = false;
             cmbProjectName.Text = "Select Project";
-            if (loginUserRoleID == 1)
+            if (loginUserRoleID == 2)
                 btnNew.Visible = true;
             else
                 btnNew.Visible = false;
@@ -68,9 +83,9 @@ namespace CashFlow.PresentationLayer.Cash_Flow
             cmbProjectName.Refresh();
             int noProjects = ds.Tables[0].Rows.Count;
             if (noProjects >= 1)
-                btnNew.Enabled = true;
-            else
-                btnNew.Enabled = false;
+               btnNew.Enabled = true;
+           else
+               btnNew.Enabled = false;
         }
 
         private void frmFTRSubbie_Load(object sender, EventArgs e)
@@ -87,6 +102,9 @@ namespace CashFlow.PresentationLayer.Cash_Flow
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
+            if ((cmbCalMonth.Text == "Select Month") || (cmbCalYear.Text == "Select Year"))
+                return;
+
             btnSubmit.Enabled = false;
             lblConfirm.Visible = true;
             txtConfirm.Visible = true;
@@ -103,16 +121,25 @@ namespace CashFlow.PresentationLayer.Cash_Flow
             panelNewFTR.Visible = true;
             lblProjectName.Visible = true;
             cmbProjectName.Visible = true;
-            btnSubmit.Visible = true;
-            btnCancel.Visible = true;
             cmbProjectName.Text = "Select Project";
+            lblCalendarMonth.Visible = false;
+            lblCalendarYear.Visible = false;
+            cmbCalYear.Visible = false;
+            cmbCalMonth.Visible = false;
+            btnSubmit.Visible = false;
+            btnCancel.Visible = true;
+            btnGO.Visible = true;
         }
+
+
+
+     
 
         private void LoadGrid()
         {
             DataSet dsFTRHistory = FTR.GetFTRHistory(loginUser);
-      
-          
+            if (dsFTRHistory.Tables[0].Rows.Count == 0)
+                btnNew.Visible = true;
             ftrList =Utility.CreateListFromTable<FTRHeaderList>(dsFTRHistory.Tables[0]);
             gridFTRHistory.DataSource = ftrList;
             
@@ -136,7 +163,9 @@ namespace CashFlow.PresentationLayer.Cash_Flow
                     return;
                 }
                 int projectID = Convert.ToInt16(cmbProjectName.SelectedValue);
-                int i = FTR.GenerateFTRHeader(projectID);
+                int calYear = Convert.ToInt16(cmbCalYear.SelectedValue);
+                int calMonth = Convert.ToInt16(cmbCalMonth.SelectedValue);
+                int i = FTR.GenerateFTRHeader(projectID,calYear,calMonth);
                 panelNewFTR.Visible = false;
                 LoadProjects();
                 LoadGrid();
@@ -149,14 +178,7 @@ namespace CashFlow.PresentationLayer.Cash_Flow
 
         }
 
-        private void gridFTRHistory_QueryRowStyle(object sender, QueryRowStyleEventArgs e)
-        {
-            if (e.RowType == Syncfusion.WinForms.DataGrid.Enums.RowType.DefaultRow && e.RowIndex % 2 == 0)
-                e.Style.BackColor = evenRow;
-            else
-                e.Style.BackColor = oddRow;
-
-        }
+       
 
         private void gridFTRHistory_CellButtonClick(object sender, CellButtonClickEventArgs e)
         {
@@ -166,13 +188,20 @@ namespace CashFlow.PresentationLayer.Cash_Flow
             int rowindex = gridFTRHistory.TableControl.ResolveToRecordIndex(gridFTRHistory.CurrentCell.RowIndex);
             var record = this.gridFTRHistory.View.Records.GetItemAt(rowindex);
             string ftrIDString = record.GetType().GetProperty("FTRID").GetValue(record).ToString();
-            string buttonHeaderText = Convert.ToString(e.Column.HeaderText);
+            string buttonExportHeaderText = record.GetType().GetProperty("FOREXPORT").GetValue(record).ToString();
+            string buttonPrintHeaderText = record.GetType().GetProperty("FORPRINT").GetValue(record).ToString();
+            string buttonEditHeaderText = record.GetType().GetProperty("FOREDIT").GetValue(record).ToString();
+
+      
             int ftrID  = Convert.ToInt16(ftrIDString);
 
-           
+            int clickedColumn = e.ColumnIndex;
 
+            //  Column 9 is For Edit  Column 10 For Export and Column 11 is ForPrint 
+
+            string headerText = Convert.ToString(e.Column.HeaderText);
         
-            if (buttonHeaderText == "Open")
+            if (  (buttonEditHeaderText == "Open") && (clickedColumn==9) )
             {
                 MessageBox.Show(" Please  Relax ... Loading The Work Sheet   !!!!!");
                 frmFTRWorkSheet ftrWS = new frmFTRWorkSheet(ftrID);
@@ -181,7 +210,7 @@ namespace CashFlow.PresentationLayer.Cash_Flow
                 LoadGrid();
             }
 
-            if (buttonHeaderText == "Export")
+            if ( (buttonExportHeaderText == "Export") && (clickedColumn ==10) ) 
             {
                 frmFTRExcel ftrExcel = new frmFTRExcel(ftrID);
                 ftrExcel.ShowDialog();
@@ -201,8 +230,8 @@ namespace CashFlow.PresentationLayer.Cash_Flow
 
             if (e.Column.MappingName == "Print")
             {
-                //  e.Column.HeaderStyle.BackColor = Color.LightPink;
-                e.Column.CellStyle.BackColor = Color.LightPink;
+                e.Column.HeaderStyle.BackColor = Color.LightPink;
+                e.Column.CellStyle.BackColor = Color.LightSlateGray; ;
                 
             }
 
@@ -214,6 +243,35 @@ namespace CashFlow.PresentationLayer.Cash_Flow
                 e.Button.Style.Enabled = false;
             if ((e.Record as FTRHeaderList).FORPRINT == "Print")
                 e.Button.Style.Enabled = true;
+        }
+
+        private void btnGO_Click(object sender, EventArgs e)
+        {
+            btnGO.Enabled = false;
+            int projID = Convert.ToInt16(cmbProjectName.SelectedValue);
+            DataSet dsCaledarYearDetails = FTR.FetchDetailsForNewFTR(projID);
+            
+             
+            cmbCalYear.DataSource = dsCaledarYearDetails.Tables[0];
+            cmbCalMonth.DataSource = dsCaledarYearDetails.Tables[1];
+          
+            cmbCalMonth.Visible = true;
+            cmbCalYear.Visible = true;
+            lblCalendarMonth.Visible = true;
+            lblCalendarYear.Visible = true;
+            btnSubmit.Visible = true;
+            btnSubmit.Enabled = true;
+        }
+
+        private void gridFTRHistory_QueryRowStyle(object sender, QueryRowStyleEventArgs e)
+        {
+            if (e.RowType == Syncfusion.WinForms.DataGrid.Enums.RowType.DefaultRow)
+            {
+                if (e.RowIndex % 2 == 0)
+                    e.Style.BackColor = Color.Lavender;
+                else
+                    e.Style.BackColor = Color.AliceBlue;
+            }
         }
     }
 }

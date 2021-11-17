@@ -24,6 +24,18 @@ namespace CashFlow.BusinessLayer
 
         #region FTR List
 
+        public DataSet FetchDetailsForNewFTR(int projID)
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            SqlParameter[] arParms = new SqlParameter[1];
+            arParms[0] = new SqlParameter("@BORGID", SqlDbType.Int);
+            arParms[0].Value = projID;
+            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.StoredProcedure, "FTR.FetchDetailsForNewFTR", arParms);
+            return ds;
+
+        }
+
+
         public DataSet GetProjectsForFTR(string loginID)
         {
             string _connectionString = SqlHelper.GetConnectionString();
@@ -45,12 +57,16 @@ namespace CashFlow.BusinessLayer
         }
 
 
-        public int GenerateFTRHeader(int borgID)
+        public int GenerateFTRHeader(int borgID,int calYear, int calMonth)
         {
             string _connectionString = SqlHelper.GetConnectionString();
-            SqlParameter[] arParms = new SqlParameter[1];
+            SqlParameter[] arParms = new SqlParameter[3];
             arParms[0] = new SqlParameter("@BORGID", SqlDbType.Int);
             arParms[0].Value = borgID;
+            arParms[1] = new SqlParameter("@CALYEAR", SqlDbType.Int);
+            arParms[1].Value = calYear;
+            arParms[2] = new SqlParameter("@CALMONTH", SqlDbType.Int);
+            arParms[2].Value = calMonth;
             int i = SqlHelper.ExecuteNonQuery(_connectionString, CommandType.StoredProcedure, "FTR.spCreateFTRHeader", arParms);
             return i;
         }
@@ -83,10 +99,14 @@ namespace CashFlow.BusinessLayer
         public DataSet GetFTRExcel(int ftrIDToExtract)
         {
             string _connectionString = SqlHelper.GetConnectionString();
-            string sql = "Select * from FTR.VINOD1 order by lineorder,majorcategory,minorcategory,category,partyname;select * from FTR.VINOD2";
-            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.Text, sql);
+            SqlParameter[] arParms = new SqlParameter[1];
+            arParms[0] = new SqlParameter("@FTRID", SqlDbType.Int);
+            arParms[0].Value = ftrIDToExtract;
+            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.StoredProcedure, "[FTR].[spFTRExport]", arParms);
             return ds;
         }
+
+
         #endregion
 
 

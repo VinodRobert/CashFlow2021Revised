@@ -62,6 +62,7 @@ namespace CashFlow
                 //Create a workbook
                 IWorkbook workbook = application.Workbooks.Create(2);
                 IWorksheet worksheet = workbook.Worksheets[1];
+                IWorksheet summarysheet = workbook.Worksheets[0];
 
                 //IStyle periodstyleA = workbook.Styles.Add("NewStyleA");
                 ////periodstyleA.Color = Color.FromArgb(240, 12, 127);
@@ -313,6 +314,220 @@ namespace CashFlow
                 worksheet.Range[tableRange].CellStyle.Font.RGBColor = Color.FromArgb(42, 166, 109);
 
                 //Save the Excel document
+
+
+
+                summarysheet.Name = "Summary";
+
+                //Adding a picture
+                //FileStream imageStream = new FileStream("Capacite.png", FileMode.Open, FileAccess.Read);
+                // IPictureShape shape = summarysheet.Pictures.AddPicture(1, 1, imageStream, 100, 100);
+
+                //Disable gridlines in the summarysheet
+                summarysheet.IsGridLinesVisible = true;
+
+
+                summarysheet.Range["A1"].Text = "Capacitˡe Infraprojects Limited ";
+                summarysheet.Range["A1"].CellStyle.Font.Bold = true;
+                summarysheet.Range["A1"].CellStyle.Font.RGBColor = Color.FromArgb(42, 118, 189);
+                summarysheet.Range["A1:O1"].Merge();
+                summarysheet.Range["A1:O1"].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignCenter;
+                summarysheet.Range["A1"].CellStyle.Font.FontName = "Arial";
+                summarysheet.Range["A1"].CellStyle.Font.Size = 20;
+
+                summarysheet.Range["A2"].Text = "Fund Transfer Requisition";
+                summarysheet.Range["A2"].CellStyle.Font.Bold = true;
+                summarysheet.Range["A2"].CellStyle.Font.RGBColor = Color.FromArgb(42, 118, 189);
+                summarysheet.Range["A2:O2"].Merge();
+                summarysheet.Range["A2:O2"].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignCenter;
+                summarysheet.Range["A2"].CellStyle.Font.FontName = "Arial";
+                summarysheet.Range["A2"].CellStyle.Font.Size = 15;
+
+                summarysheet.Range["A3"].Text = "Project";
+                summarysheet.Range["B3"].Text = "FTR Number ";
+                summarysheet.Range["A3:B3"].CellStyle.Font.Bold = true;
+                summarysheet.Range["A4"].Text = Convert.ToString(dsResult.Tables[1].Rows[0]["BORGNAME"]);
+                summarysheet.Range["A4"].CellStyle.Font.Bold = true;
+                summarysheet.Range["A4"].CellStyle.Color = Color.FromArgb(253, 14, 238);
+                summarysheet.Range["B4"].Text = Convert.ToString(dsResult.Tables[1].Rows[0]["FTRNUMBER"]);
+                summarysheet.Range["B4"].CellStyle.Color = Color.FromArgb(253, 14, 238);
+                summarysheet.Range["B4"].CellStyle.Font.Bold = true;
+                summarysheet.Range["A4:B4"].CellStyle.Font.FontName = "Arial";
+                summarysheet.Range["A4:B4"].CellStyle.Font.Size = 10;
+                summarysheet.Range["A4:B4"].CellStyle.Font.Color = ExcelKnownColors.White;
+
+
+
+
+                summarysheet.Range["A5"].Text = "Serial No";
+                summarysheet.Range["A5"].ColumnWidth = 20;
+
+                summarysheet.Range["B5"].Text = "Description";
+                summarysheet.Range["B5"].ColumnWidth = 40;
+
+                summarysheet.Range["C5"].Text = "UpTo Date Gross Payable: (A)";
+                summarysheet.Range["C5"].WrapText = true;
+                summarysheet.Range["C5"].ColumnWidth = 15;
+
+
+                summarysheet.Range["D5"].Text = "Total Paid Upto Date: (B)";
+                summarysheet.Range["D5"].WrapText = true;
+                summarysheet.Range["D5"].ColumnWidth = 15;
+
+                summarysheet.Range["E5"].Text = "Balance Payable Site: C=(A-B)";
+                summarysheet.Range["E5"].WrapText = true;
+                summarysheet.Range["E5"].ColumnWidth = 15;
+
+                summarysheet.Range["F5"].Text = "GST Credit: (D)";
+                summarysheet.Range["F5"].ColumnWidth = 15;
+                summarysheet.Range["F5"].WrapText = true;
+
+                summarysheet.Range["G5"].Text = "Balance at Company Level: (E)";
+                summarysheet.Range["G5"].WrapText = true;
+                summarysheet.Range["G5"].ColumnWidth = 15;
+
+                summarysheet.Range["H5"].Text = "Amount Payable After GST: F=(E-D)";
+                summarysheet.Range["H5"].ColumnWidth = 15;
+                summarysheet.Range["H5"].WrapText = true;
+
+                summarysheet.Range["I5"].Text = "Net Payable: MIN(F,C) ";
+                summarysheet.Range["I5"].WrapText = true;
+                summarysheet.Range["I5"].ColumnWidth = 15;
+
+                summarysheet.Range["J5"].Text = "Mob Advance Company Level";
+                summarysheet.Range["J5"].ColumnWidth = 15;
+                summarysheet.Range["J5"].WrapText = true;
+
+                summarysheet.Range["K5"].Text = "Payable-Site Recommended";
+                summarysheet.Range["K5"].WrapText = true;
+                summarysheet.Range["K5"].ColumnWidth = 15;
+
+                summarysheet.Range["L5"].Text = "Payable-Final Recommended";
+                summarysheet.Range["L5"].ColumnWidth = 15;
+                summarysheet.Range["L5"].WrapText = true;
+
+                summarysheet.Range["A5:L5"].RowHeight = 35;
+                summarysheet.Range["A5:L5"].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignLeft;
+                summarysheet.Range["A5:L5"].CellStyle.Font.FontName = "Arial";
+                summarysheet.Range["A5:L5"].CellStyle.Font.Size = 12;
+
+
+
+                startRow = 6;
+                rowCount = Convert.ToInt16(dsResult.Tables[2].Rows.Count);
+                for (int i = 0; i <= rowCount - 1; i++)
+                {
+                    majorCategory = Convert.ToString(dsResult.Tables[2].Rows[i]["SERIALNO"]);
+                    minorCategory = Convert.ToString(dsResult.Tables[2].Rows[i]["DESCRIPTION"]);
+                  
+                    netPayable = Convert.ToDecimal(dsResult.Tables[2].Rows[i]["SUMNETPAYABLE"]);
+                    paid = Convert.ToDecimal(dsResult.Tables[2].Rows[i]["SUMPAID"]);
+                    projectLiability = Convert.ToDecimal(dsResult.Tables[2].Rows[i]["SUMPROJECTLIABILITY"]);
+                    gstCredit = Convert.ToDecimal(dsResult.Tables[2].Rows[i]["SUMGSTCREDIT"]);
+                    companyLiability = Convert.ToDecimal(dsResult.Tables[2].Rows[i]["SUMCOMPANYLIABILITY"]);
+                    payableAfterGST = Convert.ToDecimal(dsResult.Tables[2].Rows[i]["SUMPAYABLEAFTERGST"]);
+                    payable = Convert.ToDecimal(dsResult.Tables[2].Rows[i]["SUMPAYABLE"]);
+                    mobAdvance = Convert.ToDecimal(dsResult.Tables[2].Rows[i]["SUMMOBADVANCE"]);
+                    projectSite = Convert.ToDecimal(dsResult.Tables[2].Rows[i]["SUMPROJECTSITE"]);
+                    payableRecommended = Convert.ToDecimal(dsResult.Tables[2].Rows[i]["SUMPAYABLERECOMMENDED"]);
+
+
+                    summarysheet.Range["A" + Convert.ToString(startRow)].Text = Convert.ToString(majorCategory).Trim(); ;
+                    summarysheet.Range["B" + Convert.ToString(startRow)].Text = Convert.ToString(minorCategory).Trim();
+                  
+                    summarysheet.Range["C" + Convert.ToString(startRow)].Number = Convert.ToDouble(netPayable);
+                    summarysheet.Range["D" + Convert.ToString(startRow)].Number = Convert.ToDouble(paid);
+                    summarysheet.Range["E" + Convert.ToString(startRow)].Number = Convert.ToDouble(projectLiability);
+                    summarysheet.Range["F" + Convert.ToString(startRow)].Number = Convert.ToDouble(gstCredit);
+                    summarysheet.Range["J" + Convert.ToString(startRow)].Number = Convert.ToDouble(companyLiability);
+                    summarysheet.Range["H" + Convert.ToString(startRow)].Number = Convert.ToDouble(payableAfterGST);
+                    summarysheet.Range["I" + Convert.ToString(startRow)].Number = Convert.ToDouble(payable);
+                    summarysheet.Range["J" + Convert.ToString(startRow)].Number = Convert.ToDouble(mobAdvance);
+                    summarysheet.Range["K" + Convert.ToString(startRow)].Number = Convert.ToDouble(projectSite);
+                    summarysheet.Range["L" + Convert.ToString(startRow)].Number = Convert.ToDouble(payableRecommended);
+                    startRow = startRow + 1;
+                }
+
+                tableRange = "C6:C" + Convert.ToString(rowCount + 5);
+                summarysheet.Range[tableRange].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignRight;
+                summarysheet.Range[tableRange].NumberFormat = "0.00";
+
+                tableRange = "D6:D" + Convert.ToString(rowCount + 5);
+                summarysheet.Range[tableRange].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignRight;
+                summarysheet.Range[tableRange].NumberFormat = "0.00";
+
+                tableRange = "E6:E" + Convert.ToString(rowCount + 5);
+                summarysheet.Range[tableRange].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignRight;
+                summarysheet.Range[tableRange].NumberFormat = "0.00";
+
+                tableRange = "F6:F" + Convert.ToString(rowCount + 5);
+                summarysheet.Range[tableRange].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignRight;
+                summarysheet.Range[tableRange].NumberFormat = "0.00";
+
+                tableRange = "G6:G" + Convert.ToString(rowCount + 5);
+                summarysheet.Range[tableRange].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignRight;
+                summarysheet.Range[tableRange].NumberFormat = "0.00";
+
+                tableRange = "H6:H" + Convert.ToString(rowCount + 5);
+                summarysheet.Range[tableRange].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignRight;
+                summarysheet.Range[tableRange].NumberFormat = "0.00";
+
+                tableRange = "I6:I" + Convert.ToString(rowCount + 5);
+                summarysheet.Range[tableRange].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignRight;
+                summarysheet.Range[tableRange].NumberFormat = "0.00";
+
+                tableRange = "J6:J" + Convert.ToString(rowCount + 5);
+                summarysheet.Range[tableRange].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignRight;
+                summarysheet.Range[tableRange].NumberFormat = "0.00";
+
+                tableRange = "K6:K" + Convert.ToString(rowCount + 5);
+                summarysheet.Range[tableRange].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignRight;
+                summarysheet.Range[tableRange].NumberFormat = "0.00";
+
+                tableRange = "L6:L" + Convert.ToString(rowCount + 5);
+                summarysheet.Range[tableRange].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignRight;
+                summarysheet.Range[tableRange].NumberFormat = "0.00";
+
+                tableRange = "M5:M" + Convert.ToString(rowCount + 5);
+                summarysheet.Range[tableRange].CellStyle.Font.FontName = "Arial";
+                summarysheet.Range[tableRange].CellStyle.Font.Size = 9;
+
+                tableRange = "N6:N" + Convert.ToString(rowCount + 5);
+                summarysheet.Range[tableRange].RowHeight = 20;
+
+                tableRange = "A5:N" + Convert.ToString(rowCount + 5);
+                table = summarysheet.ListObjects.Create("Table2", summarysheet[tableRange]);
+
+                //Formatting table with a built-in style
+                //table.BuiltInTableStyle = TableBuiltInStyles.TableStyleMedium11;
+
+                tableRange = "C6:L6";
+                summarysheet.Range[tableRange].Text = "";
+                tableRange = "C16:L16";
+                summarysheet.Range[tableRange].Text = "";
+                tableRange = "C21:L21";
+                summarysheet.Range[tableRange].Text = "";
+                tableRange = "C28:L28";
+                summarysheet.Range[tableRange].Text = "";
+                tableRange = "C34:L34";
+                summarysheet.Range[tableRange].Text = "";
+                tableRange = "C43:L43";
+                summarysheet.Range[tableRange].Text = "";
+                tableRange = "C49:L49";
+                summarysheet.Range[tableRange].Text = "";
+
+
+                lastRowCount = rowCount + 6;
+                tableRange = "A" + Convert.ToString(lastRowCount + 2);
+                summarysheet.Range[tableRange].Text = lastUpdateTime;
+                summarysheet.Range[tableRange].CellStyle.Font.Bold = true;
+                summarysheet.Range[tableRange].CellStyle.Font.RGBColor = Color.FromArgb(42, 118, 189);
+
+                tableRange = "B" + Convert.ToString(lastRowCount + 2);
+
+                summarysheet.Range[tableRange].Text = reportGenerated;
+                summarysheet.Range[tableRange].CellStyle.Font.Bold = true;
+                summarysheet.Range[tableRange].CellStyle.Font.RGBColor = Color.FromArgb(42, 166, 109);
 
 
                 string fileName = "";
