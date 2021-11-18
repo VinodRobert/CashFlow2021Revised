@@ -130,5 +130,11 @@ namespace CashFlow.PresentationLayer.Login
             frmUploadGSTCredit uploadGSTCredit = new frmUploadGSTCredit();
             uploadGSTCredit.Show();
         }
+
+        private void userInputToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmUserInput userInput = new frmUserInput();
+            userInput.Show();
+        }
     }
 }

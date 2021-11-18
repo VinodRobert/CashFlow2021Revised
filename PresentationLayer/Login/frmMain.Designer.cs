@@ -42,6 +42,7 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.stripLoginName = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.userInputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -79,7 +80,8 @@
             // 
             this.utilityToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mappingToolStripMenuItem,
-            this.uploadGSTCreditToolStripMenuItem});
+            this.uploadGSTCreditToolStripMenuItem,
+            this.userInputToolStripMenuItem});
             this.utilityToolStripMenuItem.Name = "utilityToolStripMenuItem";
             this.utilityToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
             this.utilityToolStripMenuItem.Text = "Utility";
@@ -120,14 +122,14 @@
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(143, 26);
             this.viewToolStripMenuItem.Text = "View";
             this.viewToolStripMenuItem.Click += new System.EventHandler(this.viewToolStripMenuItem_Click);
             // 
             // uploadToolStripMenuItem
             // 
             this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
-            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(143, 26);
             this.uploadToolStripMenuItem.Text = "Upload";
             this.uploadToolStripMenuItem.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
             // 
@@ -150,6 +152,13 @@
             this.stripLoginName.Name = "stripLoginName";
             this.stripLoginName.Size = new System.Drawing.Size(102, 23);
             this.stripLoginName.Text = "UserName";
+            // 
+            // userInputToolStripMenuItem
+            // 
+            this.userInputToolStripMenuItem.Name = "userInputToolStripMenuItem";
+            this.userInputToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.userInputToolStripMenuItem.Text = "User Input";
+            this.userInputToolStripMenuItem.Click += new System.EventHandler(this.userInputToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -191,6 +200,7 @@
         private System.Windows.Forms.ToolStripMenuItem uploadGSTCreditToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uploadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem userInputToolStripMenuItem;
     }
 }
 

@@ -429,6 +429,12 @@
     <Compile Include="PresentationLayer\CashFlow2021\frmCashFlow2021.Designer.cs">
       <DependentUpon>frmCashFlow2021.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationLayer\FTR\frmFTRUserInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationLayer\FTR\frmFTRUserInput.Designer.cs">
+      <DependentUpon>frmFTRUserInput.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationLayer\FTR\frmCloseFTR.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -505,6 +511,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="PresentationLayer\CashFlow2021\frmCashFlow2021.resx">
       <DependentUpon>frmCashFlow2021.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationLayer\FTR\frmFTRUserInput.resx">
+      <DependentUpon>frmFTRUserInput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationLayer\FTR\frmCloseFTR.resx">
       <DependentUpon>frmCloseFTR.cs</DependentUpon>

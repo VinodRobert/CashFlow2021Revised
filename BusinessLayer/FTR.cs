@@ -22,6 +22,57 @@ namespace CashFlow.BusinessLayer
         }
         #endregion
 
+
+
+        #region UserInput
+        public DataSet FetchProjectsForUserInputs(string loginID)
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            string sql = "SELECT P.BSBORGID BORGID,P.BSBORGNAME BORGNAME FROM FTR.PROJECTS P WHERE BSBORGID IN ";
+            sql = sql + " (SELECT BORGID FROM FTR.FTRHEADER WHERE FTRSTATUS = 0 AND OWNER = '" + Convert.ToString(loginID).Trim() + "')";
+            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.Text, sql);
+            return ds;
+        }
+
+        public DataSet FetchUserInputs(int projectID)
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            int ftrMonthID = 0;
+            string sql = "SELECT CALENDARMONTHID  FROM FTR.FTRHEADER WHERE BORGID=" + Convert.ToString(projectID) + "  AND FTRSTATUS=0";
+            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.Text, sql);
+            ftrMonthID = Convert.ToInt16(ds.Tables[0].Rows[0]["CALENDARMONTHID"]);
+
+
+            sql = "SELECT COUNT(*) COUNTS FROM FTR.USERINPUTS WHERE BORGID=" + Convert.ToString(projectID) + "  AND FTRMONTHID = (";
+            sql = sql + " SELECT CALENDARMONTHID  FROM FTR.FTRHEADER WHERE BORGID = " + Convert.ToString(projectID) + "  AND FTRSTATUS = 0)";
+            ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.Text, sql);
+            int existing = Convert.ToInt16(ds.Tables[0].Rows[0]["COUNTS"]);
+            if (existing==0)
+            {
+                sql = "INSERT INTO FTR.USERINPUTS(BORGID,FTRMONTHID,DESCRIPTION,AMOUNT,SECTION) ";
+                sql = sql + "SELECT " + Convert.ToString(projectID) + "," + Convert.ToString(ftrMonthID) + ",DESCRIPTION,0,SECTION";
+                sql = sql + " FROM FTR.USERINPUTSMASTER";
+                int j = SqlHelper.ExecuteNonQuery(_connectionString, CommandType.Text, sql);
+            }
+            sql = "SELECT INPUTID,DESCRIPTION,AMOUNT from FTR.USERINPUTS WHERE SECTION=1 AND BORGID=" + Convert.ToString(projectID) + " AND FTRMONTHID=" + Convert.ToString(ftrMonthID) + ";  ";
+            sql = sql + "SELECT INPUTID,DESCRIPTION,AMOUNT from FTR.USERINPUTS WHERE SECTION=2 AND BORGID=" + Convert.ToString(projectID) + " AND FTRMONTHID=" + Convert.ToString(ftrMonthID) + ";  ";
+            sql = sql + "SELECT INPUTID,DESCRIPTION,AMOUNT from FTR.USERINPUTS WHERE SECTION=3 AND BORGID=" + Convert.ToString(projectID) + " AND FTRMONTHID=" + Convert.ToString(ftrMonthID) + ";  ";
+            sql = sql + "SELECT CALENDARYEAR,CALENDARMONTH FROM FTR.FTRHEADER WHERE BORGID=" + Convert.ToString(projectID) + " AND FTRSTATUS=0";
+            ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.Text, sql);
+            return ds;
+        }
+
+
+        public int UpdateUserInputs(int rowID,decimal amount)
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            string sql = "UPDATE FTR.USERINPUTS SET AMOUNT=" + Convert.ToString(amount) + " WHERE INPUTID = " + Convert.ToString(rowID);
+            int j = SqlHelper.ExecuteNonQuery(_connectionString, CommandType.Text, sql);
+            return 0;
+        }
+
+
+        #endregion
         #region FTR List
 
         public DataSet FetchDetailsForNewFTR(int projID)

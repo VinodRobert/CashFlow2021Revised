@@ -129,6 +129,7 @@ namespace CashFlow.PresentationLayer.Cash_Flow
             btnSubmit.Visible = false;
             btnCancel.Visible = true;
             btnGO.Visible = true;
+            btnGO.Enabled = true;
         }
 
 
@@ -167,6 +168,9 @@ namespace CashFlow.PresentationLayer.Cash_Flow
                 int calMonth = Convert.ToInt16(cmbCalMonth.SelectedValue);
                 int i = FTR.GenerateFTRHeader(projectID,calYear,calMonth);
                 panelNewFTR.Visible = false;
+                lblConfirm.Visible = false;
+                txtConfirm.Visible = false;
+                txtConfirm.Text = "No";
                 LoadProjects();
                 LoadGrid();
             }
@@ -210,7 +214,7 @@ namespace CashFlow.PresentationLayer.Cash_Flow
                 LoadGrid();
             }
 
-            if ( (buttonExportHeaderText == "Export") && (clickedColumn ==10) ) 
+            if ( (buttonExportHeaderText == "Excel") && (clickedColumn ==10) ) 
             {
                 frmFTRExcel ftrExcel = new frmFTRExcel(ftrID);
                 ftrExcel.ShowDialog();

@@ -29,43 +29,43 @@ namespace CashFlow
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            txtFTRNumber.Enabled = false;
-            btnSubmit.Enabled = false;
+            //txtFTRNumber.Enabled = false;
+            //btnSubmit.Enabled = false;
 
-            if (txtFTRNumber.Text == "FTR Number")
-                return;
-            string ftrNumber = Convert.ToString(txtFTRNumber.Text.Trim());
+            //if (txtFTRNumber.Text == "FTR Number")
+            //    return;
+            //string ftrNumber = Convert.ToString(txtFTRNumber.Text.Trim());
 
-            DataSet dsFTR = FTR.CheckFTRForClose(ftrNumber);
+            ////DataSet dsFTR = FTR.CheckFTRForClose(ftrNumber);
 
-            if (dsFTR.Tables[0].Rows.Count==0)
-            {
-                MessageBox.Show(" Un Known FTR Number ");
-                return;
-            }
+            //if (dsFTR.Tables[0].Rows.Count==0)
+            //{
+            //    MessageBox.Show(" Un Known FTR Number ");
+            //    return;
+            //}
 
-            string currentUser = CashFlowGlobalVariables.GlobalVariables.UserID;
+            //string currentUser = CashFlowGlobalVariables.GlobalVariables.UserID;
 
-            string owner = Convert.ToString(dsFTR.Tables[0].Rows[0]["OWNERT"]);
-            if (currentUser!=owner)
-            {
-                MessageBox.Show("You Are Not The OWner Of This FTR");
-                return;
-            }
+            //string owner = Convert.ToString(dsFTR.Tables[0].Rows[0]["OWNERT"]);
+            //if (currentUser!=owner)
+            //{
+            //    MessageBox.Show("You Are Not The OWner Of This FTR");
+            //    return;
+            //}
 
-            lblConfirm.Visible = true;
-            txtConfirm.Visible = true;
+            //lblConfirm.Visible = true;
+            //txtConfirm.Visible = true;
 
         }
 
         private void txtConfirm_TextChanged(object sender, EventArgs e)
         {
-            if (txtConfirm.Text.ToUpper().Trim()=="CONFIRM")
-            {
-                int j = FTR.CloseFTR(txtFTRNumber.Text.Trim());
-                MessageBox.Show("Success !!!");
-                this.Close();
-            }
+            //if (txtConfirm.Text.ToUpper().Trim()=="CONFIRM")
+            //{
+            //    int j = FTR.CloseFTR(txtFTRNumber.Text.Trim());
+            //    MessageBox.Show("Success !!!");
+            //    this.Close();
+            //}
         }
     }
 }
