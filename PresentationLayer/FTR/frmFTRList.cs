@@ -166,11 +166,14 @@ namespace CashFlow.PresentationLayer.Cash_Flow
                 int projectID = Convert.ToInt16(cmbProjectName.SelectedValue);
                 int calYear = Convert.ToInt16(cmbCalYear.SelectedValue);
                 int calMonth = Convert.ToInt16(cmbCalMonth.SelectedValue);
-                int i = FTR.GenerateFTRHeader(projectID,calYear,calMonth);
+                string owner = CashFlowGlobalVariables.GlobalVariables.UserID;
+                int i = FTR.GenerateFTRHeader(projectID,calYear,calMonth,owner);
                 panelNewFTR.Visible = false;
                 lblConfirm.Visible = false;
                 txtConfirm.Visible = false;
                 txtConfirm.Text = "No";
+                cmbCalMonth.Text = "Select Month";
+                cmbCalYear.Text = "Select Year";
                 LoadProjects();
                 LoadGrid();
             }

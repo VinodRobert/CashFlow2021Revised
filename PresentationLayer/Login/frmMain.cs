@@ -136,5 +136,10 @@ namespace CashFlow.PresentationLayer.Login
             frmUserInput userInput = new frmUserInput();
             userInput.Show();
         }
+
+        private void logOutToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

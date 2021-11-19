@@ -38,10 +38,11 @@ namespace CashFlow.BusinessLayer
         {
             string _connectionString = SqlHelper.GetConnectionString();
             int ftrMonthID = 0;
-            string sql = "SELECT CALENDARMONTHID  FROM FTR.FTRHEADER WHERE BORGID=" + Convert.ToString(projectID) + "  AND FTRSTATUS=0";
+            string calendarYear;
+            string sql = "SELECT CALENDARMONTHID,CALENDARYEAR  FROM FTR.FTRHEADER WHERE BORGID=" + Convert.ToString(projectID) + "  AND FTRSTATUS=0";
             DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.Text, sql);
             ftrMonthID = Convert.ToInt16(ds.Tables[0].Rows[0]["CALENDARMONTHID"]);
-
+            calendarYear = Convert.ToString(ds.Tables[0].Rows[0]["CALENDARYEAR"]);
 
             sql = "SELECT COUNT(*) COUNTS FROM FTR.USERINPUTS WHERE BORGID=" + Convert.ToString(projectID) + "  AND FTRMONTHID = (";
             sql = sql + " SELECT CALENDARMONTHID  FROM FTR.FTRHEADER WHERE BORGID = " + Convert.ToString(projectID) + "  AND FTRSTATUS = 0)";
@@ -49,9 +50,9 @@ namespace CashFlow.BusinessLayer
             int existing = Convert.ToInt16(ds.Tables[0].Rows[0]["COUNTS"]);
             if (existing==0)
             {
-                sql = "INSERT INTO FTR.USERINPUTS(BORGID,FTRMONTHID,DESCRIPTION,AMOUNT,SECTION) ";
-                sql = sql + "SELECT " + Convert.ToString(projectID) + "," + Convert.ToString(ftrMonthID) + ",DESCRIPTION,0,SECTION";
-                sql = sql + " FROM FTR.USERINPUTSMASTER";
+                sql = "INSERT INTO FTR.USERINPUTS(BORGID,FTRMONTHID,DESCRIPTION,AMOUNT,SECTION,SUMMARYCODE,FTRCALENDARYEAR) ";
+                sql = sql + "SELECT " + Convert.ToString(projectID) + "," + Convert.ToString(ftrMonthID) + ",DESCRIPTION,0,SECTION,SUMMARYCODE,";
+                sql = sql + Convert.ToString(calendarYear)+  " FROM FTR.USERINPUTSMASTER";
                 int j = SqlHelper.ExecuteNonQuery(_connectionString, CommandType.Text, sql);
             }
             sql = "SELECT INPUTID,DESCRIPTION,AMOUNT from FTR.USERINPUTS WHERE SECTION=1 AND BORGID=" + Convert.ToString(projectID) + " AND FTRMONTHID=" + Convert.ToString(ftrMonthID) + ";  ";
@@ -108,16 +109,18 @@ namespace CashFlow.BusinessLayer
         }
 
 
-        public int GenerateFTRHeader(int borgID,int calYear, int calMonth)
+        public int GenerateFTRHeader(int borgID,int calYear, int calMonth,string owner)
         {
             string _connectionString = SqlHelper.GetConnectionString();
-            SqlParameter[] arParms = new SqlParameter[3];
+            SqlParameter[] arParms = new SqlParameter[4];
             arParms[0] = new SqlParameter("@BORGID", SqlDbType.Int);
             arParms[0].Value = borgID;
             arParms[1] = new SqlParameter("@CALYEAR", SqlDbType.Int);
             arParms[1].Value = calYear;
             arParms[2] = new SqlParameter("@CALMONTH", SqlDbType.Int);
             arParms[2].Value = calMonth;
+            arParms[3] = new SqlParameter("@OWNER", SqlDbType.Text);
+            arParms[3].Value = owner;
             int i = SqlHelper.ExecuteNonQuery(_connectionString, CommandType.StoredProcedure, "FTR.spCreateFTRHeader", arParms);
             return i;
         }

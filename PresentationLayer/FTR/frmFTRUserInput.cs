@@ -15,6 +15,7 @@ namespace CashFlow
     {
         ClassFTR FTR = new ClassFTR();
         DataSet dsUserInput;
+        int noProject = 1;
         public frmUserInput()
         {
             InitializeComponent();
@@ -39,21 +40,27 @@ namespace CashFlow
         {
             string loginUser = CashFlowGlobalVariables.GlobalVariables.UserID;
             DataSet dsProject = FTR.FetchProjectsForUserInputs(loginUser);
-            if (dsProject.Tables[0].Rows.Count==0)
+            if (dsProject.Tables[0].Rows.Count == 0)
             {
                 MessageBox.Show("No Open FTR");
-                this.Close();
+                noProject = 0;
+                return;
             }
-            lblProjectName.Visible = true;
-            cmbProject.DataSource = dsProject.Tables[0];
-            cmbProject.Text = "Select Project";
-            cmbProject.Refresh();
-            btnFetch.Visible = true;
+            else
+            {
+                lblProjectName.Visible = true;
+                cmbProject.DataSource = dsProject.Tables[0];
+                cmbProject.Text = "Select Project";
+                cmbProject.Refresh();
+                btnFetch.Visible = true;
+            }
         }
         private void frmCloseFTR_Load(object sender, EventArgs e)
         {
             ResetAll();
             PopulateProjects();
+            if (noProject == 0)
+                this.Close();
         }
 
         private void btnFetch_Click(object sender, EventArgs e)
