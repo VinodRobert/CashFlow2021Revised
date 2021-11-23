@@ -29,7 +29,7 @@
     <SuiteName>CASH FLOW</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>9</ApplicationRevision>
+    <ApplicationRevision>11</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -471,6 +471,12 @@
     <Compile Include="PresentationLayer\FTR\frmFTRSubbie.Designer.cs">
       <DependentUpon>frmFTRSubbie.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationLayer\FTR\frmLedgerMapping.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationLayer\FTR\frmLedgerMapping.Designer.cs">
+      <DependentUpon>frmLedgerMapping.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationLayer\Login\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -488,6 +494,12 @@
     </Compile>
     <Compile Include="PresentationLayer\Utility\frmGSTCredit.Designer.cs">
       <DependentUpon>frmGSTCredit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationLayer\Utility\frmLC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationLayer\Utility\frmLC.Designer.cs">
+      <DependentUpon>frmLC.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationLayer\Utility\frmMissingMapping.cs">
       <SubType>Form</SubType>
@@ -533,6 +545,9 @@
     <EmbeddedResource Include="PresentationLayer\FTR\frmFTRSubbie.resx">
       <DependentUpon>frmFTRSubbie.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationLayer\FTR\frmLedgerMapping.resx">
+      <DependentUpon>frmLedgerMapping.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationLayer\Login\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -541,6 +556,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationLayer\Utility\frmGSTCredit.resx">
       <DependentUpon>frmGSTCredit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationLayer\Utility\frmLC.resx">
+      <DependentUpon>frmLC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationLayer\Utility\frmMissingMapping.resx">
       <DependentUpon>frmMissingMapping.cs</DependentUpon>

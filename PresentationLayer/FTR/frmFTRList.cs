@@ -168,6 +168,9 @@ namespace CashFlow.PresentationLayer.Cash_Flow
                 int calMonth = Convert.ToInt16(cmbCalMonth.SelectedValue);
                 string owner = CashFlowGlobalVariables.GlobalVariables.UserID;
                 int i = FTR.GenerateFTRHeader(projectID,calYear,calMonth,owner);
+                DataSet ds = FTR.GetFTRID(projectID);
+                int lastFTRID = Convert.ToInt16(ds.Tables[0].Rows[0]["FTRID"]);
+                int k = FTR.UpdateFTRLog(lastFTRID, owner);
                 panelNewFTR.Visible = false;
                 lblConfirm.Visible = false;
                 txtConfirm.Visible = false;

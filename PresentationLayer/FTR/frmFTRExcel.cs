@@ -199,7 +199,15 @@ namespace CashFlow
                 decimal projectSite;
                 decimal payableRecommended;
 
-               
+                int sectionOneStart = 6;
+                int sectionTwoStart = 17;
+                int sectionThreeStart = 19;
+
+                string cellName;
+                string cellRange;
+
+
+
                 int startRow = 6;
                 string tableRange;
                 for (int i = 0; i <= rowCount - 1; i++)
@@ -377,50 +385,114 @@ namespace CashFlow
                 summarysheet.Range["E5"].CellStyle.Font.Color = ExcelKnownColors.White;
 
 
+                sectionOneStart = 7;
+                cellName = "B" + Convert.ToString(sectionOneStart);
+                summarysheet.Range[cellName].Text = "Description";
+                summarysheet.Range[cellName].ColumnWidth = 50;
+
+                cellName = "C" + Convert.ToString(sectionOneStart);
+                summarysheet.Range[cellName].Text = "UptoDate Received";
+                summarysheet.Range[cellName].ColumnWidth = 50;
+
+                cellName = "D" + Convert.ToString(sectionOneStart);
+                summarysheet.Range[cellName].Text = "FTR Period Projection  ";
+                summarysheet.Range[cellName].ColumnWidth = 55;
+
+                cellName = "E" + Convert.ToString(sectionOneStart);
+                summarysheet.Range[cellName].Text = "FTR Period Receipt";
+                summarysheet.Range[cellName].ColumnWidth = 50;
+
+                cellRange = "B"+ Convert.ToString(sectionOneStart)+":E"+ Convert.ToString(sectionOneStart);
+                summarysheet.Range[cellRange].CellStyle.Font.Bold = true;
+                summarysheet.Range[cellRange].CellStyle.Font.FontName = "Arial";
+                summarysheet.Range[cellRange].CellStyle.Font.Size = 12;
+                summarysheet.Range[cellRange].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignCenter;
+                startRow = sectionOneStart + 1;
+                rowCount = Convert.ToInt16(dsResult.Tables[3].Rows.Count);
+                for (int i = 0; i <= rowCount - 1; i++)
+                {
+                    majorCategory = Convert.ToString(dsResult.Tables[3].Rows[i]["DESCRIPTION"]);
+                    paid = Convert.ToDecimal(dsResult.Tables[3].Rows[i]["RECEIVED"]);
+                    payable = Convert.ToDecimal(dsResult.Tables[3].Rows[i]["PROJECTION"]);
+                    payableRecommended = Convert.ToDecimal(dsResult.Tables[3].Rows[i]["THISPERIOD"]);
+                    summarysheet.Range["B" + Convert.ToString(startRow)].Text = Convert.ToString(majorCategory).Trim(); ;
+                    summarysheet.Range["C" + Convert.ToString(startRow)].Number = Convert.ToDouble(paid);
+                    summarysheet.Range["D" + Convert.ToString(startRow)].Number = Convert.ToDouble(payable);
+                    summarysheet.Range["E" + Convert.ToString(startRow)].Number = Convert.ToDouble(payableRecommended);
+                    startRow = startRow + 1;
+                }
+
+                tableRange = "B"+Convert.ToString(sectionOneStart).Trim()+":E" + Convert.ToString(startRow+1);
+                table = summarysheet.ListObjects.Create("Table2", summarysheet[tableRange]);
+
+                //Formatting table with a built-in style
+                table.BuiltInTableStyle = TableBuiltInStyles.TableStyleMedium14;
 
 
 
+                sectionTwoStart = 17;
+               
+                cellName = "A" + Convert.ToString(sectionTwoStart + 1);
+                summarysheet.Range[cellName].Text = "Serial No";
+                summarysheet.Range[cellName].ColumnWidth = 15;
+
+                cellName = "B" + Convert.ToString(sectionTwoStart + 1);
+                summarysheet.Range[cellName].Text = "Description";
+                summarysheet.Range[cellName].ColumnWidth = 50;
+
+                cellRange = "C" + Convert.ToString(sectionTwoStart).Trim() + ":D" + Convert.ToString(sectionTwoStart).Trim();
+                summarysheet.Range[cellRange].Text = "Up To Date";
+                summarysheet.Range[cellRange].Merge();
+                cellName = "C" + Convert.ToString(sectionTwoStart);
+                summarysheet.Range[cellName].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignCenter;
 
 
-                summarysheet.Range["A8"].Text = "Serial No";
-                summarysheet.Range["A8"].ColumnWidth = 15;
-
-                summarysheet.Range["B8"].Text = "Description";
-                summarysheet.Range["B8"].ColumnWidth = 50;
-
-                summarysheet.Range["C7:D7"].Text = "Up To Date";
-                summarysheet.Range["C7:D7"].Merge();
-                summarysheet.Range["C7"].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignCenter;
-                summarysheet.Range["C8"].Text = "Gross Payable";
-                summarysheet.Range["C8"].WrapText = true;
-                summarysheet.Range["C8"].ColumnWidth = 25;
+                cellName = "C" + Convert.ToString(sectionTwoStart + 1);
+                summarysheet.Range[cellName].Text = "Gross Payable";
+                summarysheet.Range[cellName].WrapText = true;
+                summarysheet.Range[cellName].ColumnWidth = 25;
 
 
-                summarysheet.Range["D8"].Text = "Total Paid";
-                summarysheet.Range["D8"].WrapText = true;
-                summarysheet.Range["D8"].ColumnWidth = 25;
+
+                cellName = "D" + Convert.ToString(sectionTwoStart + 1);
+                summarysheet.Range[cellName].Text = "Total Paid";
+                summarysheet.Range[cellName].WrapText = true;
+                summarysheet.Range[cellName].ColumnWidth = 25;
 
 
-                summarysheet.Range["E7:F7"].Text = "Current FTR Period";
-                summarysheet.Range["E7:F7"].Merge();
-                summarysheet.Range["E7"].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignCenter;
-                summarysheet.Range["E8"].Text = "Net Payable";
-                summarysheet.Range["E8"].WrapText = true;
-                summarysheet.Range["E8"].ColumnWidth = 25;
+                cellRange = "E" + Convert.ToString(sectionTwoStart).Trim() + ":F" + Convert.ToString(sectionTwoStart).Trim();
+                summarysheet.Range[cellRange].Text = "Current FTR Period";
+                summarysheet.Range[cellRange].Merge();
 
-       
-                summarysheet.Range["F8"].Text = "Payment Recommended";
-                summarysheet.Range["F8"].ColumnWidth = 25;
-                summarysheet.Range["F8"].WrapText = true;
-
-                summarysheet.Range["A8:F8"].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignRight;
-                summarysheet.Range["A7:F8"].CellStyle.Font.FontName = "Arial";
-                summarysheet.Range["A7:F8"].CellStyle.Font.Size = 12;
-                summarysheet.Range["A7:F8"].CellStyle.Color = Color.FromArgb(213, 114, 138);
-                summarysheet.Range["A7:F8"].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignCenter;
+                cellName = "E" + Convert.ToString(sectionTwoStart);
+                summarysheet.Range[cellName].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignCenter;
 
 
-                startRow = 9;
+                cellName = "E" + Convert.ToString(sectionTwoStart+1);
+                summarysheet.Range[cellName].Text = "Net Payable";
+                summarysheet.Range[cellName].WrapText = true;
+                summarysheet.Range[cellName].ColumnWidth = 25;
+
+
+                cellName = "F" + Convert.ToString(sectionTwoStart + 1);
+                summarysheet.Range[cellName].Text = "Payment Recommended";
+                summarysheet.Range[cellName].ColumnWidth = 25;
+                summarysheet.Range[cellName].WrapText = true;
+
+
+
+                cellRange = "A" + Convert.ToString(sectionTwoStart+1).Trim() + ":F" + Convert.ToString(sectionTwoStart+1).Trim();
+                summarysheet.Range[cellRange].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignRight;
+
+
+                cellRange = "A" + Convert.ToString(sectionTwoStart).Trim() + ":F" + Convert.ToString(sectionTwoStart+1).Trim();
+                summarysheet.Range[cellRange].CellStyle.Font.FontName = "Arial";
+                summarysheet.Range[cellRange].CellStyle.Font.Size = 12;
+                summarysheet.Range[cellRange].CellStyle.Color = Color.FromArgb(213, 114, 138);
+                summarysheet.Range[cellRange].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignCenter;
+
+                sectionThreeStart = sectionTwoStart + 2;
+                startRow = sectionThreeStart ;
                 rowCount = Convert.ToInt16(dsResult.Tables[2].Rows.Count);
                 for (int i = 0; i <= rowCount - 1; i++)
                 {
@@ -461,13 +533,6 @@ namespace CashFlow
                 tableRange = "A9:F" + Convert.ToString(rowCount + 5);
                           
                
-                headerRange = "A9:B9";
-                summarysheet.Range[headerRange].CellStyle.Font.Bold = true;
-                summarysheet.Range[headerRange].CellStyle.Font.FontName = "Arial";
-                summarysheet.Range[headerRange].CellStyle.Font.Size = 12;
-                tableRange = "C9:F9";
-                summarysheet.Range[tableRange].Text = "";
-
                 headerRange = "A19:B19";
                 summarysheet.Range[headerRange].CellStyle.Font.Bold = true;
                 summarysheet.Range[headerRange].CellStyle.Font.FontName = "Arial";
@@ -475,41 +540,40 @@ namespace CashFlow
                 tableRange = "C19:F19";
                 summarysheet.Range[tableRange].Text = "";
 
-                headerRange = "A24:B24";
+                headerRange = "A29:B29";
                 summarysheet.Range[headerRange].CellStyle.Font.Bold = true;
                 summarysheet.Range[headerRange].CellStyle.Font.FontName = "Arial";
                 summarysheet.Range[headerRange].CellStyle.Font.Size = 12;
-                tableRange = "C24:F24";
+                tableRange = "C29:F29";
                 summarysheet.Range[tableRange].Text = "";
 
-                headerRange = "A31:B31";
+                headerRange = "A34:B34";
                 summarysheet.Range[headerRange].CellStyle.Font.Bold = true;
                 summarysheet.Range[headerRange].CellStyle.Font.FontName = "Arial";
                 summarysheet.Range[headerRange].CellStyle.Font.Size = 12;
-                tableRange = "C31:F31";
+                tableRange = "C34:F34";
                 summarysheet.Range[tableRange].Text = "";
 
-
-                headerRange = "A37:B37";
+                headerRange = "A41:B41";
                 summarysheet.Range[headerRange].CellStyle.Font.Bold = true;
-                summarysheet.Range[headerRange].CellStyle.Font.Size = 12;
                 summarysheet.Range[headerRange].CellStyle.Font.FontName = "Arial";
-                tableRange = "C37:F37";
-                summarysheet.Range[tableRange].Text = "";
-
-                headerRange = "A46:B46";
-                summarysheet.Range[headerRange].CellStyle.Font.Bold = true;
                 summarysheet.Range[headerRange].CellStyle.Font.Size = 12;
-                summarysheet.Range[headerRange].CellStyle.Font.FontName = "Arial";
-                tableRange = "C46:F46";
+                tableRange = "C41:F41";
                 summarysheet.Range[tableRange].Text = "";
 
 
-                headerRange = "A52:B52";
+                headerRange = "A47:B47";
                 summarysheet.Range[headerRange].CellStyle.Font.Bold = true;
                 summarysheet.Range[headerRange].CellStyle.Font.Size = 12;
                 summarysheet.Range[headerRange].CellStyle.Font.FontName = "Arial";
-                tableRange = "C52:F52";
+                tableRange = "C47:F47";
+                summarysheet.Range[tableRange].Text = "";
+
+                headerRange = "A47:B47";
+                summarysheet.Range[headerRange].CellStyle.Font.Bold = true;
+                summarysheet.Range[headerRange].CellStyle.Font.Size = 12;
+                summarysheet.Range[headerRange].CellStyle.Font.FontName = "Arial";
+                tableRange = "C47:F47";
                 summarysheet.Range[tableRange].Text = "";
 
 
@@ -521,8 +585,16 @@ namespace CashFlow
                 summarysheet.Range[tableRange].Text = "";
 
 
-                headerRange = "A68:F68";
-                summarysheet.Range["B68"].Text = "Grand Total";
+                headerRange = "A62:B62";
+                summarysheet.Range[headerRange].CellStyle.Font.Bold = true;
+                summarysheet.Range[headerRange].CellStyle.Font.Size = 12;
+                summarysheet.Range[headerRange].CellStyle.Font.FontName = "Arial";
+                tableRange = "C62:F62";
+                summarysheet.Range[tableRange].Text = "";
+
+
+                headerRange = "A78:F78";
+                summarysheet.Range["B78"].Text = "Grand Total";
                 summarysheet.Range[headerRange].CellStyle.Font.Bold = true;
                 summarysheet.Range[headerRange].CellStyle.Font.FontName = "Arial";
                 summarysheet.Range[headerRange].CellStyle.Font.Size = 12;
@@ -542,7 +614,7 @@ namespace CashFlow
                 summarysheet.Range[tableRange].CellStyle.Font.Bold = true;
                 summarysheet.Range[tableRange].CellStyle.Font.RGBColor = Color.FromArgb(42, 166, 109);
 
-               
+
 
 
                 string fileName = "";

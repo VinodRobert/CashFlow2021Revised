@@ -13,6 +13,7 @@ using SQLHelper;
 using Syncfusion.XlsIO;
 using Syncfusion.WinForms.Input.Enums;
 using CashFlow.BusinessLayer;
+using Syncfusion.WinForms.DataGrid.Enums;
 
 namespace CashFlow 
 {
@@ -137,7 +138,7 @@ namespace CashFlow
             decimal amount;
             int existing;
             int success;
-
+            int delete = FTR.DeleteExistingGSTCredits();
             for (int i = 0; i <= rowCount - 1; i++)
             {
                 partyCode = Convert.ToString(GSTDataTable.Rows[i][0]);
@@ -156,6 +157,17 @@ namespace CashFlow
             MessageBox.Show(this, "Success !!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
             return;
+        }
+
+        private void gridResult_QueryRowStyle(object sender, Syncfusion.WinForms.DataGrid.Events.QueryRowStyleEventArgs e)
+        {
+            if (e.RowType == RowType.DefaultRow)
+            {
+                if (e.RowIndex % 2 == 0)
+                    e.Style.BackColor = Color.LightSteelBlue;
+                else
+                    e.Style.BackColor = Color.LightSlateGray;
+            }
         }
     }
 }

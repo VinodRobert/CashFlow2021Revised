@@ -25,6 +25,28 @@ namespace CashFlow.BusinessLayer
 
 
         #region UserInput
+        public DataSet FetchLedgerMapping()
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            string sql = "SELECT ST.LINEORDER,UPPER(ST.DESCRIPTION) DESCRIPTION , LM.LEDGERCODE,UPPER(L.LEDGERNAME) LEDGERNAME  ";
+            sql = sql + " FROM FTR.SUMMARYTEMPLATE ST INNER JOIN FTR.LEDGERMAPPING LM ON ST.CODE = LM.SUMMARYCODE ";
+            sql = sql + " INNER JOIN LEDGERCODES L ON LM.LEDGERCODE = L.LEDGERCODE ORDER BY ST.LINEORDER  ";
+            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.Text, sql);
+            return ds;
+        }
+        public DataSet FetchLC(int projectID,int criteria)
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            SqlParameter[] arParms = new SqlParameter[2];
+            arParms[0] = new SqlParameter("@BORGID", SqlDbType.Int);
+            arParms[0].Value = projectID;
+            arParms[1] = new SqlParameter("@FUTUREPERIOD", SqlDbType.Int);
+            arParms[1].Value = criteria;
+            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.StoredProcedure, "[FTR].[spFetchLCDetails]", arParms);
+            return ds;
+        }
+
+
         public DataSet FetchProjectsForUserInputs(string loginID)
         {
             string _connectionString = SqlHelper.GetConnectionString();
@@ -108,6 +130,13 @@ namespace CashFlow.BusinessLayer
             return ds;
         }
 
+        public DataSet GetFTRID(int borgID)
+        {
+            string sql = "SELECT FTRID FROM FTR.FTRHEADER WHERE BORGID=" + Convert.ToString(borgID) + "  AND FTRSTATUS=0";
+            string _connectionString = SqlHelper.GetConnectionString();
+            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.Text, sql);
+            return ds;
+        }
 
         public int GenerateFTRHeader(int borgID,int calYear, int calMonth,string owner)
         {
@@ -294,11 +323,33 @@ namespace CashFlow.BusinessLayer
             string _connectionString = SqlHelper.GetConnectionString();
             string sql = "Update FTR.FTRHEADER SET CUSTODIAN=CUSTODIAN+1 WHERE FTRID="+ Convert.ToString(ftrID);
             int i = SqlHelper.ExecuteNonQuery(_connectionString, CommandType.Text, sql);
+            sql = "Update FTR.FTRHEADER SET FTRSTATUS=1 WHERE CUSTODIAN>=5 ";
+            int J = SqlHelper.ExecuteNonQuery(_connectionString, CommandType.Text, sql);
             return i;
         }
 
+        public int UpdateFTRLog(int ftrID,string loginID)
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            DateTime now = DateTime.Now;
+            string sql = "INSERT INTO FTR.FTRLOG(FTRID,LOGINID,ACTIONDATE) VALUES(";
+            sql = sql + Convert.ToString(ftrID) + ",'" + Convert.ToString(loginID) + "','" + now.ToString("dddd, dd MMMM yyyy HH:mm:ss") + "')";
+            int J = SqlHelper.ExecuteNonQuery(_connectionString, CommandType.Text, sql);
+            return J;
+        }
         #endregion
         #region GSTCredit
+
+
+        public int DeleteExistingGSTCredits()
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            string sql = "DELETE FROM FTR.GSTCREDIT";
+            int j = SqlHelper.ExecuteNonQuery(_connectionString, CommandType.Text, sql);
+            return j;
+        }
+
+
         public DataSet GSTCredit()
         {
             string _connectionString = SqlHelper.GetConnectionString();

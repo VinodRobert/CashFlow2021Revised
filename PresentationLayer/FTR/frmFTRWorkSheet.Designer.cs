@@ -99,6 +99,7 @@
             this.gridResult.AllowGrouping = false;
             this.gridResult.AllowResizingColumns = true;
             this.gridResult.AllowStandardTab = true;
+            gridNumericColumn1.AllowEditing = false;
             gridNumericColumn1.AllowFiltering = true;
             gridNumericColumn1.AllowGrouping = false;
             gridNumericColumn1.AllowResizing = true;
@@ -107,6 +108,7 @@
             gridNumericColumn1.SortMode = Syncfusion.Data.DataReflectionMode.Value;
             gridNumericColumn1.Visible = false;
             gridNumericColumn1.Width = 0D;
+            gridNumericColumn2.AllowEditing = false;
             gridNumericColumn2.AllowFiltering = true;
             gridNumericColumn2.AllowGrouping = false;
             gridNumericColumn2.AllowResizing = true;
@@ -176,12 +178,14 @@
             gridNumericColumn5.HeaderText = "Balance Payable";
             gridNumericColumn5.MappingName = "PROJECTLIABILITY";
             gridNumericColumn5.Width = 110D;
+            gridNumericColumn6.AllowEditing = false;
             gridNumericColumn6.AllowFiltering = true;
             gridNumericColumn6.AllowGrouping = false;
             gridNumericColumn6.AllowResizing = true;
             gridNumericColumn6.HeaderText = "Mob Adv";
             gridNumericColumn6.MappingName = "MOBADVANCE";
             gridNumericColumn6.Width = 110D;
+            gridNumericColumn7.AllowEditing = false;
             gridNumericColumn7.AllowFiltering = true;
             gridNumericColumn7.AllowGrouping = false;
             gridNumericColumn7.AllowResizing = true;
@@ -195,12 +199,14 @@
             gridNumericColumn8.HeaderText = "Liability";
             gridNumericColumn8.MappingName = "COMPANYLIABILITY";
             gridNumericColumn8.Width = 110D;
+            gridNumericColumn9.AllowEditing = false;
             gridNumericColumn9.AllowFiltering = true;
             gridNumericColumn9.AllowGrouping = false;
             gridNumericColumn9.AllowResizing = true;
             gridNumericColumn9.HeaderText = "PAY after GST";
             gridNumericColumn9.MappingName = "PAYABLEAFTERGST";
             gridNumericColumn9.Width = 110D;
+            gridNumericColumn10.AllowEditing = false;
             gridNumericColumn10.AllowFiltering = true;
             gridNumericColumn10.AllowGrouping = false;
             gridNumericColumn10.AllowResizing = true;

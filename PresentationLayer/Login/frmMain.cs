@@ -141,5 +141,17 @@ namespace CashFlow.PresentationLayer.Login
         {
             this.Close();
         }
+
+        private void lCDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLC LC = new frmLC();
+            LC.Show();
+        }
+
+        private void ledgerMappingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLedgerMapping ledgerMapping = new frmLedgerMapping();
+            ledgerMapping.Show();
+        }
     }
 }

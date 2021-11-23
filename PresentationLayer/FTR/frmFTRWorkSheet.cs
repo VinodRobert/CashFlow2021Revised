@@ -287,6 +287,7 @@ namespace CashFlow.PresentationLayer.Cash_Flow
 
         private void btnSubmit_Click_1(object sender, EventArgs e)
         {
+            string loginID = CashFlowGlobalVariables.GlobalVariables.UserID;
             string message = "Are You Sure To Submit. Not Reversable  ??";
             string title = "Submission Approval";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
@@ -294,6 +295,7 @@ namespace CashFlow.PresentationLayer.Cash_Flow
             if (result == DialogResult.Yes)
             {
                 int i = FTR.UpdateCustodian(ftrIDToExtract);
+                int j = FTR.UpdateFTRLog(ftrIDToExtract, loginID);
                 MessageBox.Show("Success !!!");
                 this.Close();
             }
