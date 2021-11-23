@@ -602,7 +602,25 @@ namespace CashFlow
 
 
 
+
+
+                rowCount = 80;
                 lastRowCount = rowCount + 10;
+                tableRange = "B" + Convert.ToString(lastRowCount);
+                summarysheet.Range[tableRange].Text = "Work Flow Details";
+                startRow = lastRowCount+1;
+                rowCount = Convert.ToInt16(dsResult.Tables[4].Rows.Count);
+                for (int i = 0; i <= rowCount - 1; i++)
+                {
+                    majorCategory = Convert.ToString(dsResult.Tables[4].Rows[i]["ACTEDBY"]);
+                    minorCategory = Convert.ToString(dsResult.Tables[4].Rows[i]["ACTIONDATE"]);
+                    summarysheet.Range["B" + Convert.ToString(startRow)].Text = Convert.ToString(majorCategory).Trim(); ;
+                    summarysheet.Range["C" + Convert.ToString(startRow)].Text = Convert.ToString(minorCategory).Trim();
+                    startRow = startRow + 1;
+                }
+
+                rowCount = 90;
+                lastRowCount = rowCount + 5;
                 tableRange = "B" + Convert.ToString(lastRowCount + 10);
                 summarysheet.Range[tableRange].Text = lastUpdateTime;
                 summarysheet.Range[tableRange].CellStyle.Font.Bold = true;
