@@ -26,6 +26,9 @@ using Syncfusion.Data;
 using System.Data.SqlClient;
 using CashFlowSqlHelper;
 
+
+
+
 namespace CashFlow.PresentationLayer.Cash_Flow 
 {
     public partial class frmFTRWorkSheet : Office2010Form
@@ -162,6 +165,121 @@ namespace CashFlow.PresentationLayer.Cash_Flow
                 gridResult.Columns["CONTROLCELL"].AllowEditing = true;
                 gridResult.Columns["CONTROLCELL"].Visible = true;
             }
+          
+
+           
+            GridSummaryRow groupSummaryRow1 = new GridSummaryRow();
+            groupSummaryRow1.Name = "GroupSummary";
+            groupSummaryRow1.ShowSummaryInRow = false;
+            groupSummaryRow1.TitleColumnCount = 3;
+            groupSummaryRow1.Title = "Totals  ..";
+
+            
+            GridSummaryColumn summaryColumn1 = new GridSummaryColumn();
+            summaryColumn1.Name = "NetPayable";
+            summaryColumn1.Format = "{Sum:c}";
+            summaryColumn1.MappingName = "NETPAYABLE";
+            summaryColumn1.SummaryType = Syncfusion.Data.SummaryType.DoubleAggregate;
+
+       
+            GridSummaryColumn summaryColumn2 = new GridSummaryColumn();
+            summaryColumn2.Name = "Paid";
+            summaryColumn2.Format = "{Sum:c}";
+            summaryColumn2.MappingName = "PAID";
+            summaryColumn2.SummaryType = Syncfusion.Data.SummaryType.DoubleAggregate;
+
+            
+            GridSummaryColumn summaryColumn3 = new GridSummaryColumn();
+            summaryColumn3.Name = "ProjLiablity";
+            summaryColumn3.Format = "{Sum:c}";
+            summaryColumn3.MappingName = "PROJECTLIABILITY";
+            summaryColumn3.SummaryType = Syncfusion.Data.SummaryType.DoubleAggregate;
+
+
+             
+            GridSummaryColumn summaryColumn4 = new GridSummaryColumn();
+            summaryColumn4.Name = "MobAdv";
+            summaryColumn4.Format = "{Sum:c}";
+            summaryColumn4.MappingName = "MOBADVANCE";
+            summaryColumn4.SummaryType = Syncfusion.Data.SummaryType.DoubleAggregate;
+
+            
+            GridSummaryColumn summaryColumn5 = new GridSummaryColumn();
+            summaryColumn5.Name = "GSTCredit";
+            summaryColumn5.Format = "{Sum:c}";
+            summaryColumn5.MappingName = "GSTCREDIT";
+            summaryColumn5.SummaryType = Syncfusion.Data.SummaryType.DoubleAggregate;
+
+            GridSummaryColumn summaryColumn6 = new GridSummaryColumn();
+            summaryColumn6.Name = "CompLiability";
+            summaryColumn6.Format = "{Sum:c}";
+            summaryColumn6.MappingName = "COMPANYLIABILITY";
+            summaryColumn6.SummaryType = Syncfusion.Data.SummaryType.DoubleAggregate;
+
+
+            GridSummaryColumn summaryColumn7 = new GridSummaryColumn();
+            summaryColumn7.Name = "PayAftrGST";
+            summaryColumn7.Format = "{Sum:c}";
+            summaryColumn7.MappingName = "PAYABLEAFTERGST";
+            summaryColumn7.SummaryType = Syncfusion.Data.SummaryType.DoubleAggregate;
+
+           
+            GridSummaryColumn summaryColumn8 = new GridSummaryColumn();
+            summaryColumn8.Name = "Payable";
+            summaryColumn8.Format = "{Sum:c}";
+            summaryColumn8.MappingName = "PAYABLE";
+            summaryColumn8.SummaryType = Syncfusion.Data.SummaryType.DoubleAggregate;
+
+
+            GridSummaryColumn summaryColumn9 = new GridSummaryColumn();
+            summaryColumn9.Name = "ProjectSite";
+            summaryColumn9.Format = "{Sum:c}";
+            summaryColumn9.MappingName = "PROJECTSITE";
+            summaryColumn9.SummaryType = Syncfusion.Data.SummaryType.DoubleAggregate;
+
+            GridSummaryColumn summaryColumn10 = new GridSummaryColumn();
+            summaryColumn10.Name = "PayRecommend";
+            summaryColumn10.Format = "{Sum:c}";
+            summaryColumn10.MappingName = "PAYABLERECOMMENDED";
+            summaryColumn10.SummaryType = Syncfusion.Data.SummaryType.DoubleAggregate;
+
+
+            GridSummaryColumn summaryColumn11 = new GridSummaryColumn();
+            summaryColumn11.Name = "AccountsHead";
+            summaryColumn11.Format = "{Sum:c}";
+            summaryColumn11.MappingName = "ACCOUNTSHEAD";
+            summaryColumn11.SummaryType = Syncfusion.Data.SummaryType.DoubleAggregate;
+
+
+            GridSummaryColumn summaryColumn12 = new GridSummaryColumn();
+            summaryColumn12.Name = "Control";
+            summaryColumn12.Format = "{Sum:c}";
+            summaryColumn12.MappingName = "CONTROLCELL";
+            summaryColumn12.SummaryType = Syncfusion.Data.SummaryType.DoubleAggregate;
+
+            // Adds the GridSummaryColumn in SummaryColumns collection.
+            groupSummaryRow1.SummaryColumns.Add(summaryColumn1);
+            groupSummaryRow1.SummaryColumns.Add(summaryColumn2);
+            groupSummaryRow1.SummaryColumns.Add(summaryColumn3);
+
+            groupSummaryRow1.SummaryColumns.Add(summaryColumn4);
+            groupSummaryRow1.SummaryColumns.Add(summaryColumn5);
+            groupSummaryRow1.SummaryColumns.Add(summaryColumn6);
+
+            groupSummaryRow1.SummaryColumns.Add(summaryColumn7);
+            groupSummaryRow1.SummaryColumns.Add(summaryColumn8);
+            groupSummaryRow1.SummaryColumns.Add(summaryColumn9);
+
+            groupSummaryRow1.SummaryColumns.Add(summaryColumn10);
+            groupSummaryRow1.SummaryColumns.Add(summaryColumn11);
+            groupSummaryRow1.SummaryColumns.Add(summaryColumn12);
+
+            // Adds the summary row in the GroupSummaryRows collection.
+            this.gridResult.GroupSummaryRows.Add(groupSummaryRow1);
+
+
+
+
         }
 
      

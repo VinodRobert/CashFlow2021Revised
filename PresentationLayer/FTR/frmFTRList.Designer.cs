@@ -56,9 +56,9 @@
             this.lblConfirm = new Syncfusion.Windows.Forms.Tools.AutoLabel();
             this.btnCancel = new Syncfusion.WinForms.Controls.SfButton();
             this.btnSubmit = new Syncfusion.WinForms.Controls.SfButton();
-            this.cmbProjectName = new Syncfusion.WinForms.ListView.SfComboBox();
             this.lblProjectName = new Syncfusion.Windows.Forms.Tools.AutoLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.cmbProjectName = new Syncfusion.WinForms.ListView.SfComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridFTRHistory)).BeginInit();
             this.panelNewFTR.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbCalYear)).BeginInit();
@@ -107,12 +107,12 @@
             gridTextColumn2.AllowFiltering = true;
             gridTextColumn2.HeaderText = "Project Name";
             gridTextColumn2.MappingName = "BORGNAME";
-            gridTextColumn2.Width = 190D;
+            gridTextColumn2.Width = 180D;
             gridTextColumn3.AllowEditing = false;
             gridTextColumn3.AllowFiltering = true;
             gridTextColumn3.HeaderText = "Year";
             gridTextColumn3.MappingName = "CALYEAR";
-            gridTextColumn3.Width = 70D;
+            gridTextColumn3.Width = 75D;
             gridTextColumn4.AllowEditing = false;
             gridTextColumn4.AllowFiltering = true;
             gridTextColumn4.HeaderText = "Month";
@@ -193,6 +193,7 @@
             this.gridFTRHistory.Columns.Add(gridButtonColumn1);
             this.gridFTRHistory.Columns.Add(gridButtonColumn2);
             this.gridFTRHistory.Columns.Add(gridButtonColumn3);
+            this.gridFTRHistory.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridFTRHistory.Location = new System.Drawing.Point(13, 61);
             this.gridFTRHistory.Name = "gridFTRHistory";
             this.gridFTRHistory.PreviewRowHeight = 35;
@@ -225,6 +226,7 @@
             // 
             // panelNewFTR
             // 
+            this.panelNewFTR.Controls.Add(this.cmbProjectName);
             this.panelNewFTR.Controls.Add(this.cmbCalYear);
             this.panelNewFTR.Controls.Add(this.btnGO);
             this.panelNewFTR.Controls.Add(this.lblHeader);
@@ -235,7 +237,6 @@
             this.panelNewFTR.Controls.Add(this.lblConfirm);
             this.panelNewFTR.Controls.Add(this.btnCancel);
             this.panelNewFTR.Controls.Add(this.btnSubmit);
-            this.panelNewFTR.Controls.Add(this.cmbProjectName);
             this.panelNewFTR.Controls.Add(this.lblProjectName);
             this.panelNewFTR.Location = new System.Drawing.Point(396, 214);
             this.panelNewFTR.Name = "panelNewFTR";
@@ -368,21 +369,6 @@
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
-            // cmbProjectName
-            // 
-            this.cmbProjectName.DisplayMember = "ORGNAME";
-            this.cmbProjectName.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.cmbProjectName.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbProjectName.Location = new System.Drawing.Point(167, 56);
-            this.cmbProjectName.Name = "cmbProjectName";
-            this.cmbProjectName.Size = new System.Drawing.Size(499, 32);
-            this.cmbProjectName.Style.EditorStyle.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbProjectName.Style.ReadOnlyEditorStyle.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbProjectName.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.cmbProjectName.Style.TokenStyle.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbProjectName.TabIndex = 1;
-            this.cmbProjectName.ValueMember = "ORGID";
-            // 
             // lblProjectName
             // 
             this.lblProjectName.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -392,6 +378,24 @@
             this.lblProjectName.Size = new System.Drawing.Size(135, 22);
             this.lblProjectName.TabIndex = 0;
             this.lblProjectName.Text = "Project Name :";
+            // 
+            // cmbProjectName
+            // 
+            this.cmbProjectName.AllowDrop = true;
+            this.cmbProjectName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbProjectName.AutoCompleteSuggestMode = Syncfusion.WinForms.ListView.Enums.AutoCompleteSuggestMode.Contains;
+            this.cmbProjectName.DisplayMember = "ORGNAME";
+            this.cmbProjectName.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
+            this.cmbProjectName.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbProjectName.Location = new System.Drawing.Point(167, 56);
+            this.cmbProjectName.Name = "cmbProjectName";
+            this.cmbProjectName.Size = new System.Drawing.Size(495, 32);
+            this.cmbProjectName.Style.EditorStyle.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbProjectName.Style.ReadOnlyEditorStyle.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbProjectName.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cmbProjectName.Style.TokenStyle.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbProjectName.TabIndex = 13;
+            this.cmbProjectName.ValueMember = "ORGID";
             // 
             // frmFTRList
             // 
@@ -429,7 +433,6 @@
         private System.Windows.Forms.Panel panelNewFTR;
         private Syncfusion.WinForms.Controls.SfButton btnCancel;
         private Syncfusion.WinForms.Controls.SfButton btnSubmit;
-        private Syncfusion.WinForms.ListView.SfComboBox cmbProjectName;
         private Syncfusion.Windows.Forms.Tools.AutoLabel lblProjectName;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtConfirm;
         private Syncfusion.Windows.Forms.Tools.AutoLabel lblConfirm;
@@ -440,5 +443,6 @@
         private Syncfusion.Windows.Forms.Tools.AutoLabel lblCalendarYear;
         private Syncfusion.WinForms.Controls.SfButton btnGO;
         private Syncfusion.WinForms.ListView.SfComboBox cmbCalYear;
+        private Syncfusion.WinForms.ListView.SfComboBox cmbProjectName;
     }
 }
