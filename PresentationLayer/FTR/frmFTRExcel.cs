@@ -91,16 +91,16 @@ namespace CashFlow
                 worksheet.Range["A1"].Text = "Capacitˡe Infraprojects Limited ";
                 worksheet.Range["A1"].CellStyle.Font.Bold = true;
                 worksheet.Range["A1"].CellStyle.Font.RGBColor = Color.FromArgb(42, 118, 189);
-                worksheet.Range["A1:O1"].Merge();
-                worksheet.Range["A1:O1"].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignCenter;
+                worksheet.Range["A1:P1"].Merge();
+                worksheet.Range["A1:P1"].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignCenter;
                 worksheet.Range["A1"].CellStyle.Font.FontName = "Arial";
                 worksheet.Range["A1"].CellStyle.Font.Size = 20;
 
                 worksheet.Range["A2"].Text = "Fund Transfer Requisition";
                 worksheet.Range["A2"].CellStyle.Font.Bold = true;
                 worksheet.Range["A2"].CellStyle.Font.RGBColor = Color.FromArgb(42, 118, 189);
-                worksheet.Range["A2:O2"].Merge();
-                worksheet.Range["A2:O2"].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignCenter;
+                worksheet.Range["A2:P2"].Merge();
+                worksheet.Range["A2:P2"].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignCenter;
                 worksheet.Range["A2"].CellStyle.Font.FontName = "Arial";
                 worksheet.Range["A2"].CellStyle.Font.Size = 15;
 
@@ -176,15 +176,21 @@ namespace CashFlow
                 worksheet.Range["O5"].ColumnWidth = 15;
                 worksheet.Range["O5"].WrapText = true;
 
-                worksheet.Range["A5:O5"].RowHeight = 35;
-                worksheet.Range["A5:O5"].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignLeft;
-                worksheet.Range["A5:O5"].CellStyle.Font.FontName = "Arial";
-                worksheet.Range["A5:O5"].CellStyle.Font.Size = 12;
+                worksheet.Range["P5"].Text = "Vendor Type";
+                worksheet.Range["P5"].ColumnWidth = 15;
+                worksheet.Range["P5"].WrapText = true;
+
+
+                worksheet.Range["A5:P5"].RowHeight = 35;
+                worksheet.Range["A5:P5"].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignLeft;
+                worksheet.Range["A5:P5"].CellStyle.Font.FontName = "Arial";
+                worksheet.Range["A5:P5"].CellStyle.Font.Size = 12;
 
                 int rowCount = Convert.ToInt16(dsResult.Tables[0].Rows.Count);
                 string headerRange;
                 string majorCategory;
                 string minorCategory;
+                string partyCategory;
                 string category;
                 string partyCode;
                 string partyName;
@@ -217,7 +223,8 @@ namespace CashFlow
                     category = Convert.ToString(dsResult.Tables[0].Rows[i]["CATEGORY"]);
                     partyCode = Convert.ToString(dsResult.Tables[0].Rows[i]["PARTYCODE"]);
                     partyName = Convert.ToString(dsResult.Tables[0].Rows[i]["PARTYNAME"]);
-                   
+                    partyCategory = Convert.ToString(dsResult.Tables[0].Rows[i]["PARTYCATEGORY"]);
+
 
                     netPayable = Convert.ToDecimal(dsResult.Tables[0].Rows[i]["NETPAYABLE"]);
                     paid = Convert.ToDecimal(dsResult.Tables[0].Rows[i]["PAID"]);
@@ -248,6 +255,9 @@ namespace CashFlow
                     worksheet.Range["M" + Convert.ToString(startRow)].Number = Convert.ToDouble(mobAdvance);
                     worksheet.Range["N" + Convert.ToString(startRow)].Number = Convert.ToDouble(projectSite);
                     worksheet.Range["O" + Convert.ToString(startRow)].Number = Convert.ToDouble(payableRecommended);
+                    worksheet.Range["P" + Convert.ToString(startRow)].Text = Convert.ToString(partyCategory);
+
+
                     startRow = startRow + 1;
                 }
 
@@ -291,14 +301,14 @@ namespace CashFlow
                 worksheet.Range[tableRange].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignRight;
                 worksheet.Range[tableRange].NumberFormat = "0.00";
 
-                tableRange = "A5:O"+ Convert.ToString(rowCount+5);
+                tableRange = "A5:P"+ Convert.ToString(rowCount+5);
                 worksheet.Range[tableRange].CellStyle.Font.FontName = "Arial";
                 worksheet.Range[tableRange].CellStyle.Font.Size = 9;
 
-                tableRange = "A6:O" + Convert.ToString(rowCount + 5);
+                tableRange = "A6:P" + Convert.ToString(rowCount + 5);
                 worksheet.Range[tableRange].RowHeight = 20;
 
-                tableRange = "A5:O" + Convert.ToString(rowCount+5);
+                tableRange = "A5:P" + Convert.ToString(rowCount+5);
                 IListObject table = worksheet.ListObjects.Create("Table1", worksheet[tableRange]);
 
                 //Formatting table with a built-in style

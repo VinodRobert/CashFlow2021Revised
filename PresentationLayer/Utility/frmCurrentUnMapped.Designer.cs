@@ -1,6 +1,6 @@
 ﻿namespace CashFlow
 {
-    partial class frmCurrentMapping
+    partial class frmCurrentUnMapped
     {
         /// <summary>
         /// Required designer variable.
@@ -30,9 +30,6 @@
         {
             Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn1 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
             Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn2 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn3 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn4 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn5 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
             this.lblHeader = new System.Windows.Forms.Label();
             this.gridResult = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.rdCreditor = new System.Windows.Forms.RadioButton();
@@ -49,9 +46,9 @@
             this.lblHeader.ForeColor = System.Drawing.Color.Blue;
             this.lblHeader.Location = new System.Drawing.Point(490, 2);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(257, 33);
+            this.lblHeader.Size = new System.Drawing.Size(277, 33);
             this.lblHeader.TabIndex = 1;
-            this.lblHeader.Text = "Current   Mapping";
+            this.lblHeader.Text = "Current Un Mapped";
             // 
             // gridResult
             // 
@@ -62,32 +59,14 @@
             gridTextColumn1.AllowFiltering = true;
             gridTextColumn1.HeaderText = "Vendor Code";
             gridTextColumn1.MappingName = "PARTYCODE";
-            gridTextColumn1.Width = 100D;
+            gridTextColumn1.Width = 175D;
             gridTextColumn2.AllowEditing = false;
             gridTextColumn2.AllowFiltering = true;
             gridTextColumn2.HeaderText = "PARTY NAME";
             gridTextColumn2.MappingName = "PARTYNAME";
-            gridTextColumn2.Width = 350D;
-            gridTextColumn3.AllowEditing = false;
-            gridTextColumn3.AllowFiltering = true;
-            gridTextColumn3.HeaderText = "Major Category";
-            gridTextColumn3.MappingName = "MAJORCATEGORY";
-            gridTextColumn3.Width = 200D;
-            gridTextColumn4.AllowEditing = false;
-            gridTextColumn4.AllowFiltering = true;
-            gridTextColumn4.HeaderText = "Minor Category";
-            gridTextColumn4.MappingName = "MINORCATEGORY";
-            gridTextColumn4.Width = 200D;
-            gridTextColumn5.AllowEditing = false;
-            gridTextColumn5.AllowFiltering = true;
-            gridTextColumn5.HeaderText = "Category";
-            gridTextColumn5.MappingName = "CATEGORY";
-            gridTextColumn5.Width = 300D;
+            gridTextColumn2.Width = 550D;
             this.gridResult.Columns.Add(gridTextColumn1);
             this.gridResult.Columns.Add(gridTextColumn2);
-            this.gridResult.Columns.Add(gridTextColumn3);
-            this.gridResult.Columns.Add(gridTextColumn4);
-            this.gridResult.Columns.Add(gridTextColumn5);
             this.gridResult.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridResult.Location = new System.Drawing.Point(13, 73);
             this.gridResult.Name = "gridResult";
@@ -153,7 +132,7 @@
             this.btnExport.UseVisualStyleBackColor = false;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
-            // frmCurrentMapping
+            // frmCurrentUnMapped
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -164,9 +143,9 @@
             this.Controls.Add(this.rdCreditor);
             this.Controls.Add(this.gridResult);
             this.Controls.Add(this.lblHeader);
-            this.Name = "frmCurrentMapping";
+            this.Name = "frmCurrentUnMapped";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Vendor Mapping ";
+            this.Text = "Un Mapped";
             this.Load += new System.EventHandler(this.frmSubbieCurrentMapping_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridResult)).EndInit();
             this.ResumeLayout(false);

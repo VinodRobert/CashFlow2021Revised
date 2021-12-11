@@ -153,5 +153,11 @@ namespace CashFlow.PresentationLayer.Login
             frmLedgerMapping ledgerMapping = new frmLedgerMapping();
             ledgerMapping.Show();
         }
+
+        private void unMappedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCurrentUnMapped unMapped = new frmCurrentUnMapped();
+            unMapped.Show();
+        }
     }
 }

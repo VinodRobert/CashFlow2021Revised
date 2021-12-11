@@ -16,10 +16,10 @@ using Syncfusion.XlsIO;
 
 namespace CashFlow 
 {
-    public partial class frmCurrentMapping : Form
+    public partial class frmCurrentUnMapped : Form
     {
         ClassFTR FTR = new ClassFTR();
-        public frmCurrentMapping()
+        public frmCurrentUnMapped()
         {
             InitializeComponent();
         }
@@ -65,11 +65,11 @@ namespace CashFlow
                 return;
 
             if (vendorTypeID == 1)
-                lblHeader.Text = "Creditors - Mapping";
+                lblHeader.Text = "Creditors -Un-Mapped";
             else
-                lblHeader.Text = "Sub Contractors - Mapping";
+                lblHeader.Text = "Sub Contractors -Un Mapped";
 
-            DataSet dsMasters = FTR.FetchPartiesWithMapping(vendorTypeID);
+            DataSet dsMasters = FTR.FetchPartiesWithOutMapping(vendorTypeID);
             gridResult.DataSource = null;
             gridResult.DataSource = dsMasters.Tables[0];
             gridResult.QueryRowStyle += SfDataGrid_QueryRowStyle;

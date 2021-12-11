@@ -289,6 +289,21 @@ namespace CashFlow.BusinessLayer
             return j;
         }
 
+        public DataSet FetchPartiesWithOutMapping(int vendorTypeID)
+        {
+            string _connectionString = SqlHelper.GetConnectionString();
+            string sql1 = "SELECT U.PARTYCODE,C.CREDNAME PARTYNAME FROM FTR.UNKNOWNPARTIES U  INNER JOIN CREDITORS C ON C.CREDNUMBER = U.PARTYCODE WHERE VEDORTYPEID = 1  ORDER BY PARTYCODE ";
+            string sql2 = "SELECT U.PARTYCODE,S.SUBNAME PARTYNAME FROM FTR.UNKNOWNPARTIES U   INNER JOIN SUBCONTRACTORS S ON S.SUBNUMBER = U.PARTYCODE WHERE VEDORTYPEID = 2  ORDER BY PARTYCODE ";
+       
+            string sql;
+            if (vendorTypeID == 1)
+                sql = sql1;
+            else
+                sql = sql2;
+
+            DataSet ds = SqlHelper.ExecuteDataset(_connectionString, CommandType.Text, sql);
+            return ds;
+        }
 
         public DataSet FetchPartiesWithMapping(int vendorTypeID)
         {
