@@ -173,7 +173,7 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(384, 17);
             this.lblVersion.TabIndex = 17;
-            this.lblVersion.Text = "Version 2.0.2  Release Date:  15 December 2021";
+            this.lblVersion.Text = "Version 2.0.3  Release Date:  21 December 2021";
             // 
             // frmUserLogin
             // 
