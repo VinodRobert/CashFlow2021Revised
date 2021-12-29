@@ -33,7 +33,7 @@ namespace CashFlow.PresentationLayer.Cash_Flow
         string loginUser = CashFlowGlobalVariables.GlobalVariables.UserID;
         Color oddRow = Color.Transparent;
         Color evenRow = Color.AliceBlue;
-         
+        int ftrWorkSheetExposed = 0;
         List<FTRHeaderList> ftrList = new List<FTRHeaderList>();
 
         public static List<string> MonthsFull = new List<string>
@@ -210,16 +210,17 @@ namespace CashFlow.PresentationLayer.Cash_Flow
             //  Column 9 is For Edit  Column 10 For Export and Column 11 is ForPrint 
 
             string headerText = Convert.ToString(e.Column.HeaderText);
-        
-            if (  (buttonEditHeaderText == "Open") && (clickedColumn==9) )
-            {
-                MessageBox.Show(" Please  Relax ... Loading The Work Sheet   !!!!!");
-                frmFTRWorkSheet ftrWS = new frmFTRWorkSheet(ftrID);
-                ftrWS.ShowDialog();
-                gridFTRHistory.DataSource = null;
-                LoadGrid();
-            }
-
+            
+            if ((buttonEditHeaderText == "Open") && (clickedColumn == 9))
+                {
+                    ftrWorkSheetExposed = 1;
+                    MessageBox.Show(" Please  Relax ... Loading The Work Sheet   !!!!!");
+                    frmFTRWorkSheet ftrWS = new frmFTRWorkSheet(ftrID);
+                    ftrWS.ShowDialog();
+                    gridFTRHistory.DataSource = null;
+                    LoadGrid();
+                }
+          
             if ( (buttonExportHeaderText == "Excel") && (clickedColumn ==10) ) 
             {
                 frmFTRExcel ftrExcel = new frmFTRExcel(ftrID);

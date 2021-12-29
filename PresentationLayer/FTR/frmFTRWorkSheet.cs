@@ -166,10 +166,10 @@ namespace CashFlow.PresentationLayer.Cash_Flow
                 gridResult.Columns["CONTROLCELL"].Visible = true;
             }
 
-            Syncfusion.WinForms.DataGrid.GroupColumnDescription groupColumnDescription1 = new Syncfusion.WinForms.DataGrid.GroupColumnDescription();
-            groupColumnDescription1.ColumnName = "VENDORTYPE";
-            this.gridResult.GroupColumnDescriptions.Add(groupColumnDescription1);
-            this.gridResult.CollapseAllGroup();
+            //Syncfusion.WinForms.DataGrid.GroupColumnDescription groupColumnDescription1 = new Syncfusion.WinForms.DataGrid.GroupColumnDescription();
+            //groupColumnDescription1.ColumnName = "VENDORTYPE";
+            //this.gridResult.GroupColumnDescriptions.Add(groupColumnDescription1);
+            //this.gridResult.CollapseAllGroup();
 
             this.gridResult.LiveDataUpdateMode = Syncfusion.Data.LiveDataUpdateMode.AllowDataShaping;
             this.gridResult.Style.TableSummaryRowStyle.TextMargins = new Padding(3, 0, 3, 0);
